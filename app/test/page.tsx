@@ -12,6 +12,7 @@ import { calculatePersonality, Scores } from '@/lib/results';
 
 export default function TestPage() {
   const router = useRouter();
+  const [userName, setUserName] = useState<string>('');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showJoke, setShowJoke] = useState(false);
@@ -26,6 +27,16 @@ export default function TestPage() {
 
   const currentQuestion = questions[currentQuestionIndex];
   const totalQuestions = questions.length;
+
+  // Check if user has entered name
+  useEffect(() => {
+    const name = localStorage.getItem('test_taker_name');
+    if (!name) {
+      router.push('/');
+      return;
+    }
+    setUserName(name);
+  }, [router]);
 
   const handleSelectAnswer = useCallback((answerId: string) => {
     setSelectedAnswer(answerId);
