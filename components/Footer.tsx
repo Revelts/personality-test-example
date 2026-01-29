@@ -11,7 +11,13 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-border bg-bg-secondary/50 backdrop-blur-sm flex-shrink-0">
+    <footer 
+      className="w-full border-t border-border flex-shrink-0"
+      style={{
+        backgroundColor: '#111113', // Solid color for Safari compatibility
+        background: 'rgba(17, 17, 19, 0.95)', // Slight transparency for modern browsers
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm">
           {/* Powered by text */}

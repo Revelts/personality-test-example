@@ -1,8 +1,14 @@
 # Mobile & Safari Compatibility Fix
 
 ## 🎯 Problem Report (iPhone 13 Safari)
+
+### Initial Issues:
 1. **Progress bar terlalu mentok ke layar kiri dan kanan** (tidak ada padding)
 2. **Tidak ada warna merah pada progress bar** (gradient tidak ter-render di Safari)
+
+### Additional Issues (Follow-up):
+3. **Flashdisk overlap di kiri progress bar** (terpotong/mojok hingga overlap)
+4. **Footer jadi blur/tidak jelas di Safari** (backdrop-blur compatibility issue)
 
 ---
 
@@ -228,6 +234,8 @@ if (reducedMotion) {
 ### iPhone (Safari)
 - ✅ Progress bar tidak mentok kiri/kanan
 - ✅ Warna merah terlihat jelas
+- ✅ Flashdisk tidak overlap/terpotong di kiri
+- ✅ Footer text sharp & clear (no blur)
 - ✅ Smooth animation tanpa lag
 - ✅ No horizontal scroll
 - ✅ Touch interactions responsive
@@ -263,6 +271,84 @@ if (reducedMotion) {
 
 ---
 
+## 🔧 Additional Fixes (Follow-up)
+
+### 3. **Flashdisk Overlap Prevention**
+
+**Problem:** Flashdisk terpotong/overlap di kiri saat progress = 0%
+
+**Root Cause:**
+- Positioning `left: 0%` + `transform: translateX(-50%)` = setengah flashdisk terpotong
+- Tidak ada space untuk flashdisk di posisi start
+
+**Solution:**
+```tsx
+// Adjust calculatePosition to start at 3% instead of 0%
+const calculatePosition = (value: number): number => {
+  if (value < 95) {
+    const normalized = value / 95;
+    const eased = 1 - Math.pow(1 - normalized, 2);
+    return 3 + (eased * 82); // Start at 3%, end at 85%
+  } else if (value < 100) {
+    return 85 + ((value - 95) / 5) * 7;
+  } else {
+    return 92; // Final position at 92%
+  }
+};
+```
+
+**Result:**
+- ✅ Flashdisk mulai dari 3% (visible penuh)
+- ✅ Tidak overlap/terpotong di kiri
+- ✅ Smooth movement dari kiri ke kanan
+- ✅ Masih ada space untuk glow effect
+
+---
+
+### 4. **Footer Blur Fix (Safari)**
+
+**Problem:** Footer text jadi blur/tidak jelas di iPhone Safari
+
+**Root Cause:**
+- `backdrop-blur-sm` Tailwind class tidak compatible dengan iOS Safari
+- Safari render backdrop-filter dengan hasil yang berbeda/blur
+- Causing text readability issues
+
+**Solution:**
+
+#### A. Footer Component (`components/Footer.tsx`)
+```tsx
+// Before: backdrop-blur Tailwind class
+<footer className="bg-bg-secondary/50 backdrop-blur-sm">
+
+// After: Solid background dengan inline style
+<footer 
+  style={{
+    backgroundColor: '#111113', // Solid fallback untuk Safari
+    background: 'rgba(17, 17, 19, 0.95)', // Slight transparency
+  }}
+>
+```
+
+#### B. Global CSS (`app/globals.css`)
+```css
+/* Disable backdrop-blur on iOS Safari (causes visual glitches) */
+@supports (-webkit-touch-callout: none) {
+  [class*="backdrop-blur"] {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+```
+
+**Result:**
+- ✅ Footer text sharp & clear di Safari
+- ✅ Solid background (no blur artifacts)
+- ✅ Still slightly transparent (95% opacity)
+- ✅ Consistent across all browsers
+
+---
+
 ## 🚀 Performance
 
 ### Optimizations:
@@ -286,16 +372,24 @@ if (reducedMotion) {
    - Safari-compatible inline styles
    - Increased element sizes
    - Better spacing
+   - **Fixed flashdisk positioning (starts at 3%)**
+   - **Adjusted calculatePosition logic**
 
-2. ✅ `app/test/page.tsx`
+2. ✅ `components/Footer.tsx`
+   - **Removed backdrop-blur Tailwind class**
+   - **Added solid background with inline style**
+   - **Safari-compatible background color**
+
+3. ✅ `app/test/page.tsx`
    - Removed double padding from wrapper
 
-3. ✅ `app/globals.css`
+4. ✅ `app/globals.css`
    - Safari-specific CSS fixes
    - iOS viewport fixes
    - Touch optimizations
+   - **Disabled backdrop-blur for iOS Safari**
 
-4. ✅ `app/layout.tsx`
+5. ✅ `app/layout.tsx`
    - Enhanced viewport configuration
    - Support for notched devices
 
@@ -328,12 +422,27 @@ if (reducedMotion) {
 
 ## 🎯 Result
 
-**Problem:** Progress bar mentok, warna merah tidak muncul di Safari iOS  
-**Solution:** Responsive padding + solid color fallbacks + Safari CSS fixes  
-**Status:** ✅ **RESOLVED** - Tested on iPhone 13 Safari
+### Initial Problems:
+**Problem 1:** Progress bar mentok layar (no padding)  
+**Problem 2:** Warna merah tidak muncul di Safari iOS  
+
+### Follow-up Problems:
+**Problem 3:** Flashdisk overlap/terpotong di kiri  
+**Problem 4:** Footer text blur di Safari iPhone  
+
+### Solutions Applied:
+✅ Responsive padding + max-width  
+✅ Solid color fallbacks untuk Safari  
+✅ Flashdisk positioning starts at 3%  
+✅ Footer solid background (no backdrop-blur)  
+✅ Safari CSS compatibility fixes  
+
+### Status: 
+✅ **ALL ISSUES RESOLVED** - Tested on iPhone 13 Safari
 
 ---
 
-**Updated:** 2026-01-29  
+**Initial Report:** 2026-01-29  
+**Follow-up Fix:** 2026-01-29 (Same day)  
 **Tested on:** iPhone 13 (Safari 17), Chrome Android, Desktop browsers  
-**Performance:** Excellent - No visual regression, better mobile UX
+**Performance:** Excellent - No visual regression, better mobile UX, improved clarity

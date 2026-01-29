@@ -451,6 +451,12 @@ body {
     -webkit-filter: blur(4px);
   }
 
+  /* Disable backdrop-blur on iOS Safari (causes visual glitches) */
+  [class*="backdrop-blur"] {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   /* Improve touch responsiveness */
   button,
   a,

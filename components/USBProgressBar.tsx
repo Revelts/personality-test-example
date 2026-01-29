@@ -24,14 +24,15 @@ export default function USBProgressBar({
   const [isPluggedIn, setIsPluggedIn] = useState(false);
   
   const calculatePosition = (value: number): number => {
+    // Map progress (0-100) to position (3-95) to prevent left/right overflow
     if (value < 95) {
       const normalized = value / 95;
       const eased = 1 - Math.pow(1 - normalized, 2);
-      return eased * 85;
+      return 3 + (eased * 82); // Start at 3%, end at 85%
     } else if (value < 100) {
-      return 85 + ((value - 95) / 5) * 7;
+      return 85 + ((value - 95) / 5) * 7; // 85% to 92%
     } else {
-      return 97;
+      return 92; // Final position at 92%
     }
   };
 
@@ -102,7 +103,7 @@ export default function USBProgressBar({
           />
         </div>
 
-        {/* Flashdisk (USB) - Responsive sizes */}
+        {/* Flashdisk (USB) - Positioned to prevent left overlap (starts at 3%) */}
         <motion.div
           className="absolute z-10"
           animate={{
@@ -113,7 +114,7 @@ export default function USBProgressBar({
             ease: [0.34, 1.56, 0.64, 1]
           }}
           style={{
-            x: '-50%',
+            transform: 'translateX(-50%)',
           }}
         >
           <motion.div
