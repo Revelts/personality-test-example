@@ -27,6 +27,9 @@ export const viewport = {
   themeColor: '#E10600',
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false, // Prevent zoom on iOS Safari
+  viewportFit: 'cover', // For notched devices (iPhone X+)
 }
 
 export default function RootLayout({

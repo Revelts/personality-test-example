@@ -61,11 +61,14 @@ export default function USBProgressBar({
 
   if (reducedMotion) {
     return (
-      <div className="w-full mb-4 sm:mb-6 space-y-2">
-        <div className="relative h-0.5 sm:h-1 bg-bg-surface rounded-full overflow-hidden">
+      <div className="w-full mb-4 sm:mb-6 space-y-2 px-3 sm:px-4 md:px-6">
+        <div className="relative h-1 sm:h-1.5 bg-bg-surface rounded-full overflow-hidden border border-border-subtle max-w-4xl mx-auto">
           <motion.div
-            className="absolute inset-y-0 left-0 bg-brand-red rounded-full"
-            style={{ width: `${progress}%` }}
+            className="absolute inset-y-0 left-0 rounded-full"
+            style={{ 
+              width: `${progress}%`,
+              backgroundColor: '#E10600',
+            }}
           />
         </div>
         {showStatusText && (
@@ -78,15 +81,19 @@ export default function USBProgressBar({
   }
 
   return (
-    <div className="w-full mb-6 sm:mb-8">
-      {/* Main Container - Responsive heights */}
-      <div className="relative w-full h-10 sm:h-12 flex items-center">
+    <div className="w-full mb-6 sm:mb-8 px-3 sm:px-4 md:px-6">
+      {/* Main Container - Responsive heights with proper spacing */}
+      <div className="relative w-full h-10 sm:h-12 flex items-center max-w-4xl mx-auto">
         
         {/* Progress Track Background */}
-        <div className="absolute left-0 right-8 sm:right-10 h-0.5 sm:h-1 bg-bg-surface border border-border-subtle rounded-full overflow-hidden">
-          {/* Progress Fill */}
+        <div className="absolute left-0 right-10 sm:right-12 md:right-14 h-1 sm:h-1.5 bg-bg-surface border border-border-subtle rounded-full overflow-hidden">
+          {/* Progress Fill - Safari compatible */}
           <motion.div
-            className="absolute inset-y-0 left-0 bg-brand-red rounded-full"
+            className="absolute inset-y-0 left-0 rounded-full"
+            style={{
+              backgroundColor: '#E10600', // Solid color for Safari compatibility
+              background: 'linear-gradient(90deg, #E10600 0%, #FF1F0F 100%)', // Fallback gradient
+            }}
             animate={{ width: `${currentPosition}%` }}
             transition={{ 
               duration: reducedMotion ? 0 : 0.5,
@@ -116,18 +123,32 @@ export default function USBProgressBar({
             } : {}}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            {/* USB Flashdisk Icon - Smaller on mobile */}
+            {/* USB Flashdisk Icon - Optimized for mobile */}
             <div className="relative">
-              <div className="w-5 h-4 sm:w-6 sm:h-5 bg-gradient-to-r from-metallic to-metallic-light rounded-r-md shadow-elevation-sm relative border border-border">
-                {/* USB Cap */}
-                <div className="absolute -left-1 sm:-left-1.5 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-2.5 sm:h-3 bg-brand-red rounded-l-sm" />
+              <div 
+                className="w-6 h-5 sm:w-7 sm:h-6 md:w-8 md:h-7 rounded-r-md shadow-elevation-sm relative border border-border"
+                style={{
+                  backgroundColor: '#4F4F51', // Solid metallic color for Safari
+                  background: 'linear-gradient(90deg, #3A3A3C 0%, #4F4F51 100%)',
+                }}
+              >
+                {/* USB Cap - Red */}
+                <div 
+                  className="absolute -left-1.5 sm:-left-2 top-1/2 -translate-y-1/2 w-1.5 sm:w-2 h-3 sm:h-4 rounded-l-sm shadow-md"
+                  style={{
+                    backgroundColor: '#E10600',
+                  }}
+                />
                 {/* USB Connector */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 sm:w-1 h-1 sm:h-1.5 bg-text-secondary" />
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-1.5 sm:h-2 bg-text-secondary" />
                 {/* LED Indicator */}
                 <motion.div
-                  className="absolute right-0.5 top-0.5 w-0.5 h-0.5 rounded-full"
+                  className="absolute right-1 top-1 w-1 h-1 rounded-full"
+                  style={{
+                    backgroundColor: progress > 0 ? '#E10600' : '#666666',
+                  }}
                   animate={{
-                    backgroundColor: progress > 0 ? ['#E10600', '#FF1F0F', '#E10600'] : '#666666',
+                    opacity: progress > 0 && progress < 100 ? [1, 0.3, 1] : 1,
                   }}
                   transition={{
                     duration: 1,
@@ -136,21 +157,27 @@ export default function USBProgressBar({
                 />
               </div>
               
-              {/* Data Transfer Particles - Smaller on mobile */}
+              {/* Data Transfer Particles - Visible on mobile */}
               {progress > 0 && progress < 100 && (
                 <motion.div
-                  className="absolute left-full top-1/2 -translate-y-1/2 ml-0.5"
+                  className="absolute left-full top-1/2 -translate-y-1/2 ml-1"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0], x: [0, 6, 12] }}
+                  animate={{ opacity: [0, 1, 0], x: [0, 8, 16] }}
                   transition={{
                     duration: 0.8,
                     repeat: Infinity,
                     ease: "linear"
                   }}
                 >
-                  <div className="flex gap-0.5">
-                    <div className="w-0.5 h-0.5 bg-brand-red rounded-full" />
-                    <div className="w-0.5 h-0.5 bg-brand-red-light rounded-full" />
+                  <div className="flex gap-1">
+                    <div 
+                      className="w-1 h-1 rounded-full" 
+                      style={{ backgroundColor: '#E10600' }}
+                    />
+                    <div 
+                      className="w-1 h-1 rounded-full" 
+                      style={{ backgroundColor: '#FF1F0F' }}
+                    />
                   </div>
                 </motion.div>
               )}
@@ -158,7 +185,7 @@ export default function USBProgressBar({
           </motion.div>
         </motion.div>
 
-        {/* Handphone - Responsive sizes */}
+        {/* Handphone - Optimized for mobile */}
         <motion.div
           className="absolute right-0 z-20"
           animate={isPluggedIn ? {
@@ -168,20 +195,33 @@ export default function USBProgressBar({
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <div className="relative">
-            {/* Phone Body - Smaller on mobile */}
+            {/* Phone Body - Bigger and clearer on mobile */}
             <motion.div
-              className="w-7 h-10 sm:w-9 sm:h-12 bg-gradient-to-br from-metallic to-bg-elevated rounded-lg border border-border relative overflow-hidden shadow-elevation-md"
+              className="w-8 h-11 sm:w-10 sm:h-14 md:w-11 md:h-16 rounded-lg border border-border relative overflow-hidden shadow-elevation-md"
+              style={{
+                backgroundColor: '#222224',
+                background: 'linear-gradient(135deg, #3A3A3C 0%, #222224 100%)',
+              }}
               animate={{
-                boxShadow: `0 0 ${currentGlow * 12}px rgba(225, 6, 0, ${currentGlow * 0.4})`
+                boxShadow: `0 0 ${currentGlow * 15}px rgba(225, 6, 0, ${currentGlow * 0.5})`
               }}
               transition={{ duration: 0.3 }}
             >
               {/* Phone Screen */}
-              <div className="absolute inset-0.5 sm:inset-1 bg-gradient-to-br from-bg-secondary to-bg-primary rounded-md">
+              <div 
+                className="absolute inset-1 sm:inset-1.5 rounded-md"
+                style={{
+                  backgroundColor: '#141414',
+                  background: 'linear-gradient(135deg, #141414 0%, #0E0E10 100%)',
+                }}
+              >
                 {/* Screen Glow when connected */}
                 {isPluggedIn && (
                   <motion.div
-                    className="absolute inset-0 bg-brand-red"
+                    className="absolute inset-0 rounded-md"
+                    style={{
+                      backgroundColor: '#E10600',
+                    }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: [0, 0.3, 0] }}
                     transition={{ duration: 0.6 }}
@@ -198,7 +238,12 @@ export default function USBProgressBar({
                     transition={{ duration: 0.4 }}
                   >
                     {isPluggedIn ? (
-                      <span className="text-semantic-success text-xs font-bold">✓</span>
+                      <span 
+                        className="text-xs sm:text-sm font-bold"
+                        style={{ color: '#4CAF50' }}
+                      >
+                        ✓
+                      </span>
                     ) : (
                       <svg 
                         width="12" 
@@ -206,7 +251,7 @@ export default function USBProgressBar({
                         viewBox="0 0 24 32" 
                         fill="none" 
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-3 h-4"
+                        className="w-3 h-4 sm:w-4 sm:h-5"
                       >
                         {/* Phone body */}
                         <rect 
@@ -215,8 +260,7 @@ export default function USBProgressBar({
                           width="20" 
                           height="30" 
                           rx="2" 
-                          fill="currentColor" 
-                          className="text-text-secondary"
+                          fill="#A0A0A0" 
                           opacity="0.8"
                         />
                         {/* Screen */}
@@ -226,8 +270,7 @@ export default function USBProgressBar({
                           width="17" 
                           height="23" 
                           rx="0.5" 
-                          fill="currentColor" 
-                          className="text-brand-red"
+                          fill="#E10600" 
                           opacity="0.3"
                         />
                         {/* Top speaker/notch */}
@@ -237,8 +280,7 @@ export default function USBProgressBar({
                           width="6" 
                           height="0.5" 
                           rx="0.25" 
-                          fill="currentColor" 
-                          className="text-bg-primary"
+                          fill="#0E0E10"
                         />
                         {/* Home indicator */}
                         <rect 
@@ -247,8 +289,7 @@ export default function USBProgressBar({
                           width="6" 
                           height="1" 
                           rx="0.5" 
-                          fill="currentColor" 
-                          className="text-text-tertiary"
+                          fill="#666666" 
                           opacity="0.4"
                         />
                       </svg>
@@ -258,11 +299,19 @@ export default function USBProgressBar({
               </div>
 
               {/* USB Port */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 sm:w-2 h-0.5 bg-bg-primary border-t border-border rounded-t-sm" />
+              <div 
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 sm:w-2.5 h-0.5 sm:h-1 border-t border-border rounded-t-sm"
+                style={{ backgroundColor: '#0E0E10' }}
+              />
               
-              {/* Port Highlight */}
+              {/* Port Highlight - Red glow */}
               <motion.div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 sm:w-3 h-0.5 sm:h-1 bg-brand-red rounded-full blur-sm"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 sm:w-4 h-1 sm:h-1.5 rounded-full"
+                style={{
+                  backgroundColor: '#E10600',
+                  filter: 'blur(4px)',
+                  WebkitFilter: 'blur(4px)',
+                }}
                 animate={{ opacity: currentGlow }}
                 transition={{ duration: 0.3 }}
               />

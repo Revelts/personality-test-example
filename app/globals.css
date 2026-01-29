@@ -420,3 +420,60 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Safari & iOS Compatibility Fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific fixes */
+  body {
+    /* Prevent horizontal overflow on iOS */
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Force GPU acceleration for smoother animations on iOS */
+  .motion-safe\:animate-spin,
+  [class*="motion-"] {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Ensure gradients render properly on Safari */
+  [class*="bg-gradient"] {
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+
+  /* Fix blur filter for Safari */
+  [class*="blur"] {
+    -webkit-filter: blur(4px);
+  }
+
+  /* Improve touch responsiveness */
+  button,
+  a,
+  [role="button"] {
+    -webkit-tap-highlight-color: rgba(225, 6, 0, 0.2);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Additional iOS viewport fix */
+@media screen and (max-width: 768px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  /* Prevent zoom on input focus (iOS Safari) */
+  input, 
+  textarea, 
+  select {
+    font-size: 16px !important;
+  }
+}

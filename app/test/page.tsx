@@ -227,21 +227,19 @@ export default function TestPage() {
         )}
       </AnimatePresence> */}
 
-      {/* USB Progress Bar - At top */}
+      {/* USB Progress Bar - At top (no wrapper padding, component handles its own) */}
       <motion.div 
-        className="relative z-30 pt-4 sm:pt-6 px-4 sm:px-6 md:px-8"
+        className="relative z-30 pt-4 sm:pt-6"
         animate={{
           opacity: isExiting ? 0 : 1,
           y: isExiting ? -20 : 0
         }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="max-w-4xl mx-auto">
-          <USBProgressBar 
-            progress={(currentQuestionIndex / totalQuestions) * 100}
-            showStatusText={false}
-          />
-        </div>
+        <USBProgressBar 
+          progress={(currentQuestionIndex / totalQuestions) * 100}
+          showStatusText={false}
+        />
       </motion.div>
 
       {/* Main content - Centered vertically */}
