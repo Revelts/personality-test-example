@@ -1,18 +1,32 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Space_Grotesk } from 'next/font/google'
 import './globals.css'
+import GoogleTagManager from '@/components/GoogleTagManager'
+import Footer from '@/components/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+// Modern Neo-Grotesk Font - Perfect for tech/cyber-punk aesthetic
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-space-grotesk'
+})
 
 export const metadata: Metadata = {
-  title: 'Tes Kepribadian - Temukan Tipe Unik Kamu',
-  description: 'Ikuti tes kepribadian interaktif dan temukan karakter unik, kekuatan, dan apa yang bikin kamu spesial!',
-  keywords: 'tes kepribadian, kuis, personality test, mengenal diri, tipe kepribadian',
+  title: 'Personality Test - Temukan Tipe Kepribadian Kamu',
+  description: 'Ikuti tes kepribadian interaktif 10 pertanyaan. Fast, professional, reliable. Temukan kekuatan dan karakter unik kamu.',
+  keywords: 'personality test, tes kepribadian, kuis, mengenal diri, tipe kepribadian, character test',
   openGraph: {
-    title: 'Tes Kepribadian - Temukan Tipe Unik Kamu',
-    description: 'Ikuti tes kepribadian interaktif dan temukan karakter unik kamu!',
+    title: 'Personality Test - Temukan Tipe Kepribadian Kamu',
+    description: 'Tes kepribadian interaktif dan profesional. 10 pertanyaan, 3 menit.',
     type: 'website',
   },
+}
+
+export const viewport = {
+  themeColor: '#E10600',
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -20,9 +34,24 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || '';
+
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="id" className="dark h-full">
+      <body className={`${spaceGrotesk.className} antialiased bg-bg-primary text-text-primary h-full`}>
+        {/* Google Tag Manager */}
+        {gtmId && <GoogleTagManager gtmId={gtmId} />}
+        
+        {/* Main content wrapper - Fixed viewport height */}
+        <div className="h-full flex flex-col">
+          <main className="flex-1 overflow-y-auto overflow-x-hidden">
+            {children}
+          </main>
+          
+          {/* Footer - Fixed at bottom, always visible */}
+          <Footer />
+        </div>
+      </body>
     </html>
   )
 }

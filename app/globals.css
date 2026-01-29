@@ -2,38 +2,300 @@
 @tailwind components;
 @tailwind utilities;
 
+/**
+ * SanDisk Cyber-Tech Aesthetic
+ * 
+ * Design Philosophy:
+ * - Neo-grotesk typography (Space Grotesk)
+ * - Semi cyber-punk visual language
+ * - Geometric precision + neon accents
+ * - Industrial tech meets futuristic
+ * - High contrast, sharp edges
+ */
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  /* SanDisk Design Tokens */
+  --bg-primary: #0A0A0C;
+  --bg-secondary: #111113;
+  --bg-surface: #18181B;
+  --bg-elevated: #1F1F23;
+  
+  --brand-red: #E10600;
+  --brand-red-light: #FF1F0F;
+  --brand-red-dark: #B80500;
+  --brand-red-neon: #FF0F0F;
+  
+  --accent-cyan: #00F0FF;
+  --accent-purple: #B026FF;
+  
+  --text-primary: #F5F5F5;
+  --text-secondary: #9E9E9E;
+  --text-tertiary: #5A5A5A;
+  
+  --border-default: #2A2A2E;
+  --border-subtle: #1A1A1E;
+  --border-glow: rgba(225, 6, 0, 0.3);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 15, 23, 42;
-    --background-end-rgb: 15, 23, 42;
-  }
+/* Global Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
+  letter-spacing: -0.01em; /* Tighter, more tech feel */
+  font-feature-settings: 'ss01', 'ss02'; /* Stylistic sets for modern look */
 }
 
+/* Selection Styling */
+::selection {
+  background-color: rgba(225, 6, 0, 0.3);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background-color: rgba(225, 6, 0, 0.3);
+  color: var(--text-primary);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-red);
+}
+
+/* Focus Visible (Accessibility) */
+:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 2px;
+}
+
+/* Utility Classes */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Brand Red Variants */
+  .text-brand-red {
+    color: var(--brand-red);
+  }
+  
+  .bg-brand-red {
+    background-color: var(--brand-red);
+  }
+  
+  .border-brand-red {
+    border-color: var(--brand-red);
+  }
+  
+  /* Glow Effects */
+  .glow-red {
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.3);
+  }
+  
+  .glow-red-sm {
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.2);
+  }
 }
 
-/* Custom animations */
+/* Component Base Styles - Cyber-Tech Edition */
+@layer components {
+  /* Button Base - Sharp, Geometric, Neo-Grotesk */
+  .btn {
+    @apply inline-flex items-center justify-center relative;
+    @apply px-5 py-3 sm:px-7 sm:py-3.5;
+    @apply font-semibold text-sm sm:text-base tracking-wide uppercase;
+    @apply focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed;
+    @apply transition-all duration-200 ease-out;
+    border-radius: 2px; /* Sharp, minimal radius for cyber-tech feel */
+    clip-path: polygon(
+      0 0,
+      calc(100% - 8px) 0,
+      100% 8px,
+      100% 100%,
+      8px 100%,
+      0 calc(100% - 8px)
+    ); /* Angled corners (cyber-punk aesthetic) */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .btn:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #E10600 0%, #B80500 100%);
+    color: #F5F5F5;
+    box-shadow: 
+      0 0 0 1px rgba(225, 6, 0, 0.3),
+      0 4px 12px rgba(225, 6, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #FF1F0F 0%, #E10600 100%);
+    box-shadow: 
+      0 0 0 1px rgba(225, 6, 0, 0.5),
+      0 0 20px rgba(225, 6, 0, 0.4),
+      0 6px 16px rgba(225, 6, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+  }
+  
+  .btn-primary:active {
+    background: linear-gradient(135deg, #B80500 0%, #8A0400 100%);
+    transform: translateY(0);
+  }
+  
+  .btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--border-default);
+    color: #F5F5F5;
+    box-shadow: inset 0 0 0 1px rgba(225, 6, 0, 0);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    border-color: var(--brand-red);
+    box-shadow: 
+      inset 0 0 0 1px rgba(225, 6, 0, 0.3),
+      0 0 16px rgba(225, 6, 0, 0.2);
+    background: rgba(225, 6, 0, 0.05);
+  }
+  
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+  }
+  
+  .btn-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+  }
+  
+  /* Card Base - Geometric Cyber Style */
+  .card {
+    background: linear-gradient(135deg, #18181B 0%, #111113 100%);
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(225, 6, 0, 0.3) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card-interactive:hover {
+    border-color: rgba(225, 6, 0, 0.5);
+    box-shadow: 
+      0 4px 16px rgba(225, 6, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+  }
+  
+  .card-interactive:hover::before {
+    opacity: 1;
+  }
+  
+  /* Input Base - Cyber-Tech Style */
+  .input {
+    @apply w-full px-4 py-3 sm:px-5 sm:py-3.5;
+    @apply text-sm sm:text-base font-medium;
+    background: rgba(24, 24, 27, 0.8);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--border-default);
+    border-radius: 2px;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    letter-spacing: 0.01em;
+  }
+  
+  .input::placeholder {
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: var(--brand-red);
+    background: rgba(24, 24, 27, 1);
+    box-shadow: 
+      0 0 0 3px rgba(225, 6, 0, 0.15),
+      0 0 16px rgba(225, 6, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .input-error {
+    border-color: #D32F2F;
+    background: rgba(211, 47, 47, 0.05);
+  }
+  
+  .input-error:focus {
+    border-color: #D32F2F;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.15);
+  }
+}
+
+/* Cyber-Punk Animations */
 @keyframes shimmer {
   0% {
     background-position: -1000px 0;
@@ -43,13 +305,118 @@ body {
   }
 }
 
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.4);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes neon-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
 .animate-shimmer {
   animation: shimmer 2s infinite linear;
   background: linear-gradient(
     to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(245, 245, 245, 0) 0%,
+    rgba(245, 245, 245, 0.1) 50%,
+    rgba(245, 245, 245, 0) 100%
   );
   background-size: 1000px 100%;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-scan-line {
+  animation: scan-line 3s linear infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.animate-neon-flicker {
+  animation: neon-flicker 0.15s ease-in-out infinite;
+}
+
+/* Cyber Grid Background */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(225, 6, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 6, 0, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+}
+
+/* Scan Line Effect */
+.scan-line-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(225, 6, 0, 0.6) 50%,
+    transparent 100%
+  );
+  animation: scan-line 3s linear infinite;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

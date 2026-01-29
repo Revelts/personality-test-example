@@ -7,6 +7,7 @@ import ResultCard from '@/components/ResultCard';
 import ShareButton from '@/components/ShareButton';
 import ScreenshotButton from '@/components/ScreenshotButton';
 import { PersonalityResult, personalityTypes } from '@/lib/results';
+import { trackResultView } from '@/lib/analytics';
 
 export default function ResultPage() {
   const params = useParams();
@@ -18,16 +19,15 @@ export default function ResultPage() {
   useEffect(() => {
     const fetchResult = () => {
       try {
-        // Try localStorage first
         const localData = localStorage.getItem(`personality_result_${params.id}`);
         if (localData) {
           const data = JSON.parse(localData);
           setResult(data.personality);
           setUserName(data.userName || '');
+          trackResultView(data.personality.id, params.id as string, data.userName);
           return;
         }
         
-        // Try URL-encoded data (for shared links)
         const urlParams = new URLSearchParams(window.location.search);
         const encodedData = urlParams.get('data');
         
@@ -44,7 +44,6 @@ export default function ResultPage() {
           }
         }
         
-        // Fallback: direct type ID in URL params
         const typeId = urlParams.get('type');
         if (typeId) {
           const personality = personalityTypes.find(p => p.id === typeId);
@@ -54,7 +53,6 @@ export default function ResultPage() {
           }
         }
         
-        // No result found
         setResult(null);
       } catch (error) {
         console.error('Error fetching result:', error);
@@ -69,97 +67,86 @@ export default function ResultPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900">
-        <div className="text-center">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="h-full flex items-center justify-center bg-bg-primary"
+      >
+        <div className="text-center px-4">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            className="text-6xl mb-4"
+            className="text-5xl sm:text-6xl mb-4"
           >
             ⏳
           </motion.div>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
+          <p className="text-base sm:text-lg text-text-secondary">
             Memuat hasil kamu...
           </p>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   if (!result) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900 p-4">
-        <div className="text-center">
-          <div className="text-6xl mb-4">🤔</div>
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+      <div className="h-full flex items-center justify-center bg-bg-primary p-4 sm:p-6">
+        <div className="text-center max-w-md">
+          <div className="text-5xl sm:text-6xl mb-4">🤔</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-text-primary mb-3 sm:mb-4">
             Hasil Tidak Ditemukan
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Hasil ini tidak ada atau sudah expired.
+          <p className="text-sm sm:text-base text-text-secondary mb-5 sm:mb-6">
+            Link hasil test tidak valid atau sudah expired.
           </p>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => router.push('/')}
-            className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold py-3 px-8 rounded-lg"
+            className="btn btn-primary"
           >
-            Ikuti Tes
-          </button>
+            Mulai Test Baru
+          </motion.button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900 p-4 py-12">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
-        >
-          {userName && (
-            <motion.p
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-indigo-600 dark:text-indigo-400 font-semibold mb-2"
-            >
-              Halo, {userName}! 👋
-            </motion.p>
-          )}
-          <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
-            Hasil Tes Kepribadian Kamu
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            Ini yang kita temukan tentang kamu!
-          </p>
-        </motion.div>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="h-full bg-bg-primary py-4 sm:py-6 md:py-8 px-4 sm:px-6 relative overflow-y-auto"
+    >
+      {/* Subtle texture */}
+      <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==')]" />
 
-        <ResultCard result={result} userName={userName} />
-
+      <div className="max-w-4xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8"
+          transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
         >
-          <ShareButton resultId={params.id as string} />
-          <ScreenshotButton />
-        </motion.div>
+          {/* Result Card */}
+          <ResultCard result={result} userName={userName} />
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="text-center mt-8"
-        >
-          <button
-            onClick={() => router.push('/')}
-            className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
-          >
-            ← Ikuti tes lagi
-          </button>
+          {/* Actions - Responsive layout & spacing */}
+          <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0 mb-4">
+            <ShareButton resultId={params.id as string} />
+            <ScreenshotButton elementId="result-card" />
+            
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => router.push('/')}
+              className="btn btn-secondary text-sm sm:text-base py-3"
+            >
+              Mulai Test Baru
+            </motion.button>
+          </div>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

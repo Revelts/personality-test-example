@@ -1,11 +1,24 @@
+/**
+ * Landing Page - SanDisk-Inspired Design (Fully Responsive)
+ * 
+ * Design Philosophy:
+ * - Industrial tech aesthetic
+ * - Professional, confident, reliable
+ * - Red as signal for action (CTA)
+ * - Fully responsive (mobile-first)
+ */
+
 'use client';
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { trackFormSubmit } from '@/lib/analytics';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 export default function Home() {
   const router = useRouter();
+  const reducedMotion = useReducedMotion();
   const [name, setName] = useState('');
   const [error, setError] = useState('');
 
@@ -13,155 +26,168 @@ export default function Home() {
     const trimmedName = name.trim();
     
     if (!trimmedName) {
-      setError('Nama wajib diisi ya! 😊');
+      setError('Nama wajib diisi');
       return;
     }
 
     if (trimmedName.length < 2) {
-      setError('Nama terlalu pendek. Minimal 2 karakter ya!');
+      setError('Nama terlalu pendek. Minimal 2 karakter');
       return;
     }
 
-    // Save name to localStorage
+    trackFormSubmit('name_input', {
+      user_name: trimmedName,
+      form_location: 'landing_page'
+    });
+
     localStorage.setItem('test_taker_name', trimmedName);
-    
-    // Navigate to test page
     router.push('/test');
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900">
+    <div className="h-full flex items-center justify-center p-4 sm:p-6 md:p-8 bg-bg-primary relative">
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==')]" />
+
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="max-w-2xl w-full text-center"
+        transition={{ duration: reducedMotion ? 0.1 : 0.4, ease: 'easeOut' }}
+        className="max-w-2xl w-full relative z-10"
       >
-        <motion.div
-          animate={{ 
-            rotate: [0, 5, -5, 5, 0],
-            scale: [1, 1.05, 1]
-          }}
-          transition={{ 
-            duration: 2,
-            repeat: Infinity,
-            repeatDelay: 3
-          }}
-          className="text-8xl mb-6"
-        >
-          🎯
-        </motion.div>
+        {/* Hero Section */}
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ 
+              duration: reducedMotion ? 0 : 0.3,
+              delay: reducedMotion ? 0 : 0.1 
+            }}
+            className="inline-block mb-4 sm:mb-6"
+          >
+            <div className="text-5xl sm:text-6xl md:text-7xl">🎯</div>
+          </motion.div>
 
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4">
-          Temukan
-          <span className="block bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-            Tipe Kepribadianmu
-          </span>
-        </h1>
+          <motion.h1 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: reducedMotion ? 0 : 0.2 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-3 sm:mb-4 leading-tight"
+          >
+            Personality Test
+          </motion.h1>
 
-        <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-          Ikuti tes interaktif 20 pertanyaan dan temukan kekuatan unik, 
-          karakter, dan apa yang bikin kamu spesial!
-        </p>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-            Apa yang Bakal Kamu Dapat
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div>
-              <div className="text-4xl mb-2">⚡</div>
-              <h3 className="font-semibold text-gray-800 dark:text-white mb-1">
-                Cepat & Seru
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                20 pertanyaan dengan jokes lucu di setiap jawaban
-              </p>
-            </div>
-            <div>
-              <div className="text-4xl mb-2">🎨</div>
-              <h3 className="font-semibold text-gray-800 dark:text-white mb-1">
-                Personal Banget
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Hasil yang sesuai dengan kepribadian unik kamu
-              </p>
-            </div>
-            <div>
-              <div className="text-4xl mb-2">📱</div>
-              <h3 className="font-semibold text-gray-800 dark:text-white mb-1">
-                Bisa Dishare
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Share hasil kamu ke temen dengan mudah
-              </p>
-            </div>
-          </div>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: reducedMotion ? 0 : 0.3 }}
+            className="text-base sm:text-lg md:text-xl text-text-secondary max-w-xl mx-auto px-4"
+          >
+            Temukan kekuatan unik dan karakter kamu melalui 10 pertanyaan interaktif
+          </motion.p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="w-full max-w-md mx-auto"
+        {/* Feature Cards */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: reducedMotion ? 0 : 0.4 }}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-10"
         >
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 text-center">
-              Siapa nama kamu? <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                setError('');
-              }}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter' && name.trim()) {
-                  handleStartTest();
-                }
-              }}
-              placeholder="Masukkan nama kamu..."
-              className={`w-full px-4 py-3 rounded-lg border-2 text-gray-800 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 transition-all ${
-                error 
-                  ? 'border-red-500 focus:ring-red-500' 
-                  : 'border-gray-300 dark:border-gray-600 focus:border-indigo-500 focus:ring-indigo-500'
-              }`}
-              maxLength={50}
-            />
-            {error && (
-              <motion.p
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-red-500 text-sm mt-2 text-center"
-              >
-                {error}
-              </motion.p>
-            )}
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 text-center">
-              Nama kamu akan muncul di hasil tes
+          <div className="card p-3 sm:p-4 text-center">
+            <div className="text-2xl sm:text-3xl mb-2">⚡</div>
+            <h3 className="text-sm sm:text-base font-semibold text-text-primary mb-1">
+              Cepat & Ringkas
+            </h3>
+            <p className="text-xs sm:text-sm text-text-tertiary">
+              10 pertanyaan, 3 menit
+            </p>
+          </div>
+          <div className="card p-3 sm:p-4 text-center">
+            <div className="text-2xl sm:text-3xl mb-2">🎨</div>
+            <h3 className="text-sm sm:text-base font-semibold text-text-primary mb-1">
+              Personal
+            </h3>
+            <p className="text-xs sm:text-sm text-text-tertiary">
+              Hasil sesuai kepribadian
+            </p>
+          </div>
+          <div className="card p-3 sm:p-4 text-center">
+            <div className="text-2xl sm:text-3xl mb-2">🔒</div>
+            <h3 className="text-sm sm:text-base font-semibold text-text-primary mb-1">
+              Privasi Aman
+            </h3>
+            <p className="text-xs sm:text-sm text-text-tertiary">
+              Tanpa registrasi
             </p>
           </div>
         </motion.div>
 
-        <motion.button
-          whileHover={{ scale: name.trim() ? 1.05 : 1 }}
-          whileTap={{ scale: name.trim() ? 0.95 : 1 }}
-          onClick={handleStartTest}
-          disabled={!name.trim()}
-          className={`text-xl font-bold py-4 px-12 rounded-full shadow-2xl transition-all ${
-            name.trim()
-              ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:shadow-3xl cursor-pointer'
-              : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
-          }`}
+        {/* Name Input Form */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: reducedMotion ? 0 : 0.5 }}
+          className="card p-5 sm:p-6 md:p-8"
         >
-          Mulai Tes Sekarang →
-        </motion.button>
+          <label htmlFor="name" className="block text-sm sm:text-base font-medium text-text-primary mb-2 sm:mb-3">
+            Siapa nama kamu? <span className="text-brand-red">*</span>
+          </label>
+          
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              setError('');
+            }}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' && name.trim()) {
+                handleStartTest();
+              }
+            }}
+            placeholder="Masukkan nama kamu"
+            className={`input mb-3 sm:mb-4 text-sm sm:text-base ${error ? 'input-error' : ''}`}
+            maxLength={50}
+            autoFocus
+          />
 
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-          Gak perlu daftar • Cuma 5 menit
-        </p>
+          {error && (
+            <motion.p
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-xs sm:text-sm text-semantic-error mb-3 sm:mb-4"
+            >
+              {error}
+            </motion.p>
+          )}
+
+          <motion.button
+            whileHover={!reducedMotion && name.trim() ? { scale: 1.02 } : {}}
+            whileTap={!reducedMotion && name.trim() ? { scale: 0.98 } : {}}
+            onClick={handleStartTest}
+            disabled={!name.trim()}
+            className="btn btn-primary w-full text-base sm:text-lg py-3 sm:py-4"
+          >
+            Mulai Test Sekarang →
+          </motion.button>
+
+          <p className="text-xs sm:text-sm text-text-tertiary text-center mt-3 sm:mt-4">
+            Gratis • Tanpa registrasi • 3 menit
+          </p>
+        </motion.div>
+
+        {/* Footer note */}
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: reducedMotion ? 0 : 0.6 }}
+          className="text-xs sm:text-sm text-text-tertiary text-center mt-4 sm:mt-6 px-4"
+        >
+          Nama kamu akan muncul di hasil test untuk personalisasi
+        </motion.p>
       </motion.div>
     </div>
   );
