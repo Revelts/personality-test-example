@@ -117,34 +117,61 @@ export default function ResultPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="h-full bg-bg-primary py-4 sm:py-6 md:py-8 px-4 sm:px-6 relative overflow-y-auto"
+      className="min-h-screen bg-black py-3 sm:py-4 px-4 sm:px-6 relative overflow-y-auto"
     >
-      {/* Subtle texture */}
-      <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==')]" />
-
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-2xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
         >
+          {/* Back Button & Logo */}
+          <div className="flex items-center justify-between mb-4 sm:mb-5">
+            <button
+              onClick={() => router.push('/')}
+              className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              <span className="text-base font-medium">Back</span>
+            </button>
+
+            {/* SanDisk Logo */}
+            <div className="text-xl sm:text-2xl font-bold tracking-tight">
+              <span className="text-white">San</span>
+              <span className="text-brand-red">Disk</span>
+            </div>
+          </div>
+
           {/* Result Card */}
           <ResultCard result={result} userName={userName} />
 
-          {/* Actions - Responsive layout & spacing */}
-          <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0 mb-4">
-            <ShareButton resultId={params.id as string} />
-            <ScreenshotButton elementId="result-card" />
-            
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => router.push('/')}
-              className="btn btn-secondary text-sm sm:text-base py-3"
+          {/* Red Button - Your Best Gear */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            className="mt-4 sm:mt-5"
+          >
+            <button
+              onClick={() => router.push(`/gear/${params.id}`)}
+              className="w-full py-3 sm:py-4 bg-brand-red hover:bg-red-700 text-white text-sm sm:text-base font-bold rounded-full transition-all duration-200 shadow-lg hover:shadow-xl"
             >
-              Mulai Test Baru
-            </motion.button>
-          </div>
+              Your best gear
+            </button>
+          </motion.div>
+
+          {/* White Button - Download & Share */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
+            className="mt-3 flex items-center gap-2 sm:gap-3"
+          >
+            <ScreenshotButton elementId="result-card" />
+            <ShareButton resultId={params.id as string} />
+          </motion.div>
         </motion.div>
       </div>
     </motion.div>

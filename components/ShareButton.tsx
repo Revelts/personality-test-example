@@ -56,29 +56,25 @@ export default function ShareButton({ resultId }: ShareButtonProps) {
   };
 
   return (
-    <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+    <button
       onClick={copyToClipboard}
       disabled={!shareUrl}
-      className="btn btn-secondary min-w-[120px] sm:min-w-[140px] text-sm sm:text-base py-3"
+      className="flex-1 flex items-center justify-center gap-2 py-3 sm:py-4 bg-white hover:bg-gray-100 text-black text-sm sm:text-base font-bold rounded-full transition-all duration-200 border-2 border-transparent hover:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {copied ? (
         <>
-          <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
-          <span className="hidden sm:inline">Tersalin!</span>
-          <span className="sm:hidden">OK!</span>
+          <span>Tersalin!</span>
         </>
       ) : (
         <>
-          <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
           </svg>
-          Share
         </>
       )}
-    </motion.button>
+    </button>
   );
 }
