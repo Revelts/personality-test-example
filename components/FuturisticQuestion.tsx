@@ -44,9 +44,9 @@ export default function FuturisticQuestion({
     setIsTypingComplete(false);
     
     const text = question.text;
-    // Fixed typing speed: 35ms per character for smooth, visible typing
-    // Total time will be around 1.4-1.5 seconds for ~40 char questions
-    const typingSpeed = 35;
+    // Faster typing speed: 20ms per character (was 35ms)
+    // Total time will be around 0.8-1 seconds for ~40 char questions
+    const typingSpeed = 20;
     let currentIndex = 0;
     let typingInterval: NodeJS.Timeout | null = null;
     let completeTimeout: NodeJS.Timeout | null = null;
@@ -62,10 +62,10 @@ export default function FuturisticQuestion({
           // Keep cursor visible for a moment after typing completes
           completeTimeout = setTimeout(() => {
             setIsTypingComplete(true);
-          }, 200);
+          }, 150);
         }
       }, typingSpeed);
-    }, 150);
+    }, 100);
 
     // Cleanup function
     return () => {
@@ -159,69 +159,83 @@ export default function FuturisticQuestion({
       </motion.div>
 
       {/* Answer Options - Style matching ShareButton */}
-      <motion.div 
-        className="w-full space-y-3 sm:space-y-4"
-        variants={containerVariants}
-      >
-        {question.answers.map((answer, index) => {
-          const isSelected = selectedAnswer === answer.id;
-          const answerLabel = String.fromCharCode(65 + index); // A, B, C, D
-          
-          return (
-            <motion.div
-              key={answer.id}
-              variants={answerVariants}
-              className="relative"
-            >
-              <motion.button
-                onClick={() => !isTransitioning && onSelectAnswer(answer.id)}
-                disabled={isTransitioning}
-                whileHover={!reducedMotion && !isTransitioning ? { 
-                  scale: 1.01,
-                } : {}}
-                whileTap={!reducedMotion && !isTransitioning ? { 
-                  scale: 0.98 
-                } : {}}
-                style={{
-                  borderRadius: '2px',
-                  clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
-                }}
-                className={`relative w-full px-4 py-4 sm:px-6 sm:py-5 
-                         text-left
-                         transition-all duration-300 ease-out
-                         focus:outline-none 
-                         disabled:cursor-not-allowed
-                         cursor-pointer
-                         font-semibold
-                         ${isSelected 
-                           ? 'bg-transparent border-2 text-text-primary shadow-[inset_0_0_0_1px_rgba(225,6,0,0.3),0_0_16px_rgba(225,6,0,0.2)]' 
-                           : 'bg-transparent border-2 border-border text-text-primary hover:border-brand-red hover:shadow-[inset_0_0_0_1px_rgba(225,6,0,0.3),0_0_16px_rgba(225,6,0,0.2)] hover:bg-[rgba(225,6,0,0.05)]'
-                         }
-                         ${isSelected ? 'border-brand-red' : ''}`}
+      {/* Only show answers after typing is complete */}
+      {isTypingComplete && (
+        <motion.div 
+          className="w-full space-y-3 sm:space-y-4"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.08,
+                delayChildren: 0.1
+              }
+            }
+          }}
+        >
+          {question.answers.map((answer, index) => {
+            const isSelected = selectedAnswer === answer.id;
+            const answerLabel = String.fromCharCode(65 + index); // A, B, C, D
+            
+            return (
+              <motion.div
+                key={answer.id}
+                variants={answerVariants}
+                className="relative"
               >
-                {/* Answer text with label */}
-                <span className="relative text-sm sm:text-base font-semibold leading-relaxed flex items-start gap-2 sm:gap-3">
-                  <span className="font-bold text-base sm:text-lg">{answerLabel}.</span>
-                  <span className="flex-1">{answer.text}</span>
-                </span>
+                <motion.button
+                  onClick={() => !isTransitioning && onSelectAnswer(answer.id)}
+                  disabled={isTransitioning}
+                  whileHover={!reducedMotion && !isTransitioning ? { 
+                    scale: 1.01,
+                  } : {}}
+                  whileTap={!reducedMotion && !isTransitioning ? { 
+                    scale: 0.98 
+                  } : {}}
+                  style={{
+                    borderRadius: '2px',
+                    clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+                  }}
+                  className={`relative w-full px-4 py-4 sm:px-6 sm:py-5 
+                           text-left
+                           transition-all duration-300 ease-out
+                           focus:outline-none 
+                           disabled:cursor-not-allowed
+                           cursor-pointer
+                           font-semibold
+                           ${isSelected 
+                             ? 'bg-transparent border-2 text-text-primary shadow-[inset_0_0_0_1px_rgba(225,6,0,0.3),0_0_16px_rgba(225,6,0,0.2)]' 
+                             : 'bg-transparent border-2 border-border text-text-primary hover:border-brand-red hover:shadow-[inset_0_0_0_1px_rgba(225,6,0,0.3),0_0_16px_rgba(225,6,0,0.2)] hover:bg-[rgba(225,6,0,0.05)]'
+                           }
+                           ${isSelected ? 'border-brand-red' : ''}`}
+                >
+                  {/* Answer text with label */}
+                  <span className="relative text-sm sm:text-base font-semibold leading-relaxed flex items-start gap-2 sm:gap-3">
+                    <span className="font-bold text-base sm:text-lg">{answerLabel}.</span>
+                    <span className="flex-1">{answer.text}</span>
+                  </span>
 
-                {/* Selection indicator (checkmark when selected) */}
-                {isSelected && (
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    className="absolute top-3 right-3 sm:top-4 sm:right-4 w-5 h-5 sm:w-6 sm:h-6"
-                  >
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </motion.div>
-                )}
-              </motion.button>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+                  {/* Selection indicator (checkmark when selected) */}
+                  {isSelected && (
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="absolute top-3 right-3 sm:top-4 sm:right-4 w-5 h-5 sm:w-6 sm:h-6"
+                    >
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </motion.div>
+                  )}
+                </motion.button>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      )}
     </motion.div>
   );
 }

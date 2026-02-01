@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import ResultCard from '@/components/ResultCard';
+import SliderCard from '@/components/SliderCard';
 import ShareButton from '@/components/ShareButton';
 import ScreenshotButton from '@/components/ScreenshotButton';
 import { PersonalityResult, personalityTypes } from '@/lib/results';
@@ -144,25 +144,10 @@ export default function ResultPage() {
             </div>
           </div>
 
-          {/* Result Card */}
-          <ResultCard result={result} userName={userName} />
+          {/* Slider Card - Single white container with slider inside */}
+          <SliderCard result={result} userName={userName} />
 
-          {/* Red Button - Your Best Gear */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-            className="mt-4 sm:mt-5"
-          >
-            <button
-              onClick={() => router.push(`/gear/${params.id}`)}
-              className="w-full py-3 sm:py-4 bg-brand-red hover:bg-red-700 text-white text-sm sm:text-base font-bold rounded-full transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-              Your best gear
-            </button>
-          </motion.div>
-
-          {/* White Button - Download & Share */}
+          {/* White Buttons - Download & Share */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

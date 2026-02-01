@@ -14,6 +14,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import FuturisticQuestion from '@/components/FuturisticQuestion';
 import USBProgressBar from '@/components/USBProgressBar';
 import ConnectionAnimation from '@/components/ConnectionAnimation';
@@ -310,12 +311,14 @@ export default function TestPage() {
       >
         <div className="max-w-2xl mx-auto space-y-4 sm:space-y-6">
           {/* Product Image - SanDisk Phone Drive */}
-          <div className="relative w-full h-32 sm:h-40 bg-gradient-to-br from-bg-surface to-bg-elevated rounded-xl overflow-hidden flex items-center justify-center border border-border">
-            {/* Placeholder for product image */}
-            <div className="text-center">
-              <div className="text-4xl sm:text-5xl mb-2">📱💾</div>
-              <p className="text-xs sm:text-sm font-semibold text-text-secondary tracking-wide">SANDISK PHONE DRIVE</p>
-            </div>
+          <div className="relative w-full h-20 sm:h-24 bg-gradient-to-br from-bg-surface to-bg-elevated rounded-xl overflow-hidden border border-border">
+            <Image
+              src="/images/banner.png"
+              alt="SanDisk Phone Drive"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
 
           {/* Next Button - Style matching ShareButton */}
