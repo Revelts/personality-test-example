@@ -43,10 +43,12 @@ export default function ScreenshotButton({ elementId = 'result-card' }: Screensh
   };
 
   return (
-    <button
+    <motion.button
       onClick={captureScreenshot}
       disabled={loading}
-      className="flex-1 flex items-center justify-center gap-2 py-3 sm:py-4 bg-white hover:bg-gray-100 text-black text-sm sm:text-base font-bold rounded-full transition-all duration-200 border-2 border-transparent hover:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+      whileHover={!loading ? { scale: 1.02 } : {}}
+      whileTap={!loading ? { scale: 0.98 } : {}}
+      className="flex-1 flex items-center justify-center gap-2 py-3 sm:py-4 bg-white text-black text-sm sm:text-base font-bold rounded-full transition-all duration-200 border-2 border-gray-300 hover:border-gray-900 hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {loading ? (
         <>
@@ -65,6 +67,6 @@ export default function ScreenshotButton({ elementId = 'result-card' }: Screensh
           <span>Download</span>
         </>
       )}
-    </button>
+    </motion.button>
   );
 }

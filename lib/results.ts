@@ -62,7 +62,7 @@ export const personalityTypes: PersonalityResult[] = [
     gearDesc: "Rekam dulu. Simpan semua. Jangan mikir.",
     gearDescEn: "Record first. Save everything. Don't overthink.",
     gearModel: "SDDDC6-032C-G46P0",
-    gearImage: "/images/sandisk-phone-drive-purple.png",
+    gearImage: "/images/orange.png",
     gearCapacity: "32GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
@@ -96,7 +96,7 @@ export const personalityTypes: PersonalityResult[] = [
     gearDesc: "Colok, pindahin, lanjut hidup.",
     gearDescEn: "Plug in. Transfer. Keep moving.",
     gearModel: "SDDDC6-032C-G46P0",
-    gearImage: "/images/sandisk-phone-drive-purple.png",
+    gearImage: "/images/black.png",
     gearCapacity: "32GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
@@ -130,7 +130,7 @@ export const personalityTypes: PersonalityResult[] = [
     gearDesc: "Satu alat. Banyak skenario.",
     gearDescEn: "One tool. Many scenarios.",
     gearModel: "SDDDC6-032C-G46P0",
-    gearImage: "/images/sandisk-phone-drive-purple.png",
+    gearImage: "/images/purple.png",
     gearCapacity: "32GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
@@ -164,7 +164,7 @@ export const personalityTypes: PersonalityResult[] = [
     gearDesc: "Chaos diterima. Semua aman.",
     gearDescEn: "Chaos accepted. Everything is safe.",
     gearModel: "SDDDC6-032C-G46P0",
-    gearImage: "/images/sandisk-phone-drive-purple.png",
+    gearImage: "/images/purple.png",
     gearCapacity: "32GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
@@ -198,7 +198,7 @@ export const personalityTypes: PersonalityResult[] = [
     gearDesc: "Tanpa cloud. Tanpa nunggu.",
     gearDescEn: "No cloud. No waiting.",
     gearModel: "SDDDC6-032C-G46P0",
-    gearImage: "/images/sandisk-phone-drive-purple.png",
+    gearImage: "/images/yellow.png",
     gearCapacity: "32GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
@@ -232,7 +232,7 @@ export const personalityTypes: PersonalityResult[] = [
     gearDesc: "Kecil. Tenang. Selalu siap.",
     gearDescEn: "Small. Quiet. Always ready.",
     gearModel: "SDDDC6-032C-G46P0",
-    gearImage: "/images/sandisk-phone-drive-purple.png",
+    gearImage: "/images/purple.png",
     gearCapacity: "32GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
@@ -266,7 +266,7 @@ export const personalityTypes: PersonalityResult[] = [
     gearDesc: "Aman di tangan lo.",
     gearDescEn: "Safe in your hands.",
     gearModel: "SDDDC6-032C-G46P0",
-    gearImage: "/images/sandisk-phone-drive-purple.png",
+    gearImage: "/images/purple.png",
     gearCapacity: "32GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
@@ -300,7 +300,7 @@ export const personalityTypes: PersonalityResult[] = [
     gearDesc: "Karena cerita pribadi gak boleh hilang.",
     gearDescEn: "Because personal stories shouldn't be lost.",
     gearModel: "SDDDC6-032C-G46P0",
-    gearImage: "/images/sandisk-phone-drive-purple.png",
+    gearImage: "/images/yellow.png",
     gearCapacity: "32GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
@@ -333,99 +333,102 @@ export function calculatePersonality(scores: Scores): PersonalityResult {
   const secondary = scoreArray[1].type;
   const gap = scoreArray[0].value - scoreArray[1].value;
   
+  // Adjusted thresholds for 8 questions (max score per trait = 8)
+  // Original was designed for 20 questions, now scaled to ~40%
+  
   // THE EXTREMIST - High creative + high adventurer (impulsive, capturing everything)
   // Lives in the moment, records everything, FOMO driven
-  if (scores.creative >= 5 && scores.adventurer >= 4) {
+  if (scores.creative >= 2 && scores.adventurer >= 2) {
     return personalityTypes[0]; // THE EXTREMIST
   }
   if ((primary === 'creative' && secondary === 'adventurer') || 
       (primary === 'adventurer' && secondary === 'creative')) {
-    if (gap <= 2) {
+    if (gap <= 1) {
       return personalityTypes[0]; // THE EXTREMIST
     }
   }
   
   // THE ENDURER - High logical + high empathetic (process-oriented, keeper)
   // Keeps everything for a reason, consistent, values process
-  if (scores.logical >= 4 && scores.empathetic >= 4) {
+  if (scores.logical >= 2 && scores.empathetic >= 2) {
     return personalityTypes[1]; // THE ENDURER
   }
   if ((primary === 'logical' && secondary === 'empathetic') || 
       (primary === 'empathetic' && secondary === 'logical')) {
-    if (gap <= 2) {
+    if (gap <= 1) {
       return personalityTypes[1]; // THE ENDURER
     }
   }
   
   // THE RESTRICTOR - Very high logical, low adventurer (control, structure)
   // Everything must have a system, organized, secure
-  if (primary === 'logical' && gap >= 2) {
-    if (scores.logical >= 6 || scores.adventurer <= 2) {
+  if (primary === 'logical' && gap >= 1) {
+    if (scores.logical >= 3 || scores.adventurer <= 1) {
       return personalityTypes[2]; // THE RESTRICTOR
     }
   }
-  if (scores.logical >= 6 && scores.empathetic <= 3) {
+  if (scores.logical >= 3 && scores.empathetic <= 1) {
     return personalityTypes[2]; // THE RESTRICTOR
   }
   
   // THE ABSURDIST - High creative, scattered (random, weird, emotional context)
   // Keeps weird things that only make sense to them
-  if (primary === 'creative' && gap >= 3) {
+  if (primary === 'creative' && gap >= 1) {
     return personalityTypes[3]; // THE ABSURDIST
   }
-  if (scores.creative >= 6 && scores.logical <= 3) {
+  if (scores.creative >= 3 && scores.logical <= 1) {
     return personalityTypes[3]; // THE ABSURDIST
   }
   
   // THE DISRUPTOR - High leader + low empathetic (fast, decisive, no-nonsense)
   // Speed is everything, hates waiting, efficiency over aesthetics
   if (primary === 'leader') {
-    if (scores.leader >= 5 && scores.empathetic <= 3) {
+    if (scores.leader >= 2 && scores.empathetic <= 1) {
       return personalityTypes[4]; // THE DISRUPTOR
     }
-    if (gap >= 3) {
+    if (gap >= 1) {
       return personalityTypes[4]; // THE DISRUPTOR
     }
   }
-  if (scores.leader >= 6) {
+  if (scores.leader >= 3) {
     return personalityTypes[4]; // THE DISRUPTOR
   }
   
   // THE VANISHER - Balanced low scores (quiet, minimal, functional)
   // Gets things done quietly, keeps small things, no drama
-  if (total <= 15 && total >= 8) {
+  if (total <= 6 && total >= 3) {
     const maxScore = Math.max(...scoreArray.map(s => s.value));
-    if (maxScore <= 4 && gap <= 1) {
+    if (maxScore <= 2 && gap <= 1) {
       return personalityTypes[5]; // THE VANISHER
     }
   }
   // Also Vanisher if empathetic is high but everything else is low
-  if (scores.empathetic >= 4 && total <= 14) {
+  if (scores.empathetic >= 2 && total <= 6) {
     return personalityTypes[5]; // THE VANISHER
   }
   
   // THE INVERTER - High adventurer + high logical (independent, counter-culture)
   // Goes against the flow, offline > online, self-reliant
-  if (scores.adventurer >= 4 && scores.logical >= 4) {
-    if (scores.empathetic <= 3 && scores.leader <= 3) {
+  if (scores.adventurer >= 2 && scores.logical >= 2) {
+    if (scores.empathetic <= 1 && scores.leader <= 1) {
       return personalityTypes[6]; // THE INVERTER
     }
   }
   if ((primary === 'adventurer' && secondary === 'logical') || 
       (primary === 'logical' && secondary === 'adventurer')) {
-    if (gap <= 2 && scores.empathetic <= 3) {
+    if (gap <= 1 && scores.empathetic <= 1) {
       return personalityTypes[6]; // THE INVERTER
     }
   }
   
   // THE CONFESSOR - High empathetic + high creative (emotional, private)
   // Phone is safe space, keeps personal stuff, emotionally driven
-  if (scores.empathetic >= 5 && scores.creative >= 4) {
+  if (scores.empathetic >= 2 && scores.creative >= 2) {
     return personalityTypes[7]; // THE CONFESSOR
   }
   if ((primary === 'empathetic' && secondary === 'creative') || 
       (primary === 'creative' && secondary === 'empathetic')) {
-    if (gap <= 2 && scores.empathetic >= 4) {
+    if (gap <= 1 && scores.empathetic >= 2) {
       return personalityTypes[7]; // THE CONFESSOR
     }
   }
@@ -434,43 +437,43 @@ export function calculatePersonality(scores: Scores): PersonalityResult {
   // If no perfect match, use primary trait with context
   
   if (primary === 'creative') {
-    if (scores.adventurer >= 3) {
+    if (scores.adventurer >= 1) {
       return personalityTypes[0]; // THE EXTREMIST
     }
-    if (scores.empathetic >= 3) {
+    if (scores.empathetic >= 1) {
       return personalityTypes[7]; // THE CONFESSOR
     }
     return personalityTypes[3]; // THE ABSURDIST
   }
   
   if (primary === 'logical') {
-    if (scores.empathetic >= 3) {
+    if (scores.empathetic >= 1) {
       return personalityTypes[1]; // THE ENDURER
     }
-    if (scores.adventurer >= 3) {
+    if (scores.adventurer >= 1) {
       return personalityTypes[6]; // THE INVERTER
     }
     return personalityTypes[2]; // THE RESTRICTOR
   }
   
   if (primary === 'adventurer') {
-    if (scores.creative >= 3) {
+    if (scores.creative >= 1) {
       return personalityTypes[0]; // THE EXTREMIST
     }
-    if (scores.logical >= 3) {
+    if (scores.logical >= 1) {
       return personalityTypes[6]; // THE INVERTER
     }
     return personalityTypes[0]; // THE EXTREMIST (default for adventurer)
   }
   
   if (primary === 'empathetic') {
-    if (scores.creative >= 3) {
+    if (scores.creative >= 1) {
       return personalityTypes[7]; // THE CONFESSOR
     }
-    if (scores.logical >= 3) {
+    if (scores.logical >= 1) {
       return personalityTypes[1]; // THE ENDURER
     }
-    if (total <= 14) {
+    if (total <= 6) {
       return personalityTypes[5]; // THE VANISHER
     }
     return personalityTypes[7]; // THE CONFESSOR
@@ -482,14 +485,14 @@ export function calculatePersonality(scores: Scores): PersonalityResult {
   
   // === ULTIMATE FALLBACK ===
   // Based on overall pattern
-  if (total >= 18) {
+  if (total >= 7) {
     // High engagement = THE EXTREMIST or THE ABSURDIST
     return scores.adventurer >= scores.logical ? personalityTypes[0] : personalityTypes[3];
   }
   
-  if (total <= 12) {
+  if (total <= 5) {
     // Low engagement = THE VANISHER or THE INVERTER
-    return scores.adventurer >= 3 ? personalityTypes[6] : personalityTypes[5];
+    return scores.adventurer >= 1 ? personalityTypes[6] : personalityTypes[5];
   }
   
   // Mid-range = THE ENDURER (most balanced/common)

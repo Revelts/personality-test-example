@@ -19,7 +19,7 @@ import FuturisticQuestion from '@/components/FuturisticQuestion';
 import USBProgressBar from '@/components/USBProgressBar';
 import ConnectionAnimation from '@/components/ConnectionAnimation';
 import MicroReactionPopup from '@/components/MicroReactionPopup';
-import { questions } from '@/lib/questions';
+import { Question, getRandomQuestions } from '@/lib/questions';
 import { calculatePersonality, Scores } from '@/lib/results';
 import { trackTestStart, trackQuestionAnswer, trackTestComplete } from '@/lib/analytics';
 import { saveProgress, loadProgress, clearProgress } from '@/lib/progressStorage';
@@ -45,9 +45,10 @@ export default function TestPage() {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showMicroReaction, setShowMicroReaction] = useState(false);
   const [currentMicroReaction, setCurrentMicroReaction] = useState('');
+  const [selectedQuestions, setSelectedQuestions] = useState<Question[]>([]);
 
-  const currentQuestion = questions[currentQuestionIndex];
-  const totalQuestions = questions.length;
+  const currentQuestion = selectedQuestions[currentQuestionIndex];
+  const totalQuestions = selectedQuestions.length;
 
   // Load saved progress on mount (refresh/back button recovery)
   useEffect(() => {
@@ -69,12 +70,30 @@ export default function TestPage() {
       setScores(savedProgress.scores);
       setAnswers(savedProgress.answers);
       
+      // Restore saved questions
+      const savedQuestions = localStorage.getItem(`test_questions_${name}`);
+      if (savedQuestions) {
+        setSelectedQuestions(JSON.parse(savedQuestions));
+      } else {
+        // If no saved questions, generate new random questions
+        const randomQuestions = getRandomQuestions(8);
+        setSelectedQuestions(randomQuestions);
+        localStorage.setItem(`test_questions_${name}`, JSON.stringify(randomQuestions));
+      }
+      
       // Show "Progress Restored" notice
       setShowRestoredNotice(true);
       setTimeout(() => setShowRestoredNotice(false), 4000); // Hide after 4s
     } else {
       // Fresh start - track test start
       trackTestStart(name);
+      
+      // Generate random 8 questions
+      const randomQuestions = getRandomQuestions(8);
+      setSelectedQuestions(randomQuestions);
+      
+      // Save selected questions to localStorage for consistency
+      localStorage.setItem(`test_questions_${name}`, JSON.stringify(randomQuestions));
     }
 
     setIsLoadingProgress(false);
@@ -96,9 +115,10 @@ export default function TestPage() {
     localStorage.setItem(`personality_result_${id}`, JSON.stringify(resultData));
     setResultId(id);
     
-    // Clear saved progress (test is complete)
+    // Clear saved progress and questions (test is complete)
     clearProgress();
-    console.log('✅ Test completed - progress cleared');
+    localStorage.removeItem(`test_questions_${userName}`);
+    console.log('✅ Test completed - progress and questions cleared');
     
     // Step 1: Trigger exit animation (fade out test page)
     setIsExiting(true);
@@ -198,7 +218,7 @@ export default function TestPage() {
   }, [selectedAnswer, currentQuestion, currentQuestionIndex, totalQuestions, scores, answers, userName, handleTestComplete]);
 
   // Loading progress from localStorage
-  if (isLoadingProgress) {
+  if (isLoadingProgress || selectedQuestions.length === 0) {
     return (
       <div className="h-full flex items-center justify-center bg-bg-primary">
         <div className="text-center">
@@ -258,11 +278,14 @@ export default function TestPage() {
 
         {/* SanDisk Logo */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <svg viewBox="0 0 120 20" className="h-5 sm:h-6" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <text x="0" y="15" fontFamily="Arial, sans-serif" fontSize="16" fontWeight="700" fill="#E10600" letterSpacing="1">
-              SANDISK™
-            </text>
-          </svg>
+          <Image
+            src="/images/sandisk-logo.png"
+            alt="SanDisk"
+            width={120}
+            height={32}
+            className="h-5 sm:h-6 w-auto object-contain"
+            priority
+          />
         </div>
       </motion.header>
 

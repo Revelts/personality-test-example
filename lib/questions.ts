@@ -613,3 +613,62 @@ export const questions: Question[] = [
     ]
   }
 ];
+
+/**
+ * Get random questions from the full question set with balanced trait distribution
+ * @param count - Number of questions to return (default: 8)
+ * @returns Array of random questions with balanced traits
+ */
+export function getRandomQuestions(count: number = 8): Question[] {
+  const traits: Array<'logical' | 'creative' | 'empathetic' | 'leader' | 'adventurer'> = 
+    ['logical', 'creative', 'empathetic', 'leader', 'adventurer'];
+  
+  // Group questions by their trait coverage
+  const questionsByTrait: Record<string, Question[]> = {
+    logical: [],
+    creative: [],
+    empathetic: [],
+    leader: [],
+    adventurer: []
+  };
+  
+  // Categorize each question by which traits it contains
+  questions.forEach(question => {
+    const questionTraits = new Set(question.answers.map(a => a.trait));
+    questionTraits.forEach(trait => {
+      questionsByTrait[trait].push(question);
+    });
+  });
+  
+  // Select questions ensuring each trait appears multiple times
+  const selectedQuestions: Question[] = [];
+  const usedQuestionIds = new Set<number>();
+  
+  // First pass: Ensure each trait appears at least once
+  for (const trait of traits) {
+    const availableQuestions = questionsByTrait[trait].filter(q => !usedQuestionIds.has(q.id));
+    if (availableQuestions.length > 0) {
+      const randomQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+      selectedQuestions.push(randomQuestion);
+      usedQuestionIds.add(randomQuestion.id);
+    }
+  }
+  
+  // Second pass: Fill remaining slots with random questions
+  const remainingQuestions = questions.filter(q => !usedQuestionIds.has(q.id));
+  
+  while (selectedQuestions.length < count && remainingQuestions.length > 0) {
+    const randomIndex = Math.floor(Math.random() * remainingQuestions.length);
+    const question = remainingQuestions.splice(randomIndex, 1)[0];
+    selectedQuestions.push(question);
+    usedQuestionIds.add(question.id);
+  }
+  
+  // Shuffle the selected questions so they appear in random order
+  for (let i = selectedQuestions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [selectedQuestions[i], selectedQuestions[j]] = [selectedQuestions[j], selectedQuestions[i]];
+  }
+  
+  return selectedQuestions;
+}

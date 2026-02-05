@@ -3,9 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import SliderCard from '@/components/SliderCard';
-import ShareButton from '@/components/ShareButton';
-import ScreenshotButton from '@/components/ScreenshotButton';
 import { PersonalityResult, personalityTypes } from '@/lib/results';
 import { trackResultView } from '@/lib/analytics';
 
@@ -138,25 +137,20 @@ export default function ResultPage() {
             </button>
 
             {/* SanDisk Logo */}
-            <div className="text-xl sm:text-2xl font-bold tracking-tight">
-              <span className="text-white">San</span>
-              <span className="text-brand-red">Disk</span>
+            <div className="relative h-6 sm:h-8 w-auto">
+              <Image
+                src="/images/sandisk-logo.png"
+                alt="SanDisk"
+                width={150}
+                height={40}
+                className="h-full w-auto object-contain"
+                priority
+              />
             </div>
           </div>
 
-          {/* Slider Card - Single white container with slider inside */}
-          <SliderCard result={result} userName={userName} />
-
-          {/* White Buttons - Download & Share */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.6 }}
-            className="mt-3 flex items-center gap-2 sm:gap-3"
-          >
-            <ScreenshotButton elementId="result-card" />
-            <ShareButton resultId={params.id as string} />
-          </motion.div>
+          {/* Slider Card - Single white container with buttons inside */}
+          <SliderCard result={result} userName={userName} resultId={params.id as string} />
         </motion.div>
       </div>
     </motion.div>
