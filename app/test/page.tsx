@@ -19,6 +19,7 @@ import FuturisticQuestion from '@/components/FuturisticQuestion';
 import USBProgressBar from '@/components/USBProgressBar';
 import ConnectionAnimation from '@/components/ConnectionAnimation';
 import MicroReactionPopup from '@/components/MicroReactionPopup';
+import BreakSession from '@/components/BreakSession';
 import { Question, getRandomQuestions } from '@/lib/questions';
 import { calculatePersonality, Scores } from '@/lib/results';
 import { trackTestStart, trackQuestionAnswer, trackTestComplete } from '@/lib/analytics';
@@ -46,6 +47,7 @@ export default function TestPage() {
   const [showMicroReaction, setShowMicroReaction] = useState(false);
   const [currentMicroReaction, setCurrentMicroReaction] = useState('');
   const [selectedQuestions, setSelectedQuestions] = useState<Question[]>([]);
+  const [showBreakSession, setShowBreakSession] = useState(false);
 
   const currentQuestion = selectedQuestions[currentQuestionIndex];
   const totalQuestions = selectedQuestions.length;
@@ -213,6 +215,15 @@ export default function TestPage() {
         
         setSelectedAnswer(null);
         setIsTransitioning(false);
+
+        // Check if should show break session (setiap 3 pertanyaan)
+        // nextIndex adalah index berikutnya (0-based), jadi pertanyaan ke-3, 6, 9, dll
+        const questionsAnswered = nextIndex; // karena nextIndex = jumlah pertanyaan yang sudah dijawab
+        const shouldShowBreak = questionsAnswered % 3 === 0 && questionsAnswered < totalQuestions;
+        
+        if (shouldShowBreak) {
+          setShowBreakSession(true);
+        }
       }
     }, 250);
   }, [selectedAnswer, currentQuestion, currentQuestionIndex, totalQuestions, scores, answers, userName, handleTestComplete]);
@@ -372,7 +383,13 @@ export default function TestPage() {
         isVisible={showMicroReaction}
       />
 
-      {/* Break Session - Removed, using Micro Reaction instead */}
+      {/* Break Session - Shows every 3 questions */}
+      <BreakSession
+        currentQuestion={currentQuestionIndex}
+        totalQuestions={totalQuestions}
+        onContinue={() => setShowBreakSession(false)}
+        isVisible={showBreakSession}
+      />
     </motion.div>
   );
 }

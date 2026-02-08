@@ -1,7 +1,7 @@
 /**
  * Break Session Component
  * 
- * Shows every 5 questions to give user a mental break
+ * Shows every 3 questions to give user a mental break
  * Displays encouraging message and allows user to continue
  */
 
@@ -29,13 +29,13 @@ export default function BreakSession({
   const messages = [
     {
       emoji: "💫",
-      title: "Bagus!",
-      message: "Lo udah separuh jalan. Jawaban lo mulai ngebentuk pola yang unik. Lanjut?"
+      title: "Nice!",
+      message: "Lo udah menjawab 3 pertanyaan. Sejauh ini jawaban lo mulai ngebentuk pola. Lanjut?"
     },
     {
       emoji: "🎯",
-      title: "Sebentar lagi!",
-      message: "Tinggal 25% lagi. Lo udah sejauh ini — gak ada alasan berhenti sekarang."
+      title: "Bagus!",
+      message: "Udah separuh jalan! Jawaban lo konsisten dan mulai kelihatan arahnya. Keep going!"
     },
     {
       emoji: "🔥",
@@ -44,10 +44,11 @@ export default function BreakSession({
     }
   ];
 
-  // Determine which message to show based on progress
+  // Determine which message to show based on questions answered
   let messageIndex = 0;
-  if (currentQuestion === 10) messageIndex = 0; // After Q10
-  else if (currentQuestion === 15) messageIndex = 1; // After Q15
+  if (currentQuestion === 3) messageIndex = 0; // After Q3
+  else if (currentQuestion === 6) messageIndex = 1; // After Q6
+  else if (currentQuestion === 9) messageIndex = 2; // After Q9 (jika ada 12+ pertanyaan)
 
   const currentMessage = messages[messageIndex];
 
