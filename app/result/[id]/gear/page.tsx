@@ -164,9 +164,6 @@ export default function GearPage() {
                 <h2 className="text-lg sm:text-xl font-bold text-black mb-1">
                   {result.gear.toUpperCase()}
                 </h2>
-                <p className="text-xs sm:text-sm text-gray-600">
-                  MODEL NUMBER: {result.gearModel || 'SDDDC6-032C-G46P0'}
-                </p>
               </div>
 
               {/* Product Image */}
@@ -183,16 +180,30 @@ export default function GearPage() {
               {/* Specs */}
               <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 <div className="text-center bg-gray-50 rounded-lg p-3">
-                  <div className="text-2xl sm:text-3xl mb-1">🔌</div>
+                  <div className="relative w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-1">
+                    <Image
+                      src="/images/speed.png"
+                      alt="Speed"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                   <p className="text-[10px] sm:text-xs text-gray-600 mb-0.5 uppercase tracking-wide font-semibold">
-                    Interface
+                    Speed
                   </p>
-                  <p className="text-xs sm:text-sm text-black font-bold">
-                    {result.gearSpecs?.usb || 'USB 3.2 Gen 1'}
+                  <p className="text-[10px] sm:text-xs text-black font-bold leading-tight">
+                    Read speed up to 100mb/s
                   </p>
                 </div>
                 <div className="text-center bg-gray-50 rounded-lg p-3">
-                  <div className="text-2xl sm:text-3xl mb-1">🛡️</div>
+                  <div className="relative w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-1">
+                    <Image
+                      src="/images/lifetime.png"
+                      alt="Warranty"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                   <p className="text-[10px] sm:text-xs text-gray-600 mb-0.5 uppercase tracking-wide font-semibold">
                     Warranty
                   </p>
@@ -201,7 +212,14 @@ export default function GearPage() {
                   </p>
                 </div>
                 <div className="text-center bg-gray-50 rounded-lg p-3">
-                  <div className="text-2xl sm:text-3xl mb-1">💾</div>
+                  <div className="relative w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-1">
+                    <Image
+                      src="/images/storage.png"
+                      alt="Capacity"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                   <p className="text-[10px] sm:text-xs text-gray-600 mb-0.5 uppercase tracking-wide font-semibold">
                     Capacity
                   </p>

@@ -13,6 +13,7 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Image from 'next/image';
 import { trackFormSubmit } from '@/lib/analytics';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
@@ -21,6 +22,7 @@ export default function Home() {
   const reducedMotion = useReducedMotion();
   const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const [videoWatched, setVideoWatched] = useState(false);
 
   const handleStartTest = () => {
     const trimmedName = name.trim();
@@ -35,13 +37,22 @@ export default function Home() {
       return;
     }
 
+    if (!videoWatched) {
+      setError('Tonton video sampai selesai terlebih dahulu');
+      return;
+    }
+
     trackFormSubmit('name_input', {
       user_name: trimmedName,
       form_location: 'landing_page'
     });
 
     localStorage.setItem('test_taker_name', trimmedName);
-    router.push('/test');
+    router.push('/prologue');
+  };
+
+  const handleVideoEnded = () => {
+    setVideoWatched(true);
   };
 
   return (
@@ -55,80 +66,62 @@ export default function Home() {
         transition={{ duration: reducedMotion ? 0.1 : 0.4, ease: 'easeOut' }}
         className="max-w-2xl w-full relative z-10"
       >
-        {/* Hero Section */}
-        <div className="text-center mb-4 sm:mb-6">
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ 
-              duration: reducedMotion ? 0 : 0.3,
-              delay: reducedMotion ? 0 : 0.1 
-            }}
-            className="inline-block mb-2 sm:mb-3"
-          >
-            <div className="text-4xl sm:text-5xl md:text-6xl">🎯</div>
-          </motion.div>
-
-          <motion.h1 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: reducedMotion ? 0 : 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-2 sm:mb-3 leading-tight"
-          >
-            Personality Test
-          </motion.h1>
-
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: reducedMotion ? 0 : 0.3 }}
-            className="text-sm sm:text-base md:text-lg text-text-secondary max-w-xl mx-auto px-2"
-          >
-            Temukan kekuatan unik dan karakter kamu melalui 20 pertanyaan interaktif
-          </motion.p>
-        </div>
-
-        {/* Feature Cards */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: reducedMotion ? 0 : 0.4 }}
-          className="grid grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6"
+        {/* SanDisk Logo */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: reducedMotion ? 0 : 0.1 }}
+          className="flex justify-center mb-6 sm:mb-8"
         >
-          <div className="card p-2 sm:p-3 text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl mb-1">⚡</div>
-            <h3 className="text-xs sm:text-sm font-semibold text-text-primary mb-0.5">
-              Cepat & Ringkas
-            </h3>
-            <p className="text-[10px] sm:text-xs text-text-tertiary">
-              20 pertanyaan, 5 menit
-            </p>
+          <div className="relative h-8 sm:h-10 md:h-12 w-auto">
+            <Image
+              src="/images/sandisk-logo.png"
+              alt="SanDisk"
+              width={200}
+              height={50}
+              className="h-full w-auto object-contain"
+              priority
+            />
           </div>
-          <div className="card p-2 sm:p-3 text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl mb-1">🎨</div>
-            <h3 className="text-xs sm:text-sm font-semibold text-text-primary mb-0.5">
-              Personal
-            </h3>
-            <p className="text-[10px] sm:text-xs text-text-tertiary">
-              Hasil sesuai kepribadian
-            </p>
-          </div>
-          <div className="card p-2 sm:p-3 text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl mb-1">🔒</div>
-            <h3 className="text-xs sm:text-sm font-semibold text-text-primary mb-0.5">
-              Privasi Aman
-            </h3>
-            <p className="text-[10px] sm:text-xs text-text-tertiary">
-              Tanpa registrasi
-            </p>
-          </div>
+        </motion.div>
+
+        {/* Video Introduction */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: reducedMotion ? 0 : 0.2 }}
+          className="mb-4 sm:mb-6 rounded-lg overflow-hidden border border-border shadow-elevation-lg relative"
+        >
+          <video
+            autoPlay
+            muted
+            playsInline
+            controls
+            onEnded={handleVideoEnded}
+            className="w-full h-auto"
+          >
+            <source src="/images/sandisk-intro.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          
+          {/* Video Status Badge */}
+          {videoWatched && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="absolute top-3 right-3 bg-green-500 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-1.5 shadow-lg"
+            >
+              <span>✓</span>
+              <span>Video Selesai</span>
+            </motion.div>
+          )}
         </motion.div>
 
         {/* Name Input Form */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: reducedMotion ? 0 : 0.5 }}
+          transition={{ delay: reducedMotion ? 0 : 0.3 }}
           className="card p-4 sm:p-5 md:p-6"
         >
           <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-text-primary mb-2">
@@ -165,14 +158,21 @@ export default function Home() {
           )}
 
           <motion.button
-            whileHover={!reducedMotion && name.trim() ? { scale: 1.02 } : {}}
-            whileTap={!reducedMotion && name.trim() ? { scale: 0.98 } : {}}
+            whileHover={!reducedMotion && name.trim() && videoWatched ? { scale: 1.02 } : {}}
+            whileTap={!reducedMotion && name.trim() && videoWatched ? { scale: 0.98 } : {}}
             onClick={handleStartTest}
-            disabled={!name.trim()}
+            disabled={!name.trim() || !videoWatched}
             className="btn btn-primary w-full text-sm sm:text-base py-2.5 sm:py-3"
           >
             Mulai Test Sekarang →
           </motion.button>
+
+          {!videoWatched && (
+            <p className="text-[10px] sm:text-xs text-amber-400 text-center mt-2 sm:mt-3 flex items-center justify-center gap-1">
+              <span>⏱️</span>
+              <span>Tonton video sampai selesai untuk melanjutkan</span>
+            </p>
+          )}
 
           <p className="text-[10px] sm:text-xs text-text-tertiary text-center mt-2 sm:mt-3">
             Gratis • Tanpa registrasi • 5 menit
@@ -183,7 +183,7 @@ export default function Home() {
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: reducedMotion ? 0 : 0.6 }}
+          transition={{ delay: reducedMotion ? 0 : 0.4 }}
           className="text-[10px] sm:text-xs text-text-tertiary text-center mt-3 sm:mt-4 px-2"
         >
           Nama kamu akan muncul di hasil test untuk personalisasi

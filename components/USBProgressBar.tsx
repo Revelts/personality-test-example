@@ -1,14 +1,16 @@
 /**
  * USBProgressBar Component - SanDisk Edition (Fully Responsive)
  * 
- * Konsep: Flashdisk bergerak dari kiri ke kanan dan tercolok ke handphone
+ * Konsep: Transfer icon bergerak dari kiri ke kanan menuju phone (finish line)
  * Style: Industrial tech - responsive untuk semua screen sizes
+ * Assets: transfer.png (running icon), phone.png (finish line)
  */
 
 'use client';
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 interface USBProgressBarProps {
@@ -103,7 +105,7 @@ export default function USBProgressBar({
           />
         </div>
 
-        {/* Flashdisk (USB) - Positioned to prevent left overlap (starts at 3%) */}
+        {/* Transfer Icon - Using transfer.png */}
         <motion.div
           className="absolute z-10"
           animate={{
@@ -124,37 +126,15 @@ export default function USBProgressBar({
             } : {}}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            {/* USB Flashdisk Icon - Optimized for mobile */}
+            {/* Transfer Icon - Optimized for mobile */}
             <div className="relative">
-              <div 
-                className="w-6 h-5 sm:w-7 sm:h-6 md:w-8 md:h-7 rounded-r-md shadow-elevation-sm relative border border-border"
-                style={{
-                  backgroundColor: '#4F4F51', // Solid metallic color for Safari
-                  background: 'linear-gradient(90deg, #3A3A3C 0%, #4F4F51 100%)',
-                }}
-              >
-                {/* USB Cap - Red */}
-                <div 
-                  className="absolute -left-1.5 sm:-left-2 top-1/2 -translate-y-1/2 w-1.5 sm:w-2 h-3 sm:h-4 rounded-l-sm shadow-md"
-                  style={{
-                    backgroundColor: '#E10600',
-                  }}
-                />
-                {/* USB Connector */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-1.5 sm:h-2 bg-text-secondary" />
-                {/* LED Indicator */}
-                <motion.div
-                  className="absolute right-1 top-1 w-1 h-1 rounded-full"
-                  style={{
-                    backgroundColor: progress > 0 ? '#E10600' : '#666666',
-                  }}
-                  animate={{
-                    opacity: progress > 0 && progress < 100 ? [1, 0.3, 1] : 1,
-                  }}
-                  transition={{
-                    duration: 1,
-                    repeat: progress > 0 && progress < 100 ? Infinity : 0,
-                  }}
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative">
+                <Image
+                  src="/images/transfer.png"
+                  alt="Transfer"
+                  fill
+                  className="object-contain"
+                  priority
                 />
               </div>
               
@@ -186,7 +166,7 @@ export default function USBProgressBar({
           </motion.div>
         </motion.div>
 
-        {/* Handphone - Optimized for mobile */}
+        {/* Phone - Using phone.png as finish line */}
         <motion.div
           className="absolute right-0 z-20"
           animate={isPluggedIn ? {
@@ -196,132 +176,41 @@ export default function USBProgressBar({
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <div className="relative">
-            {/* Phone Body - Bigger and clearer on mobile */}
+            {/* Phone Image */}
             <motion.div
-              className="w-8 h-11 sm:w-10 sm:h-14 md:w-11 md:h-16 rounded-lg border border-border relative overflow-hidden shadow-elevation-md"
-              style={{
-                backgroundColor: '#222224',
-                background: 'linear-gradient(135deg, #3A3A3C 0%, #222224 100%)',
-              }}
+              className="w-10 h-14 sm:w-12 sm:h-16 md:w-14 md:h-20 relative"
               animate={{
-                boxShadow: `0 0 ${currentGlow * 15}px rgba(225, 6, 0, ${currentGlow * 0.5})`
+                filter: `drop-shadow(0 0 ${currentGlow * 15}px rgba(225, 6, 0, ${currentGlow * 0.5}))`
               }}
               transition={{ duration: 0.3 }}
             >
-              {/* Phone Screen */}
-              <div 
-                className="absolute inset-1 sm:inset-1.5 rounded-md"
-                style={{
-                  backgroundColor: '#141414',
-                  background: 'linear-gradient(135deg, #141414 0%, #0E0E10 100%)',
-                }}
-              >
-                {/* Screen Glow when connected */}
-                {isPluggedIn && (
-                  <motion.div
-                    className="absolute inset-0 rounded-md"
-                    style={{
-                      backgroundColor: '#E10600',
-                    }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 0.3, 0] }}
-                    transition={{ duration: 0.6 }}
-                  />
-                )}
-                
-                {/* Connection Icon */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    animate={isPluggedIn ? {
-                      scale: [0, 1.2, 1],
-                      rotate: [0, 10, -10, 0]
-                    } : {}}
-                    transition={{ duration: 0.4 }}
-                  >
-                    {isPluggedIn ? (
-                      <span 
-                        className="text-xs sm:text-sm font-bold"
-                        style={{ color: '#4CAF50' }}
-                      >
-                        ✓
-                      </span>
-                    ) : (
-                      <svg 
-                        width="12" 
-                        height="16" 
-                        viewBox="0 0 24 32" 
-                        fill="none" 
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-3 h-4 sm:w-4 sm:h-5"
-                      >
-                        {/* Phone body */}
-                        <rect 
-                          x="2" 
-                          y="1" 
-                          width="20" 
-                          height="30" 
-                          rx="2" 
-                          fill="#A0A0A0" 
-                          opacity="0.8"
-                        />
-                        {/* Screen */}
-                        <rect 
-                          x="3.5" 
-                          y="3" 
-                          width="17" 
-                          height="23" 
-                          rx="0.5" 
-                          fill="#E10600" 
-                          opacity="0.3"
-                        />
-                        {/* Top speaker/notch */}
-                        <rect 
-                          x="9" 
-                          y="2" 
-                          width="6" 
-                          height="0.5" 
-                          rx="0.25" 
-                          fill="#0E0E10"
-                        />
-                        {/* Home indicator */}
-                        <rect 
-                          x="9" 
-                          y="27.5" 
-                          width="6" 
-                          height="1" 
-                          rx="0.5" 
-                          fill="#666666" 
-                          opacity="0.4"
-                        />
-                      </svg>
-                    )}
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* USB Port */}
-              <div 
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 sm:w-2.5 h-0.5 sm:h-1 border-t border-border rounded-t-sm"
-                style={{ backgroundColor: '#0E0E10' }}
+              <Image
+                src="/images/phone.png"
+                alt="Phone"
+                fill
+                className="object-contain"
+                priority
               />
               
-              {/* Port Highlight - Red glow */}
-              <motion.div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 sm:w-4 h-1 sm:h-1.5 rounded-full"
-                style={{
-                  backgroundColor: '#E10600',
-                  filter: 'blur(4px)',
-                  WebkitFilter: 'blur(4px)',
-                }}
-                animate={{ opacity: currentGlow }}
-                transition={{ duration: 0.3 }}
-              />
+              {/* Success Checkmark Overlay */}
+              {isPluggedIn && (
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                >
+                  <div className="bg-green-500 rounded-full w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center shadow-lg">
+                    <span className="text-white text-xs sm:text-sm font-bold">✓</span>
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
 
             {/* Connection Ripple Effect */}
             {isPluggedIn && (
               <motion.div
-                className="absolute inset-0 border border-brand-red rounded-lg"
+                className="absolute inset-0 border-2 border-brand-red rounded-lg"
                 initial={{ opacity: 1, scale: 1 }}
                 animate={{ opacity: 0, scale: 1.5 }}
                 transition={{ duration: 0.6 }}

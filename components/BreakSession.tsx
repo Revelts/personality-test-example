@@ -2,7 +2,7 @@
  * Break Session Component
  * 
  * Shows every 3 questions to give user a mental break
- * Displays encouraging message and allows user to continue
+ * Displays micro reaction from the selected answer
  */
 
 'use client';
@@ -13,6 +13,7 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 interface BreakSessionProps {
   currentQuestion: number;
   totalQuestions: number;
+  microReaction: string;
   onContinue: () => void;
   isVisible: boolean;
 }
@@ -20,37 +21,12 @@ interface BreakSessionProps {
 export default function BreakSession({ 
   currentQuestion, 
   totalQuestions, 
+  microReaction,
   onContinue, 
   isVisible 
 }: BreakSessionProps) {
   const reducedMotion = useReducedMotion();
   const progress = Math.round((currentQuestion / totalQuestions) * 100);
-
-  const messages = [
-    {
-      emoji: "💫",
-      title: "Nice!",
-      message: "Lo udah menjawab 3 pertanyaan. Sejauh ini jawaban lo mulai ngebentuk pola. Lanjut?"
-    },
-    {
-      emoji: "🎯",
-      title: "Bagus!",
-      message: "Udah separuh jalan! Jawaban lo konsisten dan mulai kelihatan arahnya. Keep going!"
-    },
-    {
-      emoji: "🔥",
-      title: "Almost there!",
-      message: "Sedikit lagi hasilnya keluar. Jawab sisa pertanyaan dengan jujur ya."
-    }
-  ];
-
-  // Determine which message to show based on questions answered
-  let messageIndex = 0;
-  if (currentQuestion === 3) messageIndex = 0; // After Q3
-  else if (currentQuestion === 6) messageIndex = 1; // After Q6
-  else if (currentQuestion === 9) messageIndex = 2; // After Q9 (jika ada 12+ pertanyaan)
-
-  const currentMessage = messages[messageIndex];
 
   return (
     <AnimatePresence>
@@ -75,8 +51,8 @@ export default function BreakSession({
             }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
-            <div className="w-full max-w-md bg-bg-surface border-2 border-brand-red rounded-lg shadow-elevation-lg p-8 sm:p-10 text-center">
-              {/* Emoji */}
+            <div className="w-full max-w-2xl bg-bg-surface border-2 border-brand-red rounded-lg shadow-elevation-lg p-6 sm:p-8 md:p-10 text-center">
+              {/* Pause Icon */}
               <motion.div
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
@@ -86,9 +62,9 @@ export default function BreakSession({
                   stiffness: 200, 
                   damping: 15 
                 }}
-                className="text-6xl sm:text-7xl mb-6"
+                className="text-5xl sm:text-6xl mb-4 sm:mb-6"
               >
-                {currentMessage.emoji}
+                ⏸️
               </motion.div>
 
               {/* Title */}
@@ -96,9 +72,9 @@ export default function BreakSession({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-2xl sm:text-3xl font-bold text-text-primary mb-4"
+                className="text-xl sm:text-2xl md:text-3xl font-bold text-brand-red mb-3 sm:mb-4"
               >
-                {currentMessage.title}
+                Take a Breath
               </motion.h2>
 
               {/* Progress */}
@@ -106,13 +82,13 @@ export default function BreakSession({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="mb-6"
+                className="mb-6 sm:mb-8"
               >
-                <div className="flex items-center justify-center gap-2 text-text-secondary mb-2">
-                  <span className="text-sm sm:text-base">Progress:</span>
-                  <span className="text-brand-red font-bold text-lg sm:text-xl">{progress}%</span>
+                <div className="flex items-center justify-center gap-2 text-text-tertiary mb-2">
+                  <span className="text-xs sm:text-sm">Progress:</span>
+                  <span className="text-brand-red font-bold text-base sm:text-lg">{progress}%</span>
                 </div>
-                <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden">
+                <div className="w-full h-1.5 sm:h-2 bg-bg-elevated rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
@@ -122,15 +98,17 @@ export default function BreakSession({
                 </div>
               </motion.div>
 
-              {/* Message */}
-              <motion.p
+              {/* Micro Reaction - Main Content */}
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="text-sm sm:text-base text-text-secondary leading-relaxed mb-8"
+                className="bg-bg-elevated border border-border rounded-lg p-4 sm:p-6 mb-6 sm:mb-8"
               >
-                {currentMessage.message}
-              </motion.p>
+                <p className="text-sm sm:text-base md:text-lg text-text-secondary leading-relaxed text-left">
+                  {microReaction}
+                </p>
+              </motion.div>
 
               {/* Continue Button */}
               <motion.button
@@ -144,7 +122,7 @@ export default function BreakSession({
                   borderRadius: '2px',
                   clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
                 }}
-                className="w-full py-4 sm:py-5 bg-transparent border-2 border-brand-red text-text-primary font-bold text-base sm:text-lg tracking-wide uppercase transition-all duration-300 hover:shadow-[inset_0_0_0_1px_rgba(225,6,0,0.3),0_0_16px_rgba(225,6,0,0.2)] hover:bg-[rgba(225,6,0,0.05)]"
+                className="w-full py-3 sm:py-4 md:py-5 bg-transparent border-2 border-brand-red text-text-primary font-bold text-sm sm:text-base md:text-lg tracking-wide uppercase transition-all duration-300 hover:shadow-[inset_0_0_0_1px_rgba(225,6,0,0.3),0_0_16px_rgba(225,6,0,0.2)] hover:bg-[rgba(225,6,0,0.05)]"
               >
                 Lanjut Tes
               </motion.button>

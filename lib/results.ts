@@ -17,7 +17,6 @@ export interface PersonalityResult {
   gear: string;
   gearDesc: string;
   gearDescEn: string;
-  gearModel: string;
   gearImage: string;
   gearCapacity: string;
   gearSpecs: {
@@ -58,15 +57,14 @@ export const personalityTypes: PersonalityResult[] = [
     mostImportantEn: "Raw footage. Shaky versions. Failed takes. What matters is that it happened.",
     music: "Faint",
     musicArtist: "Linkin Park",
-    gear: "SanDisk Phone Drive Orange – 512 GB",
+    gear: "SanDisk Phone Drive Orange",
     gearDesc: "Rekam dulu. Simpan semua. Jangan mikir.",
     gearDescEn: "Record first. Save everything. Don't overthink.",
-    gearModel: "SDDDC6-032C-G46P0",
     gearImage: "/images/orange.png",
-    gearCapacity: "32GB",
+    gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "5-Year Limited Warranty"
+      warranty: "Lifetime Warranty"
     },
     gearLinks: {
       tokopedia: "https://www.tokopedia.com/sandisk",
@@ -92,15 +90,14 @@ export const personalityTypes: PersonalityResult[] = [
     mostImportantEn: "Old photos. Random files. Proof of process, not results.",
     music: "No Surprises",
     musicArtist: "Radiohead",
-    gear: "SanDisk Phone Drive Black – 512 GB",
+    gear: "SanDisk Phone Drive Black",
     gearDesc: "Colok, pindahin, lanjut hidup.",
     gearDescEn: "Plug in. Transfer. Keep moving.",
-    gearModel: "SDDDC6-032C-G46P0",
     gearImage: "/images/black.png",
-    gearCapacity: "32GB",
+    gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "5-Year Limited Warranty"
+      warranty: "Lifetime Warranty"
     },
     gearLinks: {
       tokopedia: "https://www.tokopedia.com/sandisk",
@@ -126,15 +123,14 @@ export const personalityTypes: PersonalityResult[] = [
     mostImportantEn: "Important documents. Things that must be kept safe.",
     music: "The Hand That Feeds",
     musicArtist: "Nine Inch Nails",
-    gear: "SanDisk Phone Drive Black – 256 GB",
+    gear: "SanDisk Phone Drive Black",
     gearDesc: "Satu alat. Banyak skenario.",
     gearDescEn: "One tool. Many scenarios.",
-    gearModel: "SDDDC6-032C-G46P0",
     gearImage: "/images/purple.png",
-    gearCapacity: "32GB",
+    gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "5-Year Limited Warranty"
+      warranty: "Lifetime Warranty"
     },
     gearLinks: {
       tokopedia: "https://www.tokopedia.com/sandisk",
@@ -160,15 +156,14 @@ export const personalityTypes: PersonalityResult[] = [
     mostImportantEn: "Unclear screenshots. Random videos at 3 a.m.",
     music: "Clint Eastwood",
     musicArtist: "Gorillaz",
-    gear: "SanDisk Phone Drive Purple – 512 GB",
+    gear: "SanDisk Phone Drive Purple",
     gearDesc: "Chaos diterima. Semua aman.",
     gearDescEn: "Chaos accepted. Everything is safe.",
-    gearModel: "SDDDC6-032C-G46P0",
     gearImage: "/images/purple.png",
-    gearCapacity: "32GB",
+    gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "5-Year Limited Warranty"
+      warranty: "Lifetime Warranty"
     },
     gearLinks: {
       tokopedia: "https://www.tokopedia.com/sandisk",
@@ -194,15 +189,14 @@ export const personalityTypes: PersonalityResult[] = [
     mostImportantEn: "Work files. Raw content. Things that need to move fast.",
     music: "Black Skinhead",
     musicArtist: "Kanye West",
-    gear: "SanDisk Phone Drive Yellow – 512 GB",
+    gear: "SanDisk Phone Drive Yellow",
     gearDesc: "Tanpa cloud. Tanpa nunggu.",
     gearDescEn: "No cloud. No waiting.",
-    gearModel: "SDDDC6-032C-G46P0",
     gearImage: "/images/yellow.png",
-    gearCapacity: "32GB",
+    gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "5-Year Limited Warranty"
+      warranty: "Lifetime Warranty"
     },
     gearLinks: {
       tokopedia: "https://www.tokopedia.com/sandisk",
@@ -228,15 +222,14 @@ export const personalityTypes: PersonalityResult[] = [
     mostImportantEn: "Voice notes. Old chats. Small things that must not be lost.",
     music: "Leave Out All The Rest",
     musicArtist: "Linkin Park",
-    gear: "SanDisk Phone Drive Black – 256 GB",
+    gear: "SanDisk Phone Drive Black",
     gearDesc: "Kecil. Tenang. Selalu siap.",
     gearDescEn: "Small. Quiet. Always ready.",
-    gearModel: "SDDDC6-032C-G46P0",
     gearImage: "/images/purple.png",
-    gearCapacity: "32GB",
+    gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "5-Year Limited Warranty"
+      warranty: "Lifetime Warranty"
     },
     gearLinks: {
       tokopedia: "https://www.tokopedia.com/sandisk",
@@ -262,15 +255,14 @@ export const personalityTypes: PersonalityResult[] = [
     mostImportantEn: "Physical files. Things you can actually hold.",
     music: "Do I Wanna Know?",
     musicArtist: "Arctic Monkeys",
-    gear: "SanDisk Phone Drive Purple – 256 GB",
+    gear: "SanDisk Phone Drive Purple",
     gearDesc: "Aman di tangan lo.",
     gearDescEn: "Safe in your hands.",
-    gearModel: "SDDDC6-032C-G46P0",
     gearImage: "/images/purple.png",
-    gearCapacity: "32GB",
+    gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "5-Year Limited Warranty"
+      warranty: "Lifetime Warranty"
     },
     gearLinks: {
       tokopedia: "https://www.tokopedia.com/sandisk",
@@ -296,15 +288,14 @@ export const personalityTypes: PersonalityResult[] = [
     mostImportantEn: "Drafts. Voice notes. Failed versions.",
     music: "Happier Than Ever",
     musicArtist: "Billie Eilish",
-    gear: "SanDisk Phone Drive Yellow – 256 GB",
+    gear: "SanDisk Phone Drive Yellow",
     gearDesc: "Karena cerita pribadi gak boleh hilang.",
     gearDescEn: "Because personal stories shouldn't be lost.",
-    gearModel: "SDDDC6-032C-G46P0",
     gearImage: "/images/yellow.png",
-    gearCapacity: "32GB",
+    gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "5-Year Limited Warranty"
+      warranty: "Lifetime Warranty"
     },
     gearLinks: {
       tokopedia: "https://www.tokopedia.com/sandisk",

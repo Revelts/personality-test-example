@@ -18,7 +18,6 @@ import Image from 'next/image';
 import FuturisticQuestion from '@/components/FuturisticQuestion';
 import USBProgressBar from '@/components/USBProgressBar';
 import ConnectionAnimation from '@/components/ConnectionAnimation';
-import MicroReactionPopup from '@/components/MicroReactionPopup';
 import BreakSession from '@/components/BreakSession';
 import { Question, getRandomQuestions } from '@/lib/questions';
 import { calculatePersonality, Scores } from '@/lib/results';
@@ -44,7 +43,6 @@ export default function TestPage() {
   const [isLoadingProgress, setIsLoadingProgress] = useState(true);
   const [showRestoredNotice, setShowRestoredNotice] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-  const [showMicroReaction, setShowMicroReaction] = useState(false);
   const [currentMicroReaction, setCurrentMicroReaction] = useState('');
   const [selectedQuestions, setSelectedQuestions] = useState<Question[]>([]);
   const [showBreakSession, setShowBreakSession] = useState(false);
@@ -147,23 +145,14 @@ export default function TestPage() {
     const answer = currentQuestion.answers.find(a => a.id === selectedAnswer);
     if (!answer) return;
 
-    // Check if this is Q5, Q10, Q15, or Q20 (show micro reaction)
-    const nextQuestionNumber = currentQuestionIndex + 1;
-    const shouldShowMicroReaction = nextQuestionNumber % 5 === 0;
-
-    if (shouldShowMicroReaction) {
-      // Show micro reaction for this answer
-      setCurrentMicroReaction(answer.microReaction);
-      setShowMicroReaction(true);
-    } else {
-      // Skip micro reaction, proceed directly
-      handleMicroReactionContinue();
-    }
-  }, [selectedAnswer, isTransitioning, currentQuestion, currentQuestionIndex]);
+    // Simpan micro reaction untuk break session nanti
+    setCurrentMicroReaction(answer.microReaction);
+    
+    // Langsung proses jawaban
+    handleMicroReactionContinue();
+  }, [selectedAnswer, isTransitioning, currentQuestion]);
 
   const handleMicroReactionContinue = useCallback(() => {
-    setShowMicroReaction(false);
-
     if (!selectedAnswer) return;
 
     const answer = currentQuestion.answers.find(a => a.id === selectedAnswer);
@@ -216,12 +205,13 @@ export default function TestPage() {
         setSelectedAnswer(null);
         setIsTransitioning(false);
 
-        // Check if should show break session (setiap 3 pertanyaan)
+        // Check if should show break session dengan micro reaction (setiap 3 pertanyaan)
         // nextIndex adalah index berikutnya (0-based), jadi pertanyaan ke-3, 6, 9, dll
         const questionsAnswered = nextIndex; // karena nextIndex = jumlah pertanyaan yang sudah dijawab
         const shouldShowBreak = questionsAnswered % 3 === 0 && questionsAnswered < totalQuestions;
         
         if (shouldShowBreak) {
+          // Show break session dengan micro reaction dari jawaban yang baru dipilih
           setShowBreakSession(true);
         }
       }
@@ -376,17 +366,11 @@ export default function TestPage() {
         </div>
       </motion.div>
 
-      {/* Micro Reaction Popup - Only shows every 5 questions */}
-      <MicroReactionPopup
-        microReaction={currentMicroReaction}
-        onContinue={handleMicroReactionContinue}
-        isVisible={showMicroReaction}
-      />
-
-      {/* Break Session - Shows every 3 questions */}
+      {/* Break Session - Shows every 3 questions with micro reaction */}
       <BreakSession
         currentQuestion={currentQuestionIndex}
         totalQuestions={totalQuestions}
+        microReaction={currentMicroReaction}
         onContinue={() => setShowBreakSession(false)}
         isVisible={showBreakSession}
       />

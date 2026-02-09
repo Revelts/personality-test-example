@@ -1,7 +1,8 @@
 /**
- * ConnectionAnimation - USB Plug-in Loading State
+ * ConnectionAnimation - Transfer to Phone Loading State
  * 
- * Shows detailed animation of USB connecting to phone
+ * Shows animation of transfer icon connecting to phone
+ * Uses transfer.png and phone.png assets
  * before redirecting to result page
  */
 
@@ -9,6 +10,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface ConnectionAnimationProps {
   onComplete: () => void;
@@ -57,7 +59,7 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
             {/* Spacer untuk balance layout */}
             <div className="w-20 sm:w-24" />
             
-            {/* USB Flashdisk */}
+            {/* Transfer Icon - Using transfer.png */}
             <motion.div
               animate={
                 stage === 'plugging'
@@ -78,17 +80,19 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
               }}
               className="relative flex-shrink-0"
             >
-              {/* USB Body - Large */}
-              <div className="w-16 h-12 sm:w-20 sm:h-16 bg-gradient-to-r from-metallic to-metallic-light rounded-r-lg shadow-elevation-lg relative border-2 border-border">
-                {/* USB Cap - SanDisk Red */}
-                <div className="absolute -left-4 sm:-left-5 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-8 sm:h-10 bg-gradient-to-r from-brand-red-dark to-brand-red rounded-l-md shadow-lg" />
+              {/* Transfer Icon Image */}
+              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 relative">
+                <Image
+                  src="/images/transfer.png"
+                  alt="Transfer"
+                  fill
+                  className="object-contain"
+                  priority
+                />
                 
-                {/* USB Connector */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 sm:w-4 h-4 sm:h-5 bg-text-secondary" />
-                
-                {/* LED Indicator */}
+                {/* LED Indicator - Overlay on image */}
                 <motion.div
-                  className="absolute right-2 top-2 w-2 h-2 rounded-full"
+                  className="absolute top-1 right-1 w-2 h-2 rounded-full"
                   animate={{
                     backgroundColor:
                       stage === 'connected'
@@ -104,11 +108,6 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
                     repeat: stage === 'plugging' ? Infinity : 0,
                   }}
                 />
-                
-                {/* SanDisk Label */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-xs sm:text-sm font-bold text-text-tertiary">USB</span>
-                </div>
               </div>
 
               {/* Data Transfer Particles */}
@@ -138,7 +137,7 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
             {/* Gap between USB and Phone */}
             <div className="w-8 sm:w-12 md:w-16 flex-shrink-0" />
 
-            {/* Phone */}
+            {/* Phone - Using phone.png */}
             <motion.div
               animate={
                 stage === 'connected'
@@ -151,136 +150,49 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
               transition={{ duration: 0.4, ease: 'easeOut' }}
               className="relative flex-shrink-0"
             >
-              {/* Phone Body - Large */}
+              {/* Phone Image */}
               <motion.div
-                className="w-20 h-32 sm:w-24 sm:h-40 bg-gradient-to-br from-metallic to-bg-elevated rounded-2xl border-2 border-border relative overflow-hidden shadow-elevation-lg"
+                className="w-24 h-40 sm:w-32 sm:h-52 md:w-36 md:h-60 relative"
                 animate={{
-                  boxShadow:
-                    stage === 'connected'
-                      ? '0 0 30px rgba(225, 6, 0, 0.6)'
-                      : stage === 'plugging'
-                      ? '0 0 20px rgba(225, 6, 0, 0.3)'
-                      : '0 4px 16px rgba(0, 0, 0, 0.5)',
+                  filter: stage === 'connected'
+                    ? `drop-shadow(0 0 30px rgba(225, 6, 0, 0.6))`
+                    : stage === 'plugging'
+                    ? `drop-shadow(0 0 20px rgba(225, 6, 0, 0.3))`
+                    : 'drop-shadow(0 4px 16px rgba(0, 0, 0, 0.5))',
                 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Phone Screen */}
-                <div className="absolute inset-2 bg-gradient-to-br from-bg-secondary to-bg-primary rounded-xl flex items-center justify-center">
-                  {/* Screen Content */}
-                  <AnimatePresence mode="wait">
-                    {stage === 'connected' ? (
-                      <motion.div
-                        key="check"
-                        initial={{ scale: 0, rotate: -180 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        exit={{ scale: 0 }}
-                        transition={{
-                          type: 'spring',
-                          stiffness: 200,
-                          damping: 15,
-                        }}
-                        className="text-4xl sm:text-5xl"
-                      >
-                        ✓
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        key="phone"
-                        initial={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="flex items-center justify-center"
-                      >
-                        <svg 
-                          width="32" 
-                          height="48" 
-                          viewBox="0 0 32 48" 
-                          fill="none" 
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-8 h-12 sm:w-10 sm:h-14"
-                        >
-                          {/* Phone body */}
-                          <rect 
-                            x="2" 
-                            y="1" 
-                            width="28" 
-                            height="46" 
-                            rx="3" 
-                            fill="currentColor" 
-                            className="text-text-secondary"
-                            opacity="0.6"
-                          />
-                          {/* Screen */}
-                          <rect 
-                            x="4" 
-                            y="5" 
-                            width="24" 
-                            height="35" 
-                            rx="1" 
-                            fill="currentColor" 
-                            className="text-brand-red"
-                            opacity="0.4"
-                          />
-                          {/* Top notch */}
-                          <rect 
-                            x="11" 
-                            y="2.5" 
-                            width="10" 
-                            height="1.5" 
-                            rx="0.75" 
-                            fill="currentColor" 
-                            className="text-bg-primary"
-                            opacity="0.8"
-                          />
-                          {/* Camera dot */}
-                          <circle 
-                            cx="9" 
-                            cy="3.5" 
-                            r="0.5" 
-                            fill="currentColor" 
-                            className="text-bg-primary"
-                            opacity="0.6"
-                          />
-                          {/* Home indicator */}
-                          <rect 
-                            x="11" 
-                            y="42" 
-                            width="10" 
-                            height="2" 
-                            rx="1" 
-                            fill="currentColor" 
-                            className="text-text-tertiary"
-                            opacity="0.3"
-                          />
-                          {/* Signal bars on screen */}
-                          <g opacity="0.2" className="text-text-primary">
-                            <rect x="8" y="9" width="2" height="4" rx="0.5" fill="currentColor"/>
-                            <rect x="11" y="9" width="2" height="4" rx="0.5" fill="currentColor"/>
-                            <rect x="14" y="9" width="2" height="4" rx="0.5" fill="currentColor"/>
-                          </g>
-                        </svg>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                <Image
+                  src="/images/phone.png"
+                  alt="Phone"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+                
+                {/* Screen Content Overlay - Success Checkmark */}
+                {stage === 'connected' && (
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 200,
+                      damping: 15,
+                    }}
+                  >
+                    <div className="bg-green-500 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center shadow-2xl">
+                      <span className="text-white text-2xl sm:text-3xl font-bold">✓</span>
+                    </div>
+                  </motion.div>
+                )}
 
-                  {/* Screen Flash Effect */}
-                  {stage === 'connected' && (
-                    <motion.div
-                      className="absolute inset-0 bg-brand-red rounded-xl"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: [0, 0.4, 0] }}
-                      transition={{ duration: 0.6 }}
-                    />
-                  )}
-                </div>
-
-                {/* USB Port */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-1.5 bg-bg-primary border-t-2 border-border rounded-t-md" />
-
-                {/* Port Glow */}
+                {/* Port Glow at bottom */}
                 <motion.div
-                  className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-3 bg-brand-red rounded-full blur-md"
+                  className="absolute bottom-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-brand-red rounded-full blur-md"
                   animate={{
-                    opacity: stage === 'plugging' ? [0.3, 0.6, 0.3] : 1,
+                    opacity: stage === 'plugging' ? [0.3, 0.6, 0.3] : stage === 'connected' ? 1 : 0,
                   }}
                   transition={{
                     duration: 1,
@@ -297,7 +209,7 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
                       key={i}
                       className="absolute inset-0 border-2 border-brand-red rounded-2xl"
                       initial={{ opacity: 0.8, scale: 1 }}
-                      animate={{ opacity: 0, scale: 1.5 }}
+                      animate={{ opacity: 0, scale: 1.3 }}
                       transition={{
                         duration: 1,
                         delay: i * 0.2,
