@@ -24,7 +24,7 @@ export interface PersonalityResult {
     warranty: string;
   };
   gearLinks: {
-    tokopedia: string;
+    lazada: string;
     shopee: string;
     tiktokshop: string;
   };
@@ -67,9 +67,9 @@ export const personalityTypes: PersonalityResult[] = [
       warranty: "Lifetime Warranty"
     },
     gearLinks: {
-      tokopedia: "https://www.tokopedia.com/sandisk",
-      shopee: "https://shopee.co.id/sandisk",
-      tiktokshop: "https://www.tiktok.com/@sandisk"
+      lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
+      shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
+      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
     },
     emoji: "🔥",
     color: "from-orange-500 to-red-600"
@@ -100,9 +100,9 @@ export const personalityTypes: PersonalityResult[] = [
       warranty: "Lifetime Warranty"
     },
     gearLinks: {
-      tokopedia: "https://www.tokopedia.com/sandisk",
-      shopee: "https://shopee.co.id/sandisk",
-      tiktokshop: "https://www.tiktok.com/@sandisk"
+      lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
+      shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
+      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
     },
     emoji: "🪨",
     color: "from-gray-800 to-gray-950"
@@ -133,9 +133,9 @@ export const personalityTypes: PersonalityResult[] = [
       warranty: "Lifetime Warranty"
     },
     gearLinks: {
-      tokopedia: "https://www.tokopedia.com/sandisk",
-      shopee: "https://shopee.co.id/sandisk",
-      tiktokshop: "https://www.tiktok.com/@sandisk"
+      lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
+      shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
+      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
     },
     emoji: "⚙️",
     color: "from-slate-700 to-slate-900"
@@ -166,9 +166,9 @@ export const personalityTypes: PersonalityResult[] = [
       warranty: "Lifetime Warranty"
     },
     gearLinks: {
-      tokopedia: "https://www.tokopedia.com/sandisk",
-      shopee: "https://shopee.co.id/sandisk",
-      tiktokshop: "https://www.tiktok.com/@sandisk"
+      lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
+      shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
+      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
     },
     emoji: "🌀",
     color: "from-purple-500 to-fuchsia-600"
@@ -199,9 +199,9 @@ export const personalityTypes: PersonalityResult[] = [
       warranty: "Lifetime Warranty"
     },
     gearLinks: {
-      tokopedia: "https://www.tokopedia.com/sandisk",
-      shopee: "https://shopee.co.id/sandisk",
-      tiktokshop: "https://www.tiktok.com/@sandisk"
+      lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
+      shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
+      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
     },
     emoji: "⚡",
     color: "from-yellow-400 to-amber-500"
@@ -232,9 +232,9 @@ export const personalityTypes: PersonalityResult[] = [
       warranty: "Lifetime Warranty"
     },
     gearLinks: {
-      tokopedia: "https://www.tokopedia.com/sandisk",
-      shopee: "https://shopee.co.id/sandisk",
-      tiktokshop: "https://www.tiktok.com/@sandisk"
+      lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
+      shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
+      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
     },
     emoji: "🌫️",
     color: "from-gray-900 to-black"
@@ -265,9 +265,9 @@ export const personalityTypes: PersonalityResult[] = [
       warranty: "Lifetime Warranty"
     },
     gearLinks: {
-      tokopedia: "https://www.tokopedia.com/sandisk",
-      shopee: "https://shopee.co.id/sandisk",
-      tiktokshop: "https://www.tiktok.com/@sandisk"
+      lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
+      shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
+      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
     },
     emoji: "🌲",
     color: "from-purple-600 to-violet-700"
@@ -298,9 +298,9 @@ export const personalityTypes: PersonalityResult[] = [
       warranty: "Lifetime Warranty"
     },
     gearLinks: {
-      tokopedia: "https://www.tokopedia.com/sandisk",
-      shopee: "https://shopee.co.id/sandisk",
-      tiktokshop: "https://www.tiktok.com/@sandisk"
+      lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
+      shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
+      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
     },
     emoji: "💧",
     color: "from-amber-400 to-yellow-500"

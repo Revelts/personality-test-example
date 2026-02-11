@@ -18,12 +18,26 @@ export default function ScreenshotButton({ elementId = 'result-card' }: Screensh
     setLoading(true);
     try {
       const element = document.getElementById(elementId);
-      if (!element) return;
+      if (!element) {
+        console.error('Element not found:', elementId);
+        return;
+      }
+
+      // Temporarily show the hidden element for capture
+      element.classList.remove('hidden');
+      
+      // Wait longer for proper rendering and layout
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       const dataUrl = await toPng(element, {
         quality: 0.95,
         pixelRatio: 2,
+        backgroundColor: '#ffffff',
+        cacheBust: true,
       });
+
+      // Hide it again
+      element.classList.add('hidden');
 
       const localData = localStorage.getItem(`personality_result_${params.id}`);
       if (localData) {
@@ -37,6 +51,11 @@ export default function ScreenshotButton({ elementId = 'result-card' }: Screensh
       link.click();
     } catch (err) {
       console.error('Failed to capture screenshot:', err);
+      // Make sure to hide element even on error
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.classList.add('hidden');
+      }
     } finally {
       setLoading(false);
     }

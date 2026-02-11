@@ -76,7 +76,7 @@ export default function TestPage() {
         setSelectedQuestions(JSON.parse(savedQuestions));
       } else {
         // If no saved questions, generate new random questions
-        const randomQuestions = getRandomQuestions(8);
+        const randomQuestions = getRandomQuestions(8, name);
         setSelectedQuestions(randomQuestions);
         localStorage.setItem(`test_questions_${name}`, JSON.stringify(randomQuestions));
       }
@@ -88,8 +88,8 @@ export default function TestPage() {
       // Fresh start - track test start
       trackTestStart(name);
       
-      // Generate random 8 questions
-      const randomQuestions = getRandomQuestions(8);
+      // Generate random 8 questions with personalized text
+      const randomQuestions = getRandomQuestions(8, name);
       setSelectedQuestions(randomQuestions);
       
       // Save selected questions to localStorage for consistency
@@ -337,10 +337,10 @@ export default function TestPage() {
           {/* Product Image - SanDisk Phone Drive */}
           <div className="relative w-full h-20 sm:h-24 bg-gradient-to-br from-bg-surface to-bg-elevated rounded-xl overflow-hidden border border-border">
             <Image
-              src="/images/banner.png"
+              src="/images/banner-gif.gif"
               alt="SanDisk Phone Drive"
               fill
-              className="object-contain"
+              className="object-cover"
               priority
             />
           </div>

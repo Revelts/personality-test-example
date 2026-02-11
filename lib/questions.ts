@@ -8,6 +8,7 @@ export interface Answer {
 export interface Question {
   id: number;
   text: string;
+  textTemplate?: string; // Template with {name} placeholder
   answers: Answer[];
 }
 
@@ -15,6 +16,7 @@ export const questions: Question[] = [
   {
     id: 1,
     text: "Kalau hari lo tiba-tiba berhenti di tengah jalan (HP mati, baterai habis), perasaan pertama yang muncul apa?",
+    textTemplate: "{name} nih, kalau lagi jalan terus tiba-tiba HP mati atau baterai habis, perasaan pertama yang muncul apa?",
     answers: [
       { 
         id: "1a", 
@@ -45,6 +47,7 @@ export const questions: Question[] = [
   {
     id: 2,
     text: "Orang paling sering salah paham soal diri lo di bagian mana?",
+    textTemplate: "Menurut {name}, orang paling sering salah paham soal diri lo itu di bagian mana sih?",
     answers: [
       { 
         id: "2a", 
@@ -75,6 +78,7 @@ export const questions: Question[] = [
   {
     id: 3,
     text: "Di antara ini, mana yang paling bikin lo capek secara mental?",
+    textTemplate: "Oke {name}, dari semua ini yang paling bikin lo capek secara mental apa?",
     answers: [
       { 
         id: "3a", 
@@ -105,6 +109,7 @@ export const questions: Question[] = [
   {
     id: 4,
     text: "Jam di mana pikiran lo paling jujur sama diri sendiri?",
+    textTemplate: "{name}, biasanya jam berapa sih pikiran lo paling jujur sama diri sendiri?",
     answers: [
       { 
         id: "4a", 
@@ -135,6 +140,7 @@ export const questions: Question[] = [
   {
     id: 5,
     text: "Kalau hidup lo lagi berat, biasanya lo…",
+    textTemplate: "Kalau lagi berat, {name} biasanya ngadepin dengan cara gimana?",
     answers: [
       { 
         id: "5a", 
@@ -165,6 +171,7 @@ export const questions: Question[] = [
   {
     id: 6,
     text: "Saat ada momen penting, refleks pertama lo apa?",
+    textTemplate: "Kalau lagi ada momen penting, refleks pertama {name} tuh apa?",
     answers: [
       { 
         id: "6a", 
@@ -195,6 +202,7 @@ export const questions: Question[] = [
   {
     id: 7,
     text: "Lo paling nyaman hidup di kondisi seperti apa?",
+    textTemplate: "{name} paling nyaman hidup di kondisi yang kayak gimana sih?",
     answers: [
       { 
         id: "7a", 
@@ -225,6 +233,7 @@ export const questions: Question[] = [
   {
     id: 8,
     text: "Kalau meja kerja atau homescreen HP lo dilihat orang, lo berharap mereka mikir apa?",
+    textTemplate: "Kalau meja kerja atau homescreen HP {name} dilihat orang, lo pengen mereka mikir apa?",
     answers: [
       { 
         id: "8a", 
@@ -255,36 +264,38 @@ export const questions: Question[] = [
   {
     id: 9,
     text: "Hal ini paling sering lo tunda, padahal penting:",
+    textTemplate: "{name}, hal apa nih yang paling sering lo tunda padahal sebenernya penting?",
     answers: [
       { 
         id: "9a", 
-        text: "Beresin file", 
+        text: "Pindahin File", 
         trait: "adventurer",
         microReaction: "Lo tau ini harusnya gampang. Tapi terlalu banyak kenangan numpuk jadi satu. Dan milih mana yang penting… itu capek emosional."
       },
       { 
         id: "9b", 
-        text: "Backup", 
+        text: "Backup File", 
         trait: "leader",
         microReaction: "Lo sadar risikonya. Tapi ada perasaan 'nanti aja' yang selalu menang. Bukan karena gak peduli — tapi karena lo gak siap kehilangan."
       },
       { 
         id: "9c", 
-        text: "Sorting", 
+        text: "Ngerapihin File", 
         trait: "logical",
-        microReaction: "Lo ngerasa semuanya punya konteks. Ngurutin berarti ngadepin ulang. Dan gak selalu siap buat itu."
+        microReaction: "Lo ngerasa semuanya punya konteks. Ngerapihin berarti ngadepin ulang. Dan gak selalu siap buat itu."
       },
       { 
         id: "9d", 
-        text: "Ngehapus", 
+        text: "Upgrade Storage", 
         trait: "creative",
-        microReaction: "Bukan karena memori jelek. Tapi karena menghapus itu final. Dan lo tipe yang butuh waktu buat benar-benar melepaskan."
+        microReaction: "Bukan karena memori jelek. Tapi karena menghapus itu final. Dan lo tipe yang butuh waktu buat benar-benar melepaskan, jadi lo upgrade storage."
       }
     ]
   },
   {
     id: 10,
     text: "Pas nemu foto atau video lama di HP, reaksi lo biasanya…",
+    textTemplate: "Kalau {name} tiba-tiba nemu foto atau video lama di HP, reaksi lo biasanya gimana?",
     answers: [
       { 
         id: "10a", 
@@ -315,6 +326,7 @@ export const questions: Question[] = [
   {
     id: 11,
     text: "Alasan utama lo nyimpen sesuatu itu apa?",
+    textTemplate: "Kalau ditanya, alasan utama {name} nyimpen sesuatu itu apa sih?",
     answers: [
       { 
         id: "11a", 
@@ -345,6 +357,7 @@ export const questions: Question[] = [
   {
     id: 12,
     text: "Notifikasi \"storage almost full\" itu rasanya kayak…",
+    textTemplate: "Buat {name}, kalau muncul notif 'storage almost full' itu rasanya kayak apa?",
     answers: [
       { 
         id: "12a", 
@@ -375,6 +388,7 @@ export const questions: Question[] = [
   {
     id: 13,
     text: "Yang paling berat buat lo hapus tanpa mikir lama:",
+    textTemplate: "{name}, yang paling berat buat lo hapus tanpa mikir lama tuh apa?",
     answers: [
       { 
         id: "13a", 
@@ -405,6 +419,7 @@ export const questions: Question[] = [
   {
     id: 14,
     text: "Kalau lo dipaksa hapus file sekarang juga, jujur aja…",
+    textTemplate: "Nih {name}, kalau lo dipaksa hapus file sekarang juga, jujur aja gimana?",
     answers: [
       { 
         id: "14a", 
@@ -435,6 +450,7 @@ export const questions: Question[] = [
   {
     id: 15,
     text: "Dalam hidup, lo lebih nyaman dengan pendekatan:",
+    textTemplate: "Dalam hidup, {name} lebih nyaman pakai pendekatan yang mana nih?",
     answers: [
       { 
         id: "15a", 
@@ -465,6 +481,7 @@ export const questions: Question[] = [
   {
     id: 16,
     text: "Cara lo ngerawat kenangan sejauh ini:",
+    textTemplate: "Selama ini, cara {name} ngerawat kenangan gimana sih?",
     answers: [
       { 
         id: "16a", 
@@ -495,6 +512,7 @@ export const questions: Question[] = [
   {
     id: 17,
     text: "Buat lo pribadi, memori itu lebih dekat ke…",
+    textTemplate: "Buat {name} sendiri, memori itu lebih dekat ke yang mana?",
     answers: [
       { 
         id: "17a", 
@@ -525,6 +543,7 @@ export const questions: Question[] = [
   {
     id: 18,
     text: "Hal yang paling bikin lo panik diam-diam:",
+    textTemplate: "{name}, hal yang paling bikin lo panik diam-diam tuh sebenernya apa?",
     answers: [
       { 
         id: "18a", 
@@ -555,6 +574,7 @@ export const questions: Question[] = [
   {
     id: 19,
     text: "Kalau harus pindah file ke device lain, lo maunya prosesnya…",
+    textTemplate: "Kalau {name} harus pindah file ke device lain, lo maunya prosesnya gimana?",
     answers: [
       { 
         id: "19a", 
@@ -585,6 +605,7 @@ export const questions: Question[] = [
   {
     id: 20,
     text: "Kalimat ini paling mendekati cara hidup lo:",
+    textTemplate: "Terakhir nih {name}, kalimat mana yang paling mendekati cara hidup lo?",
     answers: [
       { 
         id: "20a", 
@@ -617,9 +638,10 @@ export const questions: Question[] = [
 /**
  * Get random questions from the full question set with balanced trait distribution
  * @param count - Number of questions to return (default: 8)
- * @returns Array of random questions with balanced traits
+ * @param userName - User's name to personalize questions (optional)
+ * @returns Array of random questions with balanced traits and personalized text
  */
-export function getRandomQuestions(count: number = 8): Question[] {
+export function getRandomQuestions(count: number = 8, userName?: string): Question[] {
   const traits: Array<'logical' | 'creative' | 'empathetic' | 'leader' | 'adventurer'> = 
     ['logical', 'creative', 'empathetic', 'leader', 'adventurer'];
   
@@ -668,6 +690,14 @@ export function getRandomQuestions(count: number = 8): Question[] {
   for (let i = selectedQuestions.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [selectedQuestions[i], selectedQuestions[j]] = [selectedQuestions[j], selectedQuestions[i]];
+  }
+  
+  // Personalize questions with userName if provided
+  if (userName) {
+    return selectedQuestions.map(q => ({
+      ...q,
+      text: q.textTemplate ? q.textTemplate.replace('{name}', userName) : q.text
+    }));
   }
   
   return selectedQuestions;
