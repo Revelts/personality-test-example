@@ -17,7 +17,13 @@ export default function SliderCard({ result, userName, resultId }: SliderCardPro
 
   const handleGoToGear = () => {
     if (resultId) {
-      router.push(`/result/${resultId}/gear`);
+      // Preserve URL params when navigating to gear page
+      const currentParams = new URLSearchParams(window.location.search);
+      const paramString = currentParams.toString();
+      const gearUrl = paramString 
+        ? `/result/${resultId}/gear?${paramString}` 
+        : `/result/${resultId}/gear`;
+      router.push(gearUrl);
     }
   };
 
