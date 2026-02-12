@@ -37,10 +37,10 @@ export const initializeDataLayer = (): void => {
   
   window.dataLayer = window.dataLayer || [];
   
-  // Push initial state
+  // Push initial state for GA4
   window.dataLayer.push({
-    'gtm.start': new Date().getTime(),
-    event: 'gtm.js'
+    'js': new Date(),
+    'config': 'G-PH28648C02'
   });
 };
 
@@ -60,12 +60,18 @@ export const pushToDataLayer = (data: DataLayerEvent): void => {
     timestamp: new Date().toISOString(),
   };
   
-  // Push to dataLayer
+  // Push to dataLayer (GA4 compatible)
   window.dataLayer.push(enrichedData);
+  
+  // Also send to gtag if available (for GA4)
+  if (window.gtag) {
+    const { event, ...eventParams } = enrichedData;
+    window.gtag('event', event, eventParams);
+  }
   
   // Debug log in development
   if (process.env.NODE_ENV === 'development') {
-    console.log('📊 DataLayer Push:', enrichedData);
+    console.log('📊 Analytics Event:', enrichedData);
   }
 };
 

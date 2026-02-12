@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk } from 'next/font/google'
 import './globals.css'
-import GoogleTagManager from '@/components/GoogleTagManager'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 // Modern Neo-Grotesk Font - Perfect for tech/cyber-punk aesthetic
 const spaceGrotesk = Space_Grotesk({ 
@@ -12,13 +12,19 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Personality Test - Temukan Tipe Kepribadian Kamu',
-  description: 'Ikuti tes kepribadian interaktif 10 pertanyaan. Fast, professional, reliable. Temukan kekuatan dan karakter unik kamu.',
-  keywords: 'personality test, tes kepribadian, kuis, mengenal diri, tipe kepribadian, character test',
+  title: 'Sandisk Techshift Stunt Test - Temukan Storage Personality Kamu',
+  description: 'Ikuti Sandisk Techshift Stunt Test untuk menemukan tipe kepribadian digital kamu. Cara unik untuk memahami bagaimana kamu menyimpan dan mengelola momen-momen penting dalam hidup.',
+  keywords: 'sandisk, techshift, stunt test, personality test, storage personality, digital personality, tes kepribadian, sandisk test',
+  icons: {
+    icon: '/images/favicon.jpg',
+    shortcut: '/images/favicon.jpg',
+    apple: '/images/favicon.jpg',
+  },
   openGraph: {
-    title: 'Personality Test - Temukan Tipe Kepribadian Kamu',
-    description: 'Tes kepribadian interaktif dan profesional. 10 pertanyaan, 3 menit.',
+    title: 'Sandisk Techshift Stunt Test',
+    description: 'Temukan storage personality kamu. Test interaktif untuk mengetahui cara unik kamu menyimpan momen digital.',
     type: 'website',
+    images: ['/images/favicon.jpg'],
   },
 }
 
@@ -36,13 +42,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || '';
+  const gaId = 'G-PH28648C02';
 
   return (
     <html lang="id" className="dark">
       <body className={`${spaceGrotesk.className} antialiased bg-bg-primary text-text-primary`}>
-        {/* Google Tag Manager */}
-        {gtmId && <GoogleTagManager gtmId={gtmId} />}
+        {/* Google Analytics */}
+        <GoogleAnalytics gaId={gaId} />
         
         {children}
       </body>
