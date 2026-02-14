@@ -23,6 +23,7 @@ export default function Home() {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [videoWatched, setVideoWatched] = useState(false);
+  const [videoProgress, setVideoProgress] = useState(0);
 
   const handleStartTest = () => {
     const trimmedName = name.trim();
@@ -53,6 +54,13 @@ export default function Home() {
 
   const handleVideoEnded = () => {
     setVideoWatched(true);
+    setVideoProgress(100);
+  };
+
+  const handleVideoTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    const progress = (video.currentTime / video.duration) * 100;
+    setVideoProgress(progress);
   };
 
   return (
@@ -98,6 +106,7 @@ export default function Home() {
             playsInline
             controls
             onEnded={handleVideoEnded}
+            onTimeUpdate={handleVideoTimeUpdate}
             className="w-full h-auto"
           >
             <source src="/images/sandisk-intro.mp4" type="video/mp4" />
@@ -157,15 +166,26 @@ export default function Home() {
             </motion.p>
           )}
 
-          <motion.button
-            whileHover={!reducedMotion && name.trim() && videoWatched ? { scale: 1.02 } : {}}
-            whileTap={!reducedMotion && name.trim() && videoWatched ? { scale: 0.98 } : {}}
-            onClick={handleStartTest}
-            disabled={!name.trim() || !videoWatched}
-            className="btn btn-primary w-full text-sm sm:text-base py-2.5 sm:py-3"
-          >
-            Mulai Test Sekarang →
-          </motion.button>
+          <div className="relative">
+            <motion.button
+              whileHover={!reducedMotion && name.trim() && videoWatched ? { scale: 1.02 } : {}}
+              whileTap={!reducedMotion && name.trim() && videoWatched ? { scale: 0.98 } : {}}
+              onClick={handleStartTest}
+              disabled={!name.trim() || !videoWatched}
+              className="w-full text-sm sm:text-base py-3 sm:py-4 font-bold transition-all duration-200 relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+              style={{
+                background: `linear-gradient(to right, #E10600 ${videoProgress}%, #6B1A17 ${videoProgress}%)`,
+                color: 'white',
+                borderRadius: '8px',
+                clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))',
+              }}
+            >
+              {/* Button Text */}
+              <span className="relative z-10 uppercase tracking-wide">
+                Mulai Test Sekarang →
+              </span>
+            </motion.button>
+          </div>
 
           {!videoWatched && (
             <p className="text-[10px] sm:text-xs text-amber-400 text-center mt-2 sm:mt-3 flex items-center justify-center gap-1">
