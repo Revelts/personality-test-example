@@ -172,14 +172,27 @@ export default function Home() {
               whileTap={!reducedMotion && name.trim() && videoWatched ? { scale: 0.98 } : {}}
               onClick={handleStartTest}
               disabled={!name.trim() || !videoWatched}
-              className="w-full text-sm sm:text-base py-3 sm:py-4 font-bold transition-all duration-200 relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+              className="w-full text-sm sm:text-base py-3 sm:py-4 font-bold relative disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               style={{
-                background: `linear-gradient(to right, #E10600 ${videoProgress}%, #6B1A17 ${videoProgress}%)`,
+                backgroundColor: '#6B1A17',
                 color: 'white',
                 borderRadius: '8px',
                 clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))',
+                overflow: 'hidden',
               }}
             >
+              {/* Smooth Progress Fill */}
+              <motion.div
+                initial={{ width: '0%' }}
+                animate={{ width: `${videoProgress}%` }}
+                transition={{ 
+                  duration: 0.5, 
+                  ease: 'easeOut'
+                }}
+                className="absolute inset-0 bg-brand-red"
+                style={{ transformOrigin: 'left' }}
+              />
+              
               {/* Button Text */}
               <span className="relative z-10 uppercase tracking-wide">
                 Mulai Test Sekarang →
