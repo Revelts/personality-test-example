@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import PixelDecoration from '@/components/PixelDecoration';
 import { PersonalityResult, personalityTypes } from '@/lib/results';
 
 export default function GearPage() {
@@ -113,6 +114,9 @@ export default function GearPage() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className="min-h-screen bg-black py-3 sm:py-4 px-4 sm:px-6 relative overflow-y-auto"
     >
+      {/* Pixel Decoration */}
+      <PixelDecoration density="low" animated={true} />
+      
       <div className="max-w-2xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -189,10 +193,10 @@ export default function GearPage() {
                     />
                   </div>
                   <p className="text-[10px] sm:text-xs text-gray-600 mb-0.5 uppercase tracking-wide font-semibold">
-                    Speed
+                    Kecepatan
                   </p>
                   <p className="text-[10px] sm:text-xs text-black font-bold leading-tight">
-                    Read speed up to 100mb/s
+                    Baca hingga 100mb/s
                   </p>
                 </div>
                 <div className="text-center bg-gray-50 rounded-lg p-3">
@@ -205,7 +209,7 @@ export default function GearPage() {
                     />
                   </div>
                   <p className="text-[10px] sm:text-xs text-gray-600 mb-0.5 uppercase tracking-wide font-semibold">
-                    Warranty
+                    Garansi
                   </p>
                   <p className="text-xs sm:text-sm text-black font-bold">
                     {result.gearSpecs?.warranty || '5-Year Limited Warranty'}
@@ -221,7 +225,7 @@ export default function GearPage() {
                     />
                   </div>
                   <p className="text-[10px] sm:text-xs text-gray-600 mb-0.5 uppercase tracking-wide font-semibold">
-                    Capacity
+                    Kapasitas
                   </p>
                   <p className="text-xs sm:text-sm text-black font-bold">
                     {result.gearCapacity || '32GB'}

@@ -16,6 +16,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { trackFormSubmit } from '@/lib/analytics';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import PixelDecoration from '@/components/PixelDecoration';
 
 export default function Home() {
   const router = useRouter();
@@ -65,6 +66,9 @@ export default function Home() {
 
   return (
     <div className="h-screen flex items-center justify-center p-3 sm:p-4 bg-bg-primary relative overflow-hidden">
+      {/* Pixel Decoration */}
+      <PixelDecoration density="medium" animated={true} />
+      
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==')]" />
 
@@ -166,18 +170,16 @@ export default function Home() {
             </motion.p>
           )}
 
-          <div className="relative">
+          <div className="relative max-w-md mx-auto">
             <motion.button
               whileHover={!reducedMotion && name.trim() && videoWatched ? { scale: 1.02 } : {}}
               whileTap={!reducedMotion && name.trim() && videoWatched ? { scale: 0.98 } : {}}
               onClick={handleStartTest}
               disabled={!name.trim() || !videoWatched}
-              className="w-full text-sm sm:text-base py-3 sm:py-4 font-bold relative disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+              className="w-full text-sm sm:text-base py-3 sm:py-4 font-bold relative disabled:opacity-50 disabled:cursor-not-allowed shadow-lg rounded-full"
               style={{
                 backgroundColor: '#6B1A17',
                 color: 'white',
-                borderRadius: '8px',
-                clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))',
                 overflow: 'hidden',
               }}
             >
@@ -189,7 +191,7 @@ export default function Home() {
                   duration: 0.5, 
                   ease: 'easeOut'
                 }}
-                className="absolute inset-0 bg-brand-red"
+                className="absolute inset-0 bg-brand-red rounded-full"
                 style={{ transformOrigin: 'left' }}
               />
               
@@ -206,10 +208,6 @@ export default function Home() {
               <span>Tonton video sampai selesai untuk melanjutkan</span>
             </p>
           )}
-
-          <p className="text-[10px] sm:text-xs text-text-tertiary text-center mt-2 sm:mt-3">
-            Gratis • Tanpa registrasi • 5 menit
-          </p>
         </motion.div>
 
         {/* Footer note */}

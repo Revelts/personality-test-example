@@ -111,21 +111,39 @@ export default function BreakSession({
               </motion.div>
 
               {/* Continue Button */}
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-                onClick={onContinue}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                style={{
-                  borderRadius: '2px',
-                  clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
-                }}
-                className="w-full py-3 sm:py-4 md:py-5 bg-transparent border-2 border-brand-red text-text-primary font-bold text-sm sm:text-base md:text-lg tracking-wide uppercase transition-all duration-300 hover:shadow-[inset_0_0_0_1px_rgba(225,6,0,0.3),0_0_16px_rgba(225,6,0,0.2)] hover:bg-[rgba(225,6,0,0.05)]"
-              >
-                Lanjut Tes
-              </motion.button>
+              <div className="relative max-w-md mx-auto">
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  onClick={onContinue}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full text-sm sm:text-base py-3 sm:py-4 font-bold relative shadow-lg rounded-full"
+                  style={{
+                    backgroundColor: '#6B1A17',
+                    color: 'white',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {/* Hover Fill Effect */}
+                  <motion.div
+                    initial={{ width: '0%' }}
+                    whileHover={{ width: '100%' }}
+                    transition={{ 
+                      duration: 0.3, 
+                      ease: 'easeOut'
+                    }}
+                    className="absolute inset-0 bg-brand-red rounded-full"
+                    style={{ transformOrigin: 'left' }}
+                  />
+                  
+                  {/* Button Text */}
+                  <span className="relative z-10 uppercase tracking-wide">
+                    Lanjut Tes →
+                  </span>
+                </motion.button>
+              </div>
             </div>
           </motion.div>
         </>

@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import SliderCard from '@/components/SliderCard';
+import PixelDecoration from '@/components/PixelDecoration';
 import { PersonalityResult, personalityTypes } from '@/lib/results';
 import { trackResultView } from '@/lib/analytics';
 
@@ -118,6 +119,9 @@ export default function ResultPage() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className="min-h-screen bg-black py-3 sm:py-4 px-4 sm:px-6 relative overflow-y-auto"
     >
+      {/* Pixel Decoration */}
+      <PixelDecoration density="low" animated={true} />
+      
       <div className="max-w-2xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

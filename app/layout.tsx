@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
-// Modern Neo-Grotesk Font - Perfect for tech/cyber-punk aesthetic
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+// Pilat Narrow Font - SanDisk Branding
+const pilat = localFont({
+  src: '../public/fonts/Pilat-Narrow.ttf',
   display: 'swap',
-  variable: '--font-space-grotesk'
+  variable: '--font-pilat',
+  weight: '100 900',
 })
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ export default function RootLayout({
 
   return (
     <html lang="id" className="dark">
-      <body className={`${spaceGrotesk.className} antialiased bg-bg-primary text-text-primary`}>
+      <body className={`${pilat.className} antialiased bg-bg-primary text-text-primary`}>
         {/* Google Analytics */}
         <GoogleAnalytics gaId={gaId} />
         

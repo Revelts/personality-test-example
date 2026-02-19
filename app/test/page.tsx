@@ -19,6 +19,7 @@ import FuturisticQuestion from '@/components/FuturisticQuestion';
 import USBProgressBar from '@/components/USBProgressBar';
 import ConnectionAnimation from '@/components/ConnectionAnimation';
 import BreakSession from '@/components/BreakSession';
+import PixelDecoration from '@/components/PixelDecoration';
 import { Question, getRandomQuestions } from '@/lib/questions';
 import { calculatePersonality, Scores } from '@/lib/results';
 import { trackTestStart, trackQuestionAnswer, trackTestComplete } from '@/lib/analytics';
@@ -76,7 +77,7 @@ export default function TestPage() {
         setSelectedQuestions(JSON.parse(savedQuestions));
       } else {
         // If no saved questions, generate new random questions
-        const randomQuestions = getRandomQuestions(8, name);
+        const randomQuestions = getRandomQuestions(6, name);
         setSelectedQuestions(randomQuestions);
         localStorage.setItem(`test_questions_${name}`, JSON.stringify(randomQuestions));
       }
@@ -137,7 +138,68 @@ export default function TestPage() {
   const handleSelectAnswer = useCallback((answerId: string) => {
     if (isTransitioning) return;
     setSelectedAnswer(answerId);
-  }, [isTransitioning]);
+    
+    // Auto-advance ke pertanyaan berikutnya setelah pilih jawaban
+    const answer = currentQuestion.answers.find(a => a.id === answerId);
+    if (!answer) return;
+
+    // Set micro reaction untuk break session
+    setCurrentMicroReaction(answer.microReaction);
+
+    // Update scores
+    const newScores = {
+      ...scores,
+      [answer.trait]: scores[answer.trait] + 1
+    };
+    setScores(newScores);
+
+    // Save answer mapping
+    const newAnswers = {
+      ...answers,
+      [currentQuestionIndex]: answerId
+    };
+    setAnswers(newAnswers);
+
+    // Track analytics
+    trackQuestionAnswer(
+      currentQuestion.id,
+      currentQuestion.text,
+      answer.id,
+      answer.text,
+      answer.trait
+    );
+
+    setIsTransitioning(true);
+
+    // Auto-advance setelah delay singkat
+    setTimeout(() => {
+      if (currentQuestionIndex === totalQuestions - 1) {
+        handleTestComplete();
+      } else {
+        const nextIndex = currentQuestionIndex + 1;
+        setCurrentQuestionIndex(nextIndex);
+        
+        saveProgress({
+          userName,
+          currentQuestionIndex: nextIndex,
+          scores: newScores,
+          answers: newAnswers,
+          timestamp: Date.now(),
+          version: '1.0'
+        });
+        
+        setSelectedAnswer(null);
+        setIsTransitioning(false);
+
+        // Check if should show break session (setiap 3 pertanyaan)
+        const questionsAnswered = nextIndex;
+        const shouldShowBreak = questionsAnswered % 3 === 0 && questionsAnswered < totalQuestions;
+        if (shouldShowBreak) {
+          setShowBreakSession(true);
+        }
+      }
+    }, 800); // Delay 800ms untuk user lihat pilihan mereka
+  }, [currentQuestion, currentQuestionIndex, totalQuestions, scores, answers, userName, isTransitioning, handleTestComplete]);
 
   const handleNext = useCallback(() => {
     if (!selectedAnswer || isTransitioning) return;
@@ -258,6 +320,9 @@ export default function TestPage() {
         ease: [0.4, 0, 0.2, 1] 
       }}
     >
+      {/* Pixel Decoration */}
+      <PixelDecoration density="medium" animated={true} />
+      
       {/* Header with Back button and Logo */}
       <motion.header 
         className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-border bg-bg-secondary relative z-30"
@@ -304,9 +369,9 @@ export default function TestPage() {
         />
       </motion.div>
 
-      {/* Main content area - scrollable with bottom padding for fixed elements */}
+      {/* Main content area - scrollable with bottom padding for banner */}
       <motion.div 
-        className="flex-1 overflow-y-auto px-4 sm:px-6 pb-72 sm:pb-80"
+        className="flex-1 overflow-y-auto px-4 sm:px-6 pb-40 sm:pb-44"
         animate={{
           opacity: isExiting ? 0 : 1,
         }}
@@ -323,9 +388,9 @@ export default function TestPage() {
         </AnimatePresence>
       </motion.div>
 
-      {/* Fixed Bottom Section - Product Image + Next Button */}
+      {/* Fixed Bottom Section - Banner Only */}
       <motion.div
-        className="fixed bottom-0 left-0 right-0 bg-bg-secondary border-t border-border px-4 sm:px-6 py-4 sm:py-6 z-40"
+        className="fixed bottom-0 left-0 right-0 bg-bg-secondary border-t border-border px-4 sm:px-6 py-3 sm:py-4 z-40"
         initial={{ opacity: 0, y: 20 }}
         animate={{ 
           opacity: isExiting ? 0 : 1, 
@@ -333,9 +398,9 @@ export default function TestPage() {
         }}
         transition={{ delay: 1.5, duration: 0.5 }}
       >
-        <div className="max-w-2xl mx-auto space-y-4 sm:space-y-6">
-          {/* Product Image - SanDisk Phone Drive */}
-          <div className="relative w-full h-20 sm:h-24 bg-gradient-to-br from-bg-surface to-bg-elevated rounded-xl overflow-hidden border border-border">
+        <div className="max-w-2xl mx-auto">
+          {/* Product Banner - Fixed Aspect Ratio */}
+          <div className="relative w-full aspect-[16/5] bg-gradient-to-br from-bg-surface to-bg-elevated rounded-lg overflow-hidden border border-border">
             <Image
               src="/images/banner-gif.gif"
               alt="SanDisk Phone Drive"
@@ -344,25 +409,6 @@ export default function TestPage() {
               priority
             />
           </div>
-
-          {/* Next Button - Style matching ShareButton */}
-          <motion.button
-            onClick={handleNext}
-            disabled={!selectedAnswer || isTransitioning}
-            whileHover={selectedAnswer && !isTransitioning ? { scale: 1.02 } : {}}
-            whileTap={selectedAnswer && !isTransitioning ? { scale: 0.98 } : {}}
-            style={{
-              borderRadius: '2px',
-              clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
-            }}
-            className={`w-full py-4 sm:py-5 font-bold text-base sm:text-lg tracking-wide uppercase transition-all duration-300 inline-flex items-center justify-center ${
-              selectedAnswer && !isTransitioning
-                ? 'bg-transparent border-2 border-border text-text-primary hover:border-brand-red hover:shadow-[inset_0_0_0_1px_rgba(225,6,0,0.3),0_0_16px_rgba(225,6,0,0.2)] hover:bg-[rgba(225,6,0,0.05)] cursor-pointer'
-                : 'bg-transparent border-2 border-border/30 text-text-tertiary cursor-not-allowed opacity-40'
-            }`}
-          >
-            Next
-          </motion.button>
         </div>
       </motion.div>
 

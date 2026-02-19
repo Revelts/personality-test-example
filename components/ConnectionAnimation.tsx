@@ -1,8 +1,8 @@
 /**
- * ConnectionAnimation - Transfer to Phone Loading State
+ * ConnectionAnimation - USB to Phone Loading State
  * 
- * Shows animation of transfer icon connecting to phone
- * Uses transfer.png and phone.png assets
+ * Shows animation of USB icon connecting to phone
+ * Uses usb.png and phone.png assets
  * before redirecting to result page
  */
 
@@ -59,34 +59,35 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
             {/* Spacer untuk balance layout */}
             <div className="w-20 sm:w-24" />
             
-            {/* Transfer Icon - Using transfer.png */}
+            {/* USB Icon - Using usb.png */}
             <motion.div
               animate={
                 stage === 'plugging'
                   ? {
-                      x: [0, 40, 40],
+                      x: [0, 80, 100], // Bergerak lebih jauh untuk menyentuh phone
                       rotate: [0, 0, 0],
                     }
                   : stage === 'connected'
                   ? {
-                      scale: [1, 1.1, 0.95, 1],
-                      rotate: [0, -3, 3, 0],
+                      x: 100, // Tetap di posisi menyentuh
+                      scale: [1, 1.05, 1],
+                      rotate: [0, -2, 2, 0],
                     }
                   : {}
               }
               transition={{
-                duration: stage === 'plugging' ? 1.5 : 0.4,
+                duration: stage === 'plugging' ? 2 : 0.5,
                 ease: stage === 'plugging' ? [0.34, 1.56, 0.64, 1] : 'easeOut',
               }}
               className="relative flex-shrink-0"
             >
-              {/* Transfer Icon Image */}
+              {/* USB Icon Image */}
               <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 relative">
                 <Image
-                  src="/images/transfer.png"
-                  alt="Transfer"
+                  src="/images/usb.png"
+                  alt="USB"
                   fill
-                  className="object-contain"
+                  className="object-contain rotate-90"
                   priority
                 />
                 
@@ -114,9 +115,9 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
               {stage === 'plugging' && (
                 <motion.div
                   className="absolute left-full top-1/2 -translate-y-1/2 ml-2"
-                  animate={{ opacity: [0, 1, 0], x: [0, 20, 40] }}
+                  animate={{ opacity: [0, 1, 0], x: [0, 15, 30] }}
                   transition={{
-                    duration: 0.8,
+                    duration: 0.6,
                     repeat: Infinity,
                     ease: 'linear',
                   }}
@@ -134,8 +135,8 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
               )}
             </motion.div>
 
-            {/* Gap between USB and Phone */}
-            <div className="w-8 sm:w-12 md:w-16 flex-shrink-0" />
+            {/* Gap between USB and Phone - Reduced */}
+            <div className="w-2 sm:w-4 flex-shrink-0" />
 
             {/* Phone - Using phone.png */}
             <motion.div

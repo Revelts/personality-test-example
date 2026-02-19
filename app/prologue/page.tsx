@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import PixelDecoration from '@/components/PixelDecoration';
 
 // Typewriter Text Component
 function TypewriterText({ 
@@ -106,6 +107,9 @@ export default function ProloguePage() {
 
   return (
     <div className="min-h-screen bg-bg-primary relative overflow-hidden flex flex-col items-center justify-center">
+      {/* Pixel Decoration */}
+      <PixelDecoration density="low" animated={true} />
+      
       {/* Animated Stars Background - Subtle */}
       <div className="absolute inset-0 opacity-30">
         {[...Array(30)].map((_, i) => (
@@ -192,21 +196,17 @@ export default function ProloguePage() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="fixed bottom-8 sm:bottom-12 md:bottom-16 left-0 right-0 z-20 px-4 sm:px-6"
         >
-          <div className="max-w-sm sm:max-w-md mx-auto">
+          <div className="max-w-md mx-auto">
             <motion.button
               onClick={handleStartTest}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              style={{
-                borderRadius: '2px',
-                clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
-              }}
-              className="w-full py-3 sm:py-4 md:py-5 bg-transparent border-2 border-brand-red text-text-primary font-bold text-sm sm:text-base md:text-lg tracking-wide uppercase transition-all duration-300 hover:shadow-[inset_0_0_0_1px_rgba(225,6,0,0.3),0_0_16px_rgba(225,6,0,0.2)] hover:bg-[rgba(225,6,0,0.05)]"
+              className="w-full py-3 sm:py-4 bg-brand-red hover:bg-red-700 text-white font-bold text-sm sm:text-base tracking-wide uppercase transition-all duration-200 shadow-lg rounded-full"
             >
               Start the Test
             </motion.button>
             
-            <p className="text-xs sm:text-sm text-text-tertiary text-center mt-2 sm:mt-3">
+            <p className="text-xs sm:text-sm text-white text-center mt-2 sm:mt-3">
               Siap untuk memulai, {userName}?
             </p>
           </div>
