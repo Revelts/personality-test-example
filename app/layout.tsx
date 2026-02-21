@@ -3,12 +3,53 @@ import localFont from 'next/font/local'
 import './globals.css'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
-// Pilat Narrow Font - SanDisk Branding
-const pilat = localFont({
-  src: '../public/fonts/Pilat-Narrow.ttf',
+// Pilat Extended Font - SanDisk Branding
+// Loading multiple weights for better typography
+const pilatExtended = localFont({
+  src: [
+    {
+      path: '../public/fonts/PilatExtended-Thin.woff2',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/PilatExtended-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/PilatExtended-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/PilatExtended-Book.woff2',
+      weight: '450',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/PilatExtended-DemiBold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/PilatExtended-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/PilatExtended-Heavy.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/PilatExtended-Black.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
-  variable: '--font-pilat',
-  weight: '100 900',
+  variable: '--font-pilat-extended',
 })
 
 export const metadata: Metadata = {
@@ -24,7 +65,20 @@ export const metadata: Metadata = {
     title: 'Sandisk Techshift Stunt Test',
     description: 'Temukan storage personality kamu. Test interaktif untuk mengetahui cara unik kamu menyimpan momen digital.',
     type: 'website',
-    images: ['/images/favicon.jpg'],
+    images: [
+      {
+        url: '/images/meta-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Sandisk Techshift Stunt Test',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sandisk Techshift Stunt Test',
+    description: 'Temukan storage personality kamu. Test interaktif untuk mengetahui cara unik kamu menyimpan momen digital.',
+    images: ['/images/meta-image.png'],
   },
 }
 
@@ -46,7 +100,7 @@ export default function RootLayout({
 
   return (
     <html lang="id" className="dark">
-      <body className={`${pilat.className} antialiased bg-bg-primary text-text-primary`}>
+      <body className={`${pilatExtended.className} antialiased bg-bg-primary text-text-primary`}>
         {/* Google Analytics */}
         <GoogleAnalytics gaId={gaId} />
         

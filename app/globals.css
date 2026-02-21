@@ -52,10 +52,12 @@ body {
   padding: 0;
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  font-family: var(--font-pilat), 'Pilat', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-pilat-extended), 'Pilat Extended', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
   letter-spacing: -0.01em;
-  font-feature-settings: 'ss01', 'ss02';
+  /* Disable ligatures and special font features to prevent LV -> arrow issue */
+  font-feature-settings: 'liga' 0, 'dlig' 0, 'clig' 0;
+  font-variant-ligatures: none;
 }
 
 /* Selection Styling */

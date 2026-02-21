@@ -399,7 +399,7 @@ export default function TestPage() {
         transition={{ delay: 1.5, duration: 0.5 }}
       >
         <div className="max-w-2xl mx-auto">
-          {/* Product Banner - Fixed Aspect Ratio */}
+          {/* Product Banner - 0.5:0.5 Aspect Ratio */}
           <div className="relative w-full aspect-[16/5] bg-gradient-to-br from-bg-surface to-bg-elevated rounded-lg overflow-hidden border border-border">
             <Image
               src="/images/banner-gif.gif"
