@@ -53,6 +53,7 @@ const pilatExtended = localFont({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://sandisktechshift.com'),
   title: 'Sandisk Techshift Stunt Test - Temukan Storage Personality Kamu',
   description: 'Ikuti Sandisk Techshift Stunt Test untuk menemukan tipe kepribadian digital kamu. Cara unik untuk memahami bagaimana kamu menyimpan dan mengelola momen-momen penting dalam hidup.',
   keywords: 'sandisk, techshift, stunt test, personality test, storage personality, digital personality, tes kepribadian, sandisk test',
