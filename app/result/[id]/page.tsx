@@ -120,7 +120,7 @@ export default function ResultPage() {
       className="min-h-screen bg-black py-3 sm:py-4 px-4 sm:px-6 relative overflow-y-auto"
     >
       {/* Pixel Decoration */}
-      <PixelDecoration density="low" animated={true} />
+      <PixelDecoration size="sm" animated={true} variant="result" />
       
       <div className="max-w-2xl mx-auto relative z-10">
         <motion.div
@@ -154,7 +154,9 @@ export default function ResultPage() {
           </div>
 
           {/* Slider Card - Single white container with buttons inside */}
-          <SliderCard result={result} userName={userName} resultId={params.id as string} />
+          <div className="mt-12 sm:mt-16">
+            <SliderCard result={result} userName={userName} resultId={params.id as string} />
+          </div>
         </motion.div>
       </div>
     </motion.div>

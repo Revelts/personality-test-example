@@ -50,21 +50,8 @@ export default function ResultCard({ result, userName }: ResultCardProps) {
       >
         {/* Overall Character Result */}
         <div>
-          <h2 className="text-lg sm:text-xl font-bold text-black mb-2">
-            Overall Result Karakter
-          </h2>
           <p className="text-xs sm:text-sm text-gray-800 leading-relaxed">
             {result.description}
-          </p>
-        </div>
-
-        {/* Piece Quote / Poem */}
-        <div className="border-l-4 border-gray-300 pl-3 sm:pl-4">
-          <h3 className="text-sm sm:text-base font-bold text-black mb-1.5">
-            Piece Quote / Poem
-          </h3>
-          <p className="text-xs sm:text-sm text-gray-800 italic leading-relaxed">
-            {result.quote}
           </p>
         </div>
 
@@ -101,16 +88,6 @@ export default function ResultCard({ result, userName }: ResultCardProps) {
           </h3>
           <p className="text-xs sm:text-sm text-gray-800 leading-relaxed whitespace-pre-line">
             {result.mostImportant}
-          </p>
-        </div>
-
-        {/* Music */}
-        <div>
-          <h3 className="text-sm sm:text-base font-bold text-black mb-1.5">
-            Music
-          </h3>
-          <p className="text-xs sm:text-sm text-gray-800">
-            {result.musicArtist} – {result.music}
           </p>
         </div>
       </motion.div>

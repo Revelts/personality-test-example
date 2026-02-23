@@ -39,21 +39,8 @@ export default function SliderCard({ result, userName, resultId }: SliderCardPro
 
             {/* Overall Character Result */}
             <div>
-              <h2 className="text-3xl font-bold text-black mb-3">
-                Overall Result Karakter
-              </h2>
               <p className="text-xl text-gray-800 leading-relaxed" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                 {result.description}
-              </p>
-            </div>
-
-            {/* Piece Quote / Poem */}
-            <div className="border-l-4 border-gray-300 pl-6">
-              <h3 className="text-2xl font-bold text-black mb-3">
-                Piece Quote / Poem
-              </h3>
-              <p className="text-xl text-gray-800 italic leading-relaxed" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
-                {result.quote}
               </p>
             </div>
 
@@ -92,16 +79,6 @@ export default function SliderCard({ result, userName, resultId }: SliderCardPro
                 {result.mostImportant}
               </p>
             </div>
-
-            {/* Music */}
-            <div>
-              <h3 className="text-2xl font-bold text-black mb-2">
-                Music
-              </h3>
-              <p className="text-xl text-gray-800" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
-                {result.musicArtist} – {result.music}
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -123,21 +100,8 @@ export default function SliderCard({ result, userName, resultId }: SliderCardPro
 
           {/* Overall Character Result */}
           <div>
-            <h2 className="text-lg sm:text-xl font-bold text-black mb-2">
-              Overall Result Karakter
-            </h2>
             <p className="text-xs sm:text-sm text-gray-800 leading-relaxed">
               {result.description}
-            </p>
-          </div>
-
-          {/* Piece Quote / Poem */}
-          <div className="border-l-4 border-gray-300 pl-3 sm:pl-4">
-            <h3 className="text-sm sm:text-base font-bold text-black mb-1.5">
-              Piece Quote / Poem
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-800 italic leading-relaxed">
-              {result.quote}
             </p>
           </div>
 
@@ -176,16 +140,6 @@ export default function SliderCard({ result, userName, resultId }: SliderCardPro
               {result.mostImportant}
             </p>
           </div>
-
-          {/* Music */}
-          <div>
-            <h3 className="text-sm sm:text-base font-bold text-black mb-1.5">
-              Music
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-800">
-              {result.musicArtist} – {result.music}
-            </p>
-          </div>
         </div>
       </motion.div>
 
@@ -198,7 +152,7 @@ export default function SliderCard({ result, userName, resultId }: SliderCardPro
           onClick={handleGoToGear}
           className="w-full py-3 sm:py-4 bg-brand-red hover:bg-red-700 text-white text-sm sm:text-base font-bold rounded-full transition-all duration-200 shadow-lg hover:shadow-xl"
         >
-          Your best gear
+          Cek Storage Terbaikmu
         </motion.button>
 
         {/* Download & Share Buttons */}

@@ -67,7 +67,7 @@ export default function Home() {
   return (
     <div className="h-screen flex items-center justify-center p-3 sm:p-4 bg-bg-primary relative overflow-hidden">
       {/* Pixel Decoration */}
-      <PixelDecoration density="medium" animated={true} />
+      <PixelDecoration size="md" animated={true} />
       
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==')]" />
@@ -197,7 +197,7 @@ export default function Home() {
               
               {/* Button Text */}
               <span className="relative z-10 uppercase tracking-wide">
-                Mulai Test Sekarang →
+                Lanjutkan →
               </span>
             </motion.button>
           </div>

@@ -108,7 +108,7 @@ export default function ProloguePage() {
   return (
     <div className="min-h-screen bg-bg-primary relative overflow-hidden flex flex-col items-center justify-center">
       {/* Pixel Decoration */}
-      <PixelDecoration density="low" animated={true} />
+      <PixelDecoration size="sm" animated={true} />
       
       {/* Animated Stars Background - Subtle */}
       <div className="absolute inset-0 opacity-30">
@@ -203,7 +203,7 @@ export default function ProloguePage() {
               whileTap={{ scale: 0.98 }}
               className="w-full py-3 sm:py-4 bg-brand-red hover:bg-red-700 text-white font-bold text-sm sm:text-base tracking-wide uppercase transition-all duration-200 shadow-lg rounded-full"
             >
-              Start the Test
+              Mulai Tes
             </motion.button>
             
             <p className="text-xs sm:text-sm text-white text-center mt-2 sm:mt-3">

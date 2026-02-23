@@ -115,7 +115,7 @@ export default function GearPage() {
       className="min-h-screen bg-black py-3 sm:py-4 px-4 sm:px-6 relative overflow-y-auto"
     >
       {/* Pixel Decoration */}
-      <PixelDecoration density="low" animated={true} />
+      <PixelDecoration size="sm" animated={true} variant="result" />
       
       <div className="max-w-2xl mx-auto relative z-10">
         <motion.div
@@ -149,19 +149,17 @@ export default function GearPage() {
           </div>
 
           {/* Your Best Gear Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.5,
-              ease: [0.4, 0, 0.2, 1]
-            }}
-            className="bg-white rounded-xl shadow-2xl overflow-hidden"
-          >
+          <div className="mt-12 sm:mt-16">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.5,
+                ease: [0.4, 0, 0.2, 1]
+              }}
+              className="bg-white rounded-xl shadow-2xl overflow-hidden"
+            >
             <div className="p-4 sm:p-6 space-y-4 sm:space-y-5">
-              <h1 className="text-2xl sm:text-3xl font-bold text-brand-red uppercase tracking-tight">
-                YOUR BEST GEAR
-              </h1>
 
               {/* Product Name */}
               <div>
@@ -233,10 +231,10 @@ export default function GearPage() {
                 </div>
               </div>
 
-              {/* I NEED THIS Button */}
-              <button className="w-full py-3 sm:py-4 bg-brand-red hover:bg-red-700 text-white text-sm sm:text-base font-bold rounded-full transition-all duration-200 shadow-lg hover:shadow-xl">
-                I NEED THIS
-              </button>
+              {/* Static Display Button (Not Clickable) */}
+              <div className="w-full py-3 sm:py-4 bg-brand-red text-white text-sm sm:text-base font-bold rounded-full shadow-lg text-center">
+                BELI & KLAIM VOUCHER ↓
+              </div>
 
               {/* E-commerce Links */}
               <div className="flex items-center justify-center gap-3 sm:gap-4">
@@ -285,6 +283,7 @@ export default function GearPage() {
               </div>
             </div>
           </motion.div>
+          </div>
         </motion.div>
       </div>
     </motion.div>
