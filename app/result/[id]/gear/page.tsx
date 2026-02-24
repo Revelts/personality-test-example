@@ -231,10 +231,10 @@ export default function GearPage() {
                 </div>
               </div>
 
-              {/* Static Display Button (Not Clickable) */}
-              <div className="w-full py-3 sm:py-4 bg-brand-red text-white text-sm sm:text-base font-bold rounded-full shadow-lg text-center">
+              {/* Text Label Only */}
+              <p className="text-brand-red text-sm sm:text-base font-bold text-center">
                 BELI & KLAIM VOUCHER ↓
-              </div>
+              </p>
 
               {/* E-commerce Links */}
               <div className="flex items-center justify-center gap-3 sm:gap-4">

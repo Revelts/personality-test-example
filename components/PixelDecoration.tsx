@@ -17,8 +17,8 @@ export default function PixelDecoration({
   
   const corners = variant === 'quiz' ? [
     { id: 'top-right', position: 'top-6 right-6' },
-    { id: 'bottom-left', position: 'bottom-[210px] sm:bottom-[350px] left-6' },
-    { id: 'bottom-right', position: 'bottom-[210px] sm:bottom-[350px] right-6' },
+    { id: 'bottom-left', position: 'bottom-[210px] sm:bottom-[260px] left-6' },
+    { id: 'bottom-right', position: 'bottom-[210px] sm:bottom-[260px] right-6' },
   ] : variant === 'result' ? [
     { id: 'top-left', position: 'top-14 sm:top-16 left-6' },
     { id: 'top-right', position: 'top-14 sm:top-16 right-6' },

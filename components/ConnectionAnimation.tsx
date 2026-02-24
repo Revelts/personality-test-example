@@ -18,6 +18,19 @@ interface ConnectionAnimationProps {
 
 export default function ConnectionAnimation({ onComplete }: ConnectionAnimationProps) {
   const [stage, setStage] = useState<'plugging' | 'connected' | 'complete'>('plugging');
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     // Stage 1: Plugging animation (2s)
@@ -64,12 +77,12 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
               animate={
                 stage === 'plugging'
                   ? {
-                      x: [0, 80, 100], // Bergerak lebih jauh untuk menyentuh phone
+                      x: isMobile ? [0, -10, 10] : [0, 40, 30], // Mobile needs more movement
                       rotate: [0, 0, 0],
                     }
                   : stage === 'connected'
                   ? {
-                      x: 100, // Tetap di posisi menyentuh
+                      x: isMobile ? 10 : 30, // Match final position
                       scale: [1, 1.05, 1],
                       rotate: [0, -2, 2, 0],
                     }
@@ -79,7 +92,7 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
                 duration: stage === 'plugging' ? 2 : 0.5,
                 ease: stage === 'plugging' ? [0.34, 1.56, 0.64, 1] : 'easeOut',
               }}
-              className="relative flex-shrink-0"
+              className="relative flex-shrink-0 -mr-12 sm:-mr-16"
             >
               {/* USB Icon Image */}
               <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 relative">

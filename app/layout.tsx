@@ -66,14 +66,7 @@ export const metadata: Metadata = {
     title: 'Sandisk Techshift Stunt Test',
     description: 'Temukan storage personality kamu. Test interaktif untuk mengetahui cara unik kamu menyimpan momen digital.',
     type: 'website',
-    images: [
-      {
-        url: '/images/meta-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Sandisk Techshift Stunt Test',
-      }
-    ],
+    images: ['/images/meta-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
