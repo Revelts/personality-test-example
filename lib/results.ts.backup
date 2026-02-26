@@ -304,116 +304,120 @@ export function calculatePersonality(scores: Scores): PersonalityResult {
   const gap = primaryScore - secondaryScore;
   
   // Personality mapping (5 types):
-  // 0: Si Spontan - creative + adventurer (impulsive recorder)
-  // 1: Si Paling Beres - logical dominant (organized keeper) - FIXED: no longer needs empathetic
-  // 2: Si Serba Cepat - leader (speed & efficiency)
-  // 3: Si Paling Eksis - creative dominant (moment collector)
-  // 4: Si Santai Tapi Ngeh - empathetic/low total (chill observer) - FIXED: easier to get
+  // 0: Si Spontan (the-extremist) - creative + adventurer (impulsive recorder)
+  // 1: Si Paling Beres (the-endurer) - logical + empathetic (organized keeper)
+  // 2: Si Serba Cepat (the-disruptor) - leader (speed & efficiency)
+  // 3: Si Paling Eksis (the-inverter) - creative (moment collector)
+  // 4: Si Santai Tapi Ngeh (the-confessor) - empathetic + balanced (chill observer)
   
   let result: PersonalityResult | null = null;
-  
-  // === PRIORITY 1: Strong Dominant Trait (Gap >= 2, Score >= 3) ===
-  if (gap >= 2 && primaryScore >= 3) {
-    switch (primary) {
-      case 'leader':
-        result = personalityTypes[2]; // Si Serba Cepat
-        break;
-      case 'logical':
-        result = personalityTypes[1]; // Si Paling Beres
-        break;
-      case 'creative':
-        result = personalityTypes[3]; // Si Paling Eksis
-        break;
-      case 'adventurer':
-        result = personalityTypes[0]; // Si Spontan
-        break;
-      case 'empathetic':
-        result = personalityTypes[4]; // Si Santai Tapi Ngeh
-        break;
-    }
-    if (result) return getPersonalityWithRandomDescription(result);
-  }
-  
-  // === PRIORITY 2: Low Engagement (Santai personality) ===
-  if (total <= 3) {
-    return getPersonalityWithRandomDescription(personalityTypes[4]); // Si Santai Tapi Ngeh
-  }
   
   // === PRIMARY MATCHES (Strong dual-trait combinations) ===
   
   // Si Spontan: Creative + Adventurer combo (YOLO, capture everything)
-  if ((primary === 'creative' && secondary === 'adventurer' && gap <= 1) ||
-      (primary === 'adventurer' && secondary === 'creative' && gap <= 1) ||
-      (scores.creative >= 2 && scores.adventurer >= 2)) {
+  // Needs both traits to be relatively high
+  if ((scores.creative >= 2 && scores.adventurer >= 2) ||
+      ((primary === 'creative' && secondary === 'adventurer') && gap <= 1 && primaryScore >= 2) ||
+      ((primary === 'adventurer' && secondary === 'creative') && gap <= 1 && primaryScore >= 2)) {
     result = personalityTypes[0];
   }
   
-  // REMOVED: Si Paling Beres combo (logical + empathetic was too common)
-  // Now Si Paling Beres only requires logical dominant
-  
-  
-  // Si Serba Cepat: Leader trait
-  else if (primary === 'leader' && primaryScore >= 2) {
-    result = personalityTypes[2];
-  }
-  
-  // Si Paling Beres: Logical trait (SIMPLIFIED - no longer needs empathetic)
-  else if (primary === 'logical' && primaryScore >= 3) {
+  // Si Paling Beres: Logical + Empathetic (organized, process-oriented)
+  // Values systems and emotional intelligence
+  else if ((scores.logical >= 2 && scores.empathetic >= 2) ||
+      ((primary === 'logical' && secondary === 'empathetic') && gap <= 1 && primaryScore >= 2) ||
+      ((primary === 'empathetic' && secondary === 'logical') && gap <= 1 && primaryScore >= 2)) {
     result = personalityTypes[1];
   }
   
-  // Si Santai Tapi Ngeh: Empathetic dominant (SIMPLIFIED - easier to get)
-  else if (primary === 'empathetic' && primaryScore >= 2) {
+  // Si Serba Cepat: Dominant Leader trait (speed above all)
+  // Clear leader preference, doesn't need combo
+  else if ((primary === 'leader' && primaryScore >= 3) ||
+      (scores.leader >= 3) ||
+      (primary === 'leader' && gap >= 2)) {
+    result = personalityTypes[2];
+  }
+  
+  // Si Santai Tapi Ngeh: Empathetic + Creative OR balanced empathetic
+  // Chill but emotionally aware, collects meaningful moments
+  else if ((scores.empathetic >= 2 && scores.creative >= 1) ||
+      ((primary === 'empathetic' && secondary === 'creative') && primaryScore >= 2) ||
+      (primary === 'empathetic' && total <= 4 && primaryScore >= 2)) {
     result = personalityTypes[4];
   }
   
   // Si Paling Eksis: Creative-dominant (moment collector)
-  else if (primary === 'creative' && primaryScore >= 3) {
+  // High creative with presence/documentation focus
+  else if ((primary === 'creative' && primaryScore >= 3) ||
+      (scores.creative >= 3 && scores.empathetic >= 1)) {
     result = personalityTypes[3];
   }
   
-  // === SECONDARY LOGIC: Moderate scores (primaryScore >= 2) ===
+  // === SECONDARY LOGIC: Single dominant trait ===
   
   if (!result) {
-    // Leader → Si Serba Cepat
+    // Strong leader → Si Serba Cepat
     if (primary === 'leader' && primaryScore >= 2) {
       result = personalityTypes[2];
     }
     
-    // Logical → Si Paling Beres
-    else if (primary === 'logical' && primaryScore >= 2) {
-      result = personalityTypes[1];
-    }
-    
-    // Creative → check if combined with adventurer
+    // Strong creative → depends on secondary
     else if (primary === 'creative' && primaryScore >= 2) {
       if (scores.adventurer >= 1) {
         result = personalityTypes[0]; // Si Spontan (creative + action)
+      } else if (scores.empathetic >= 1) {
+        result = personalityTypes[4]; // Si Santai Tapi Ngeh (creative + feeling)
       } else {
         result = personalityTypes[3]; // Si Paling Eksis (pure creative)
       }
     }
     
-    // Adventurer → Si Spontan
-    else if (primary === 'adventurer' && primaryScore >= 2) {
-      result = personalityTypes[0];
+    // Strong logical → depends on context
+    else if (primary === 'logical' && primaryScore >= 2) {
+      if (scores.empathetic >= 1) {
+        result = personalityTypes[1]; // Si Paling Beres (logical + care)
+      } else if (scores.leader >= 1) {
+        result = personalityTypes[2]; // Si Serba Cepat (logical + speed)
+      } else {
+        result = personalityTypes[1]; // Si Paling Beres (default logical)
+      }
     }
     
-    // Empathetic → Si Santai Tapi Ngeh
+    // Strong adventurer → spontaneous
+    else if (primary === 'adventurer' && primaryScore >= 2) {
+      if (scores.creative >= 1) {
+        result = personalityTypes[0]; // Si Spontan (adventure + creativity)
+      } else {
+        result = personalityTypes[0]; // Si Spontan (default adventurer)
+      }
+    }
+    
+    // Strong empathetic → chill observer
     else if (primary === 'empathetic' && primaryScore >= 2) {
-      result = personalityTypes[4];
+      if (scores.creative >= 1) {
+        result = personalityTypes[4]; // Si Santai Tapi Ngeh (empathy + creativity)
+      } else if (scores.logical >= 1) {
+        result = personalityTypes[1]; // Si Paling Beres (empathy + logic)
+      } else {
+        result = personalityTypes[4]; // Si Santai Tapi Ngeh (default empathetic)
+      }
     }
   }
   
   // === TERTIARY LOGIC: Balanced/Mixed profiles ===
   
   if (!result) {
-    // Very balanced scores → default to Santai
+    // Very balanced scores (no clear winner)
     if (gap <= 1 && primaryScore <= 2) {
-      result = personalityTypes[4]; // Si Santai Tapi Ngeh (balanced chill)
+      // Check for any slight lean
+      if (scores.empathetic >= scores.logical) {
+        result = personalityTypes[4]; // Si Santai Tapi Ngeh (balanced chill)
+      } else {
+        result = personalityTypes[1]; // Si Paling Beres (balanced organized)
+      }
     }
     
-    // Low engagement overall → Santai
+    // Low engagement overall
     else if (total <= 3) {
       result = personalityTypes[4]; // Si Santai Tapi Ngeh (minimal but aware)
     }
@@ -428,10 +432,8 @@ export function calculatePersonality(scores: Scores): PersonalityResult {
         result = personalityTypes[3]; // Si Paling Eksis
       } else if (primary === 'leader' || secondary === 'leader') {
         result = personalityTypes[2]; // Si Serba Cepat
-      } else if (primary === 'logical' || secondary === 'logical') {
-        result = personalityTypes[1]; // Si Paling Beres
       } else {
-        result = personalityTypes[4]; // Default: Si Santai Tapi Ngeh
+        result = personalityTypes[1]; // Si Paling Beres
       }
     }
   }
