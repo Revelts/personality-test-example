@@ -5,6 +5,15 @@
 ### Title
 Si Spontan
 
+### Element
+🔥 Api - spontan & berani
+
+### ColorName
+Hot Orange
+
+### MostImportant
+Video mentah. Versi goyang. Versi gagal. Yang penting kejadian.
+
 ### Description
 Kamu terbiasa menangkap momen apa adanya tanpa mikir urusan teknis. Yang penting momennya keburu tersimpan, soal storage belakangan. Hidup di saat ini lebih penting daripada mengatur file.
 
@@ -46,6 +55,15 @@ Urus storage kalau udah darurat. Sekarang hidup dan rekam aja. Kadang bikin stre
 
 ### Title
 Si Paling Beres
+
+### Element
+🪨 Tanah - stabil & bisa diandalkan
+
+### ColorName
+Black
+
+### MostImportant
+Foto lama. File random. Bukti proses, bukan hasil.
 
 ### Description
 Kamu baru tenang kalau semuanya beres. File, momen, dan kerjaan harus jelas tempatnya biar hidup gak ribet sendiri. Kamu percaya sistem yang baik itu investasi jangka panjang. Kerapian adalah bentuk menghormati diri sendiri.
@@ -89,6 +107,15 @@ Buat kamu, backup teratur bukan paranoid tapi tanggung jawab sama diri sendiri. 
 ### Title
 Si Serba Cepat
 
+### Element
+💨 Angin - cepat & fleksibel
+
+### ColorName
+Yellow
+
+### MostImportant
+File kerja. Konten mentah. Yang harus pindah cepat.
+
 ### Description
 Hidup kamu jalan cepat dan gak suka ditahan-tahan. Semua harus praktis dan langsung bisa dipakai. Kamu anti proses berbelit yang ujungnya buang waktu. Efisiensi bukan kemewahan tapi kebutuhan. Setiap detik punya nilai.
 
@@ -131,6 +158,15 @@ Kecepatan bukan kemewahan buat kamu tapi kebutuhan. Karena waktu kamu berharga. 
 ### Title
 Si Paling Eksis
 
+### Element
+💧 Air - emosional & penuh cerita
+
+### ColorName
+Purple
+
+### MostImportant
+File fisik. Yang bisa kamu pegang.
+
 ### Description
 HP kamu penuh bukan karena berantakan, tapi karena hidupmu penuh cerita. Setiap tangkapan layar, video acak, foto blur—ada konteks, ada momen, ada perasaan di baliknya yang kamu ingat. Kamu pendokumentasi kehidupan sendiri.
 
@@ -172,6 +208,15 @@ Penyimpanan penuh? Bukan masalah. Kenangan penuh? Itu berkah. Beberapa orang hid
 
 ### Title
 Si Santai Tapi Ngeh
+
+### Element
+🌿 Alam - tenang & seimbang
+
+### ColorName
+Orange
+
+### MostImportant
+Draft. Voice note. Versi gagal.
 
 ### Description
 Kamu gak suka ribet tapi tetap peduli. Selama file aman dan gampang diakses, hidup terasa cukup tenang. Kamu gak terlalu mikir tapi juga gak ceroboh. Keseimbangan adalah kunci. Jalan tengah antara kekacauan dan kekakuan.

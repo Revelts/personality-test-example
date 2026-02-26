@@ -115,33 +115,12 @@ export default function BreakSession({
                 <motion.button
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
+                  transition={{ delay: 0.5, duration: 0.3 }}
                   onClick={onContinue}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full text-sm sm:text-base py-3 sm:py-4 font-bold relative shadow-lg rounded-full"
-                  style={{
-                    backgroundColor: '#6B1A17',
-                    color: 'white',
-                    overflow: 'hidden',
-                  }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full text-sm sm:text-base py-3 sm:py-4 font-bold bg-brand-red hover:bg-red-700 text-white rounded-full shadow-lg transition-colors duration-150 uppercase tracking-wide active:shadow-xl"
                 >
-                  {/* Hover Fill Effect */}
-                  <motion.div
-                    initial={{ width: '0%' }}
-                    whileHover={{ width: '100%' }}
-                    transition={{ 
-                      duration: 0.3, 
-                      ease: 'easeOut'
-                    }}
-                    className="absolute inset-0 bg-brand-red rounded-full"
-                    style={{ transformOrigin: 'left' }}
-                  />
-                  
-                  {/* Button Text */}
-                  <span className="relative z-10 uppercase tracking-wide">
-                    Lanjut Tes →
-                  </span>
+                  Lanjut Tes →
                 </motion.button>
               </div>
             </div>

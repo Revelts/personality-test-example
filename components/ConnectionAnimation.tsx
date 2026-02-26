@@ -97,10 +97,10 @@ export default function ConnectionAnimation({ onComplete }: ConnectionAnimationP
               {/* USB Icon Image */}
               <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 relative">
                 <Image
-                  src="/images/usb.png"
+                  src="/images/usbc.png"
                   alt="USB"
                   fill
-                  className="object-contain rotate-90"
+                  className="object-contain"
                   priority
                 />
                 

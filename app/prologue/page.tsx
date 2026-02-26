@@ -191,20 +191,19 @@ export default function ProloguePage() {
       {/* Start Button - Appears after animation */}
       {showButton && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="fixed bottom-8 sm:bottom-12 md:bottom-16 left-0 right-0 z-20 px-4 sm:px-6"
         >
           <div className="max-w-md mx-auto">
-            <motion.button
+            <button
               onClick={handleStartTest}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full py-3 sm:py-4 bg-brand-red hover:bg-red-700 text-white font-bold text-sm sm:text-base tracking-wide uppercase transition-all duration-200 shadow-lg rounded-full"
+              className="w-full py-3 sm:py-4 bg-brand-red hover:bg-red-700 active:bg-red-800 text-white font-bold text-sm sm:text-base tracking-wide uppercase transition-colors duration-150 shadow-lg hover:shadow-xl active:shadow-lg rounded-full active:scale-[0.98]"
+              style={{ WebkitTapHighlightColor: 'transparent' }}
             >
               Mulai Tes
-            </motion.button>
+            </button>
             
             <p className="text-xs sm:text-sm text-white text-center mt-2 sm:mt-3">
               Siap untuk memulai, {userName}?

@@ -130,7 +130,7 @@ export default function USBProgressBar({
             <div className="relative">
               <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative">
                 <Image
-                  src="/images/transfer.png"
+                  src="/images/usbc.png"
                   alt="Transfer"
                   fill
                   className="object-contain"

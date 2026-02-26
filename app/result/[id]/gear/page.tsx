@@ -194,7 +194,7 @@ export default function GearPage() {
                     Kecepatan
                   </p>
                   <p className="text-[10px] sm:text-xs text-black font-bold leading-tight">
-                    Baca hingga 100mb/s
+                    Baca hingga 100MB/s
                   </p>
                 </div>
                 <div className="text-center bg-gray-50 rounded-lg p-3">

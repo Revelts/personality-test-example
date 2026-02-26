@@ -3,48 +3,28 @@ import localFont from 'next/font/local'
 import './globals.css'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
-// Pilat Extended Font - SanDisk Branding
-// Loading multiple weights for better typography
+// Pilat Font - SanDisk Branding
+// Using .otf files from public/fonts
 const pilatExtended = localFont({
   src: [
     {
-      path: '../public/fonts/PilatExtended-Thin.woff2',
-      weight: '100',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/PilatExtended-Light.woff2',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/PilatExtended-Regular.woff2',
+      path: '../public/fonts/Pilat-Regular.otf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/PilatExtended-Book.woff2',
+      path: '../public/fonts/Pilat-Book.otf',
       weight: '450',
       style: 'normal',
     },
     {
-      path: '../public/fonts/PilatExtended-DemiBold.woff2',
+      path: '../public/fonts/Pilat-Demi.otf',
       weight: '600',
       style: 'normal',
     },
     {
-      path: '../public/fonts/PilatExtended-Bold.woff2',
+      path: '../public/fonts/Pilat-Bold.otf',
       weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/PilatExtended-Heavy.woff2',
-      weight: '800',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/PilatExtended-Black.woff2',
-      weight: '900',
       style: 'normal',
     },
   ],
@@ -54,8 +34,8 @@ const pilatExtended = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://sandisktechshift.com'),
-  title: 'Sandisk Techshift Stunt Test - Temukan Storage Personality Kamu',
-  description: 'Ikuti Sandisk Techshift Stunt Test untuk menemukan tipe kepribadian digital kamu. Cara unik untuk memahami bagaimana kamu menyimpan dan mengelola momen-momen penting dalam hidup.',
+  title: 'Sandisk Tech Shift - Unlock Your Digital Side',
+  description: 'Kenali kepribadianmu dan temukan storage idealmu melalui kuis ini.',
   keywords: 'sandisk, techshift, stunt test, personality test, storage personality, digital personality, tes kepribadian, sandisk test',
   icons: {
     icon: '/images/favicon.jpg',
@@ -63,15 +43,15 @@ export const metadata: Metadata = {
     apple: '/images/favicon.jpg',
   },
   openGraph: {
-    title: 'Sandisk Techshift Stunt Test',
-    description: 'Temukan storage personality kamu. Test interaktif untuk mengetahui cara unik kamu menyimpan momen digital.',
+    title: 'Sandisk Tech Shift - Unlock Your Digital Side',
+    description: 'Kenali kepribadianmu dan temukan storage idealmu melalui kuis ini.',
     type: 'website',
     images: ['/images/meta-image.png'],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Sandisk Techshift Stunt Test',
-    description: 'Temukan storage personality kamu. Test interaktif untuk mengetahui cara unik kamu menyimpan momen digital.',
+    card: 'summary_large_image',  
+    title: 'Sandisk Tech Shift - Unlock Your Digital Side',
+    description: 'Kenali kepribadianmu dan temukan storage idealmu melalui kuis ini.',
     images: ['/images/meta-image.png'],
   },
 }
