@@ -283,6 +283,14 @@ export default function GearPage() {
               </div>
             </div>
           </motion.div>
+          
+          {/* Footnotes - Above pixel decoration */}
+          <div className="mt-8 px-2 text-xs sm:text-sm text-text-secondary space-y-1.5 leading-relaxed">
+            <p><span className="font-semibold mr-1">1.</span> Kecepatan baca berdasarkan pengujian internal. Kinerja dapat bervariasi tergantung perangkat dan kondisi penggunaan.</p>
+            <p><span className="font-semibold mr-1">2.</span> Detail lengkap: <a href="https://www.sandisk.com/wug" target="_blank" rel="noopener noreferrer" className="underline hover:text-text-primary transition-colors">www.sandisk.com/wug</a></p>
+            <p><span className="font-semibold mr-1">3.</span> 1GB = 1.000.000.000 byte. 1TB = 1.000.000.000.000 byte. Penyimpanan pengguna aktual lebih sedikit.</p>
+          </div>
+          
           </div>
         </motion.div>
       </div>
