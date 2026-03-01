@@ -90,12 +90,12 @@ export const personalityTypes: PersonalityResult[] = [
     gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "Terbatas 5 Tahun"
+      warranty: "Terbatas 5 tahun"
     },
     gearLinks: {
       lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
       shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
-      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
+      tiktokshop: "https://vt.tokopedia.com/t/ZS9epXCw6Bs2G-puirE"
     },
     emoji: "🔥",
     color: "from-orange-500 to-red-600"
@@ -123,7 +123,7 @@ export const personalityTypes: PersonalityResult[] = [
     element: "🪨 Tanah - stabil & bisa diandalkan",
     elementEn: "🪨 Earth — stable & reliable",
     colorName: "Hitam",
-    colorHex: "#1A1A1A",
+    colorHex: "#000000",
     mostImportant: "Album foto tersusun per kategori. Semua ada tempatnya, semua gampang dicari.",
     mostImportantEn: "Old photos. Random files. Proof of process, not results.",
     music: "No Surprises",
@@ -135,12 +135,12 @@ export const personalityTypes: PersonalityResult[] = [
     gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "Terbatas 5 Tahun"
+      warranty: "Terbatas 5 tahun"
     },
     gearLinks: {
       lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
       shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
-      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
+      tiktokshop: "https://vt.tokopedia.com/t/ZS9epXCw6Bs2G-puirE"
     },
     emoji: "🪨",
     color: "from-gray-800 to-gray-950"
@@ -180,12 +180,12 @@ export const personalityTypes: PersonalityResult[] = [
     gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "Terbatas 5 Tahun"
+      warranty: "Terbatas 5 tahun"
     },
     gearLinks: {
       lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
       shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
-      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
+      tiktokshop: "https://vt.tokopedia.com/t/ZS9epXCw6Bs2G-puirE"
     },
     emoji: "⚡",
     color: "from-yellow-400 to-amber-500"
@@ -225,12 +225,12 @@ export const personalityTypes: PersonalityResult[] = [
     gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "Terbatas 5 Tahun"
+      warranty: "Terbatas 5 tahun"
     },
     gearLinks: {
       lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
       shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
-      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
+      tiktokshop: "https://vt.tokopedia.com/t/ZS9epXCw6Bs2G-puirE"
     },
     emoji: "🌲",
     color: "from-purple-600 to-violet-700"
@@ -258,7 +258,7 @@ export const personalityTypes: PersonalityResult[] = [
     element: "🌿 Alam - tenang & seimbang",
     elementEn: "🌿 Nature — calm & balanced.",
     colorName: "Hitam",
-    colorHex: "#FFC300",
+    colorHex: "#000000",
     mostImportant: "Foto keluarga inti. Dokumen penting. Cukup yang berarti dan aman.",
     mostImportantEn: "Drafts. Voice notes. Failed versions.",
     music: "Happier Than Ever",
@@ -270,12 +270,12 @@ export const personalityTypes: PersonalityResult[] = [
     gearCapacity: "32GB - 512GB",
     gearSpecs: {
       usb: "USB 3.2 Gen 1",
-      warranty: "Terbatas 5 Tahun"
+      warranty: "Terbatas 5 tahun"
     },
     gearLinks: {
       lazada: "https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html",
       shopee: "https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989",
-      tiktokshop: "https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/"
+      tiktokshop: "https://vt.tokopedia.com/t/ZS9epXCw6Bs2G-puirE"
     },
     emoji: "💧",
     color: "from-amber-400 to-yellow-500"
