@@ -22,25 +22,25 @@ export const questions: Question[] = [
         id: "6a",
         text: "Rekam takut kelewatan",
         trait: "creative",
-        microReaction: "Kamu bukan takut kehilangan momen. kamu takut lupa rasanya. Karena kamu tau, memori itu licin - sekali lewat, bisa gak balik utuh. Rekam itu cara kamu bilang: 'ini penting buat gue.'"
+        microReaction: "Kamu nggak takut kehilangan momen. Kamu cuma takut lupa rasanya. Soalnya kamu tahu, ingatan itu bisa memudar."
       },
       {
         id: "6b",
         text: "Nikmatin - gak mau keganggu",
         trait: "empathetic",
-        microReaction: "Kamu pengen hadir sepenuhnya. Tanpa layar, tanpa distraksi. Karena buat kamu, momen itu soal rasa - bukan bukti. Dan kamu percaya, yang kerasa di dada... gak butuh file."
+        microReaction: "Kamu pengen benar-benar ada di momen itu. Buat kamu, yang penting nikmatin dulu, nggak semua hal harus difoto atau direkam."
       },
       {
         id: "6c",
         text: "Simpan di kepala",
         trait: "logical",
-        microReaction: "Kamu percaya ingatan kamu sendiri. Ada keyakinan kecil: 'yang penting, gak akan gue lupain.' Walau sebenernya... kamu juga tau, memori kadang berubah seiring waktu."
+        microReaction: "Kamu percaya nggak semua hal harus jadi file. Ada momen yang nilainya justru karena cuma tersimpan di ingatan, bukan di galeri."
       },
       {
         id: "6d",
         text: "Tergantung kondisi",
         trait: "adventurer",
-        microReaction: "Kamu adaptif. kamu baca situasi, bukan cuma momen. Kadang direkam, kadang dilepas. Karena kamu ngerti: gak semua hal butuh perlakuan yang sama."
+        microReaction: "Kamu lebih ngikutin perasaan di saat itu. Kadang pengen abadikan, kadang cukup nikmatin aja. Yang penting, kamu benar-benar hadir dan ngerasain momennya."
       }
     ]
   },
@@ -53,25 +53,25 @@ export const questions: Question[] = [
         id: "9a",
         text: "Backup File",
         trait: "adventurer",
-        microReaction: "Kamu sadar pentingnya backup. Tapi ada perasaan 'nanti aja' yang selalu menang. Bukan karena gak peduli—tapi karena kamu gak siap menghadapi prosesnya."
+        microReaction: "Kamu tahu backup itu penting. Tapi biasanya selalu ada rasa 'ah, nanti aja deh' yang menang. Bukan karena nggak peduli, cuma belum mood buat ngadepin prosesnya."
       },
       {
         id: "9b",
         text: "Pindahin File",
         trait: "leader",
-        microReaction: "Kamu tau ini harus dilakukan. Tapi mikir soal milah satu-satu, takut ada yang kehilangan... itu bikin kamu malas mulai. Jadi ditunda sampai beneran kepaksa."
+        microReaction: "Kamu tahu ini harus dilakukan, tapi milih-milihnya kadang terasa ribet. Takut ada yang kelewat atau hilang, jadi biasanya ditunda sampai kepaksa."
       },
       {
         id: "9c",
         text: "Ngerapihin File",
         trait: "logical",
-        microReaction: "Kamu ngerasa semuanya punya konteks. Ngurutin berarti ngadepin ulang kenangan yang udah lewat. Dan gak selalu siap buat itu—jadi dibiarkan berantakan."
+        microReaction: "Kamu ngerasa setiap file punya ceritanya sendiri. Buat kamu, merapikan kadang berarti membuka lagi kenangan lama, dan kadang kamu belum tentu siap untuk itu."
       },
       {
         id: "9d",
         text: "Upgrade Storage",
         trait: "creative",
-        microReaction: "Ada bagian yang bilang 'storage masih cukup kok.' Padahal notifikasi udah muncul berkali-kali. Ngeluarin uang buat yang gak kelihatan... rasanya berat."
+        microReaction: "Setiap kali notifikasi muncul, kamu cuma senyum dan bilang, 'Ah, storage masih cukup.' Padahal, notifikasi sudah muncul berkali kali."
       }
     ]
   },
@@ -84,25 +84,25 @@ export const questions: Question[] = [
         id: "10a",
         text: "Langsung dibuka, walau cuma sebentar",
         trait: "creative",
-        microReaction: "Kamu tau itu bakal nyentil dikit. Tapi kamu tetep buka. Karena kamu percaya, nostalgia itu bagian dari perjalanan - bukan beban."
+        microReaction: "Walaupun tahu bakal nyentil dikit, kamu tetep buka. Karena nostalgia buat kamu bukan beban tapi bagian dari perjalanan hidup yang pengen kamu inget terus."
       },
       {
         id: "10b",
         text: "Senyum kecil, terus lanjut",
         trait: "empathetic",
-        microReaction: "Ada hangat sebentar. Terus kamu jalan lagi. kamu menghargai masa lalu, tapi gak mau kejebak di sana."
+        microReaction: "Kamu tiba-tiba keinget momen itu, senyum sebentar, lalu langsung balik lagi ke hari-hari yang biasa."
       },
       {
         id: "10c",
         text: "Dicek, disimpen lagi",
         trait: "logical",
-        microReaction: "Kamu pengen tau kondisinya. Masih ada. Masih aman. Dan itu cukup. Gak perlu dibongkar sekarang."
+        microReaction: "Kamu cuma pengen memastikan semuanya masih ada dan aman. Abis itu, kamu tutup lagi, karena rasanya belum perlu dilihat sekarang."
       },
       {
         id: "10d",
         text: "Lewat aja",
         trait: "leader",
-        microReaction: "Bukan berarti gak berarti. Kadang kamu cuma lagi fokus ke depan. Dan itu juga bentuk bertumbuh."
+        microReaction: "Bukan berarti momennya nggak penting. Kadang kamu cuma lagi memilih untuk benar-benar fokus sama apa yang sedang ada di depanmu sekarang."
       }
     ]
   },
@@ -121,19 +121,19 @@ export const questions: Question[] = [
         id: "12b",
         text: "Gangguan kecil",
         trait: "leader",
-        microReaction: "Kamu notice, tapi gak langsung panik. Kayak suara AC terlalu kenceng - ganggu, tapi belum darurat. kamu terbiasa hidup dengan sedikit distraksi."
+        microReaction: "Kamu ngeh, tapi belum merasa perlu panik. Mirip suara AC yang agak berisik. Kerasa tapi belum cukup mengganggu untuk langsung bereaksi."
       },
       {
         id: "12c",
         text: "Tugas yang harus diberesin",
         trait: "logical",
-        microReaction: "Kamu orang tanggung jawab. Kalau ada notifikasi, berarti ada action item. Dan kamu gak bisa tenang sebelum itu kelar."
+        microReaction: "Notifikasi buat kamu bukan sekadar lewat, tapi tanda ada yang harus dituntaskan, dan susah hilang dari pikiran sebelum beres."
       },
       {
         id: "12d",
         text: "Noise yang nanti juga ilang",
         trait: "adventurer",
-        microReaction: "Kamu punya kemampuan langka: mengabaikan tekanan. Kadang itu bikin hidup lebih ringan. Kadang... bikin masalah numpuk pelan-pelan."
+        microReaction: "Selama belum terasa urgent, kamu cenderung menunda. Awalnya bikin hidup terasa ringan, sampai akhirnya sadar sudah banyak yang menunggu."
       }
     ]
   },
@@ -158,7 +158,7 @@ export const questions: Question[] = [
         id: "19c",
         text: "Serapi mungkin",
         trait: "logical",
-        microReaction: "Kamu pengen pindah sambil beres. Bukan cuma geser masalah ke tempat baru. Ini soal kualitas hidup."
+        microReaction: "Buat kamu, kalau sudah pindah, maunya sekalian beres. Nggak cuma memindahkan semuanya ke tempat baru, tapi juga sekalian menata ulang."
       },
       {
         id: "19d",
@@ -189,13 +189,13 @@ export const questions: Question[] = [
         id: "20c",
         text: "Harusnya ada sistem yang lebih rapi.",
         trait: "logical",
-        microReaction: "Kamu percaya hidup bisa lebih enak kalau sistemnya bener. Dan kamu sering kesel karena sebenernya itu bisa dicegah."
+        microReaction: "Buat kamu, hidup jadi lebih ringan kalau semuanya sudah tertata dari awal. Jadi kadang gemas sendiri, karena tahu ini sebenarnya bisa dibereskan lebih cepat."
       },
       {
         id: "20d",
         text: "Gak usah ribet.",
         trait: "leader",
-        microReaction: "Kamu nyari hidup yang ringan. Bukan ceroboh - cuma selektif sama energi. Yang gak penting, gak perlu dipikirin lama."
+        microReaction: "Buat kamu, nggak semua hal harus dibawa berat. Kamu jadi lebih tahu mana yang perlu perhatian, mana yang bisa dilepas."
       }
     ]
   }
