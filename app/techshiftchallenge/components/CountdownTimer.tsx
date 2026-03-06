@@ -13,7 +13,6 @@ interface CountdownTimerProps {
 }
 
 interface TimeLeft {
-  days: number;
   hours: number;
   minutes: number;
   seconds: number;
@@ -21,7 +20,6 @@ interface TimeLeft {
 
 export default function CountdownTimer({ endDate }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
@@ -35,15 +33,16 @@ export default function CountdownTimer({ endDate }: CountdownTimerProps) {
       const difference = +new Date(endDate) - +new Date();
       
       if (difference > 0) {
-        return {
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        };
+        const totalMs = difference;
+        const totalSeconds = Math.floor(totalMs / 1000);
+        const seconds = totalSeconds % 60;
+        const totalMinutes = Math.floor(totalSeconds / 60);
+        const minutes = totalMinutes % 60;
+        const hours = Math.floor(totalMinutes / 60); // days converted to hours
+        return { hours, minutes, seconds };
       }
       
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      return { hours: 0, minutes: 0, seconds: 0 };
     };
 
     setTimeLeft(calculateTimeLeft());
@@ -58,14 +57,10 @@ export default function CountdownTimer({ endDate }: CountdownTimerProps) {
   if (!mounted) {
     return (
       <div className="flex gap-3 sm:gap-4 justify-start">
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className="bg-brand-red px-4 py-3 sm:px-6 sm:py-4 min-w-[70px] sm:min-w-[90px] rounded-sm text-center">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1">
-              00
-            </div>
-            <div className="text-xs sm:text-sm text-white/80 uppercase tracking-wide">
-              {['Days', 'Hours', 'Mins', 'Secs'][i]}
-            </div>
+        {['Hours', 'Mins', 'Secs'].map((label, i) => (
+          <div key={label} className="bg-brand-red px-4 py-3 sm:px-6 sm:py-4 min-w-[70px] sm:min-w-[90px] rounded-sm text-center">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1">00</div>
+            <div className="text-xs sm:text-sm text-white/80 uppercase tracking-wide">{label}</div>
           </div>
         ))}
       </div>
@@ -73,7 +68,6 @@ export default function CountdownTimer({ endDate }: CountdownTimerProps) {
   }
 
   const timeUnits = [
-    { value: timeLeft.days, label: 'Days' },
     { value: timeLeft.hours, label: 'Hours' },
     { value: timeLeft.minutes, label: 'Mins' },
     { value: timeLeft.seconds, label: 'Secs' },

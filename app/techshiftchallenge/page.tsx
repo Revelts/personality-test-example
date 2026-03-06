@@ -372,6 +372,25 @@ export default function TechShiftChallengePage() {
           </p>
         </div>
 
+        {/* Desktop: large Prev/Next buttons — center left/right (no Prev on first slide) */}
+        {activeSlide > 0 && (
+          <button
+            onClick={() => setActiveSlide(s => s - 1)}
+            className="hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white text-black items-center justify-center font-black text-xl hover:bg-black hover:text-white transition-colors"
+            aria-label="Previous slide"
+          >
+            ←
+          </button>
+        )}
+        <button
+          onClick={() => setActiveSlide(s => Math.min(totalSlides - 1, s + 1))}
+          disabled={activeSlide === totalSlides - 1}
+          className="hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white text-black items-center justify-center font-black text-xl hover:bg-black hover:text-white transition-colors disabled:opacity-40 disabled:pointer-events-none"
+          aria-label="Next slide"
+        >
+          →
+        </button>
+
         {/* Swipeable content — flex-1 so it fills remaining height */}
         <motion.div
           className="flex-1 flex flex-col lg:max-w-3xl lg:mx-auto lg:w-full"
@@ -512,18 +531,18 @@ export default function TechShiftChallengePage() {
           )}
         </motion.div>
 
-        {/* Swipe nav — always at bottom */}
-        <div className="flex justify-between items-center px-5 py-4 flex-shrink-0 lg:max-w-3xl lg:mx-auto lg:w-full">
+        {/* Swipe nav — bottom: mobile = Prev + SWIPE (center) + Next; desktop = SWIPE only (center) */}
+        <div className="flex justify-between lg:justify-center items-center px-5 py-4 flex-shrink-0 lg:max-w-3xl lg:mx-auto lg:w-full">
           <button
             onClick={() => setActiveSlide(s => Math.max(0, s - 1))}
-            className={`text-white/60 text-sm transition-opacity ${activeSlide === 0 ? 'opacity-0 pointer-events-none' : ''}`}
+            className={`lg:hidden text-white/60 text-sm transition-opacity ${activeSlide === 0 ? 'opacity-0 pointer-events-none' : ''}`}
           >
             ← Prev
           </button>
           <p className="text-white/40 text-xs tracking-widest">SWIPE</p>
           <button
             onClick={() => setActiveSlide(s => Math.min(totalSlides - 1, s + 1))}
-            className={`text-white/60 text-sm transition-opacity ${activeSlide === totalSlides - 1 ? 'opacity-0 pointer-events-none' : ''}`}
+            className={`lg:hidden text-white/60 text-sm transition-opacity ${activeSlide === totalSlides - 1 ? 'opacity-0 pointer-events-none' : ''}`}
           >
             Next →
           </button>
@@ -544,24 +563,28 @@ export default function TechShiftChallengePage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="flex-1 flex flex-col justify-between py-10 px-4 lg:px-16 lg:py-16"
+              className="flex-1 flex flex-col justify-between py-10 px-4 lg:px-16 lg:py-16 lg:justify-center"
             >
-              {/* Title */}
-              <p className="text-white text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight mb-8">
+              {/* Title — extra gap below on desktop */}
+              <p className="text-white text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight mb-8 lg:mb-12">
                 (→) The Two Worlds.
               </p>
 
               {/* Cards area — stacked mobile, side-by-side desktop */}
-              <div className="flex flex-col lg:flex-row flex-1 justify-center -mx-4 lg:mx-0 lg:gap-4">
-                {/* STUNT card */}
+              <div className="flex flex-col lg:flex-row flex-1 lg:flex-initial justify-center -mx-4 lg:mx-0 lg:gap-4">
+                {/* STUNT card — no click on desktop, hover-only */}
                 <motion.button
-                  className="relative w-full lg:w-1/2 h-[28vh] lg:h-[55vh] overflow-hidden block"
+                  className="group relative w-full lg:w-1/2 h-[28vh] lg:h-[55vh] overflow-hidden block text-left lg:cursor-default"
                   whileTap={{ scale: 0.99 }}
-                  onClick={() => setActiveCategory('stunt')}
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches) {
+                      setActiveCategory('stunt');
+                    }
+                  }}
                 >
                   <Image src="/images/stunt-category.jpg" alt="Stunt" fill className="object-cover object-center" />
                   <div className="absolute inset-0 bg-black/35" />
-                  <div className="absolute top-4 left-4 text-left">
+                  <div className="absolute top-4 left-4 right-4">
                     <p className="text-[9px] lg:text-[11px] font-bold tracking-widest text-white bg-brand-red px-2 py-0.5 inline-block">
                       CHALLENGE CATEGORIES
                     </p>
@@ -569,18 +592,31 @@ export default function TechShiftChallengePage() {
                     <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-none bg-brand-red px-2 py-0.5 inline-block mt-1">
                       STUNT.
                     </h3>
+                    {/* Desktop: hover description — larger text + slide-up animation */}
+                    <div className="hidden lg:block mt-4 max-w-lg opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
+                      <p className="text-white text-lg lg:text-xl font-bold leading-snug mb-2">
+                        Buktikan nyalimu. Rekam aksi paling gila tanpa takut memori penuh.
+                      </p>
+                      <p className="text-white/90 text-sm lg:text-base leading-relaxed">
+                        Rekam setiap aksi ekstrem, parkour, skateboard, atau tantangan seru lainnya. Simpan momen berani kamu tanpa batas dengan SanDisk Phone Drive.
+                      </p>
+                    </div>
                   </div>
                 </motion.button>
 
-                {/* CORE card */}
+                {/* CORE card — no click on desktop, hover-only */}
                 <motion.button
-                  className="relative w-full lg:w-1/2 h-[28vh] lg:h-[55vh] overflow-hidden block"
+                  className="group relative w-full lg:w-1/2 h-[28vh] lg:h-[55vh] overflow-hidden block text-left lg:cursor-default"
                   whileTap={{ scale: 0.99 }}
-                  onClick={() => setActiveCategory('core')}
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches) {
+                      setActiveCategory('core');
+                    }
+                  }}
                 >
                   <Image src="/images/core-category.jpg" alt="Core" fill className="object-cover object-center" />
                   <div className="absolute inset-0 bg-black/35" />
-                  <div className="absolute top-4 left-4 text-left">
+                  <div className="absolute top-4 left-4 right-4">
                     <p className="text-[9px] lg:text-[11px] font-bold tracking-widest text-white bg-brand-red px-2 py-0.5 inline-block">
                       CHALLENGE CATEGORIES
                     </p>
@@ -588,12 +624,21 @@ export default function TechShiftChallengePage() {
                     <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-none bg-brand-red px-2 py-0.5 inline-block mt-1">
                       CORE.
                     </h3>
+                    {/* Desktop: hover description — larger text + slide-up animation */}
+                    <div className="hidden lg:block mt-4 max-w-lg opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
+                      <p className="text-white text-lg lg:text-xl font-bold leading-snug mb-2">
+                        Simpan memori paling berharga. Tangkap momen &apos;Core&apos; yang tak terlupakan.
+                      </p>
+                      <p className="text-white/90 text-sm lg:text-base leading-relaxed">
+                        Abadikan momen berharga bersama orang tersayang. Setiap foto dan video punya cerita. Jangan biarkan storage penuh menghentikanmu.
+                      </p>
+                    </div>
                   </div>
                 </motion.button>
               </div>
 
-              {/* Bottom spacer */}
-              <div className="h-16" />
+              {/* Bottom spacer — hidden on desktop so title+cards stay centered */}
+              <div className="h-16 lg:hidden" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -673,10 +718,10 @@ export default function TechShiftChallengePage() {
                   </div>
                 </div>
 
-                {/* Bottom tab — switch category */}
+                {/* Bottom tab — switch category (hidden on desktop, no CTA) */}
                 <button
                   onClick={() => setActiveCategory(activeCategory === 'stunt' ? 'core' : 'stunt')}
-                  className="w-full bg-brand-red py-4 text-white text-xs font-black tracking-widest text-center uppercase"
+                  className="lg:hidden w-full bg-brand-red py-4 text-white text-xs font-black tracking-widest text-center uppercase"
                 >
                   CHALLENGE CATEGORIES — {activeCategory === 'stunt' ? 'CORE' : 'STUNT'} →
                 </button>
