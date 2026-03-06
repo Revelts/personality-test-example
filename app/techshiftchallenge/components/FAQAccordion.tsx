@@ -41,15 +41,15 @@ export default function FAQAccordion() {
           <div className="h-px bg-white/20 mb-6" />
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            className="w-full grid grid-cols-[3rem_1fr_1.5rem] items-start gap-x-2 text-left mb-4"
+            className="w-full grid grid-cols-[3rem_1fr_1.5rem] lg:grid-cols-[5rem_1fr_2rem] items-start gap-x-2 lg:gap-x-4 text-left mb-4"
           >
-            <span className="text-sm font-bold text-white pt-1">
+            <span className="text-sm lg:text-base font-bold text-white pt-1">
               {String(index + 1).padStart(2, '0')}.
             </span>
-            <span className="text-xl font-bold text-white leading-snug">
+            <span className="text-xl lg:text-2xl font-bold text-white leading-snug">
               {faq.question}
             </span>
-            <span className="text-white text-base pt-1 text-right">
+            <span className="text-white text-base lg:text-xl pt-1 text-right">
               {openIndex === index ? '∧' : '∨'}
             </span>
           </button>
@@ -63,7 +63,7 @@ export default function FAQAccordion() {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <p className="text-sm text-white/60 leading-relaxed pl-[3.5rem] pb-6">
+                <p className="text-sm lg:text-base text-white/60 leading-relaxed pl-[3.5rem] lg:pl-[6rem] pb-6">
                   {faq.answer}
                 </p>
               </motion.div>

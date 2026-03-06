@@ -93,13 +93,13 @@ export default function TechShiftChallengePage() {
         </div>
 
         {/* Top Navigation Bar */}
-        <div className="relative z-20 flex items-center justify-between px-5 sm:px-8 pt-6 sm:pt-8">
+        <div className="relative z-20 flex items-center justify-between px-5 sm:px-8 lg:px-16 pt-6 sm:pt-8 lg:pt-10">
           <motion.div
             initial={{ opacity: 0, y: reducedMotion ? 0 : -16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.1 }}
           >
-            <div className="relative h-7 sm:h-8 w-auto">
+            <div className="relative h-7 sm:h-8 lg:h-10 w-auto">
               <Image
                 src="/images/sandisk-logo.png"
                 alt="SanDisk"
@@ -125,7 +125,7 @@ export default function TechShiftChallengePage() {
         {/* Hero Content - left aligned, bottom anchored */}
         <motion.div
           style={reducedMotion ? {} : { opacity: heroOpacity }}
-          className="relative z-20 flex-1 flex flex-col justify-end px-5 sm:px-8 pb-20 sm:pb-24"
+          className="relative z-20 flex-1 flex flex-col justify-end px-5 sm:px-8 lg:px-16 pb-20 sm:pb-24 lg:pb-32"
         >
           {/* Arrow Button */}
           <motion.div
@@ -144,7 +144,7 @@ export default function TechShiftChallengePage() {
             initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.4 }}
-            className="text-white text-sm sm:text-base font-bold tracking-widest uppercase mb-1"
+            className="text-white text-sm sm:text-base lg:text-lg font-bold tracking-widest uppercase mb-1"
           >
             TECHSHIFT CHALLENGE:
           </motion.p>
@@ -154,7 +154,7 @@ export default function TechShiftChallengePage() {
             initial={{ opacity: 0, y: reducedMotion ? 0 : 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reducedMotion ? 0.1 : 0.7, delay: 0.5 }}
-            className="text-[4rem] sm:text-[5.5rem] font-black text-white leading-none tracking-tight mb-3"
+            className="text-[4rem] sm:text-[5.5rem] lg:text-[9rem] font-black text-white leading-none tracking-tight mb-3"
           >
             NEVER<br />FEAR<br />FULL.
           </motion.h1>
@@ -164,7 +164,7 @@ export default function TechShiftChallengePage() {
             initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.65 }}
-            className="text-white/90 text-base sm:text-lg font-normal mb-6"
+            className="text-white/90 text-base sm:text-lg lg:text-xl font-normal mb-6"
           >
             Rekam momen aksimu, menangkan iPhone 17.
           </motion.p>
@@ -191,7 +191,7 @@ export default function TechShiftChallengePage() {
               rel="noopener noreferrer"
               whileHover={reducedMotion ? {} : { scale: 1.03 }}
               whileTap={reducedMotion ? {} : { scale: 0.97 }}
-              className="relative inline-flex items-center justify-center px-10 py-3 text-sm sm:text-base font-semibold tracking-widest uppercase text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-200 overflow-hidden group"
+              className="relative inline-flex items-center justify-center px-10 lg:px-14 py-3 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold tracking-widest uppercase text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-200 overflow-hidden group"
             >
               <span className="relative transition-all duration-300 group-hover:-translate-x-full group-hover:opacity-0">
                 JOIN NOW
@@ -223,31 +223,32 @@ export default function TechShiftChallengePage() {
       {/* ========================================
           SECTION 1.5: GRAND PRIZE
       ======================================== */}
-      <section className="relative bg-white py-10 px-5 sm:px-8 overflow-hidden">
+      <section className="relative bg-white py-10 px-5 sm:px-8 lg:px-16 lg:py-20 overflow-hidden">
+        <div className="lg:max-w-5xl lg:mx-auto">
         {/* Header Row */}
         <motion.div
           initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: reducedMotion ? 0.1 : 0.5 }}
-          className="flex items-center justify-between mb-8"
+          className="flex items-center justify-between mb-8 lg:mb-12"
         >
           <div className="flex items-stretch gap-0">
             {/* Arrow badge */}
-            <span className="bg-brand-red text-white text-sm font-bold px-3 flex items-center leading-none">
+            <span className="bg-brand-red text-white text-sm lg:text-base font-bold px-3 flex items-center leading-none">
               (→)
             </span>
             {/* Title */}
-            <span className="bg-black text-white text-xl sm:text-2xl font-bold px-3 flex items-center leading-none">
+            <span className="bg-black text-white text-xl sm:text-2xl lg:text-4xl font-bold px-3 flex items-center leading-none">
               Grand Prize.
             </span>
           </div>
           {/* Red square dot top-right */}
-          <div className="w-4 h-4 bg-brand-red flex-shrink-0" />
+          <div className="w-4 h-4 lg:w-5 lg:h-5 bg-brand-red flex-shrink-0" />
         </motion.div>
 
         {/* Prize Items */}
-        <div className="flex flex-col gap-6 max-w-sm mx-auto">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:gap-16 gap-6 max-w-sm lg:max-w-none mx-auto">
 
           {/* Prize 1 — iPhone 17 (full width) */}
           <motion.div
@@ -255,7 +256,7 @@ export default function TechShiftChallengePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: reducedMotion ? 0.1 : 0.6 }}
-            className="relative pb-6 w-[80%]"
+            className="relative pb-6 w-[80%] lg:w-[45%]"
           >
             <Image
               src="/images/doorprize-1.png"
@@ -295,7 +296,7 @@ export default function TechShiftChallengePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: reducedMotion ? 0.1 : 0.6, delay: 0.15 }}
-            className="relative pb-6 w-[80%] ml-auto"
+            className="relative pb-6 w-[80%] ml-auto lg:w-[45%] lg:ml-0"
           >
             <Image
               src="/images/doorprize-2.png"
@@ -337,12 +338,13 @@ export default function TechShiftChallengePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.3 }}
-          className="mt-10"
+          className="mt-10 lg:mt-16"
         >
-          <p className="inline bg-brand-red text-white text-base sm:text-lg font-bold px-1 leading-relaxed box-decoration-clone">
+          <p className="inline bg-brand-red text-white text-base sm:text-lg lg:text-2xl font-bold px-1 leading-relaxed box-decoration-clone">
             Alat tempur kontenmu <br></br>selanjutnya.
           </p>
         </motion.div>
+        </div>
       </section>
 
       {/* ========================================
@@ -353,7 +355,7 @@ export default function TechShiftChallengePage() {
         className="relative min-h-screen bg-brand-red select-none flex flex-col"
       >
         {/* Shared header */}
-        <div className="px-5 pt-6 pb-4 flex-shrink-0">
+        <div className="px-5 lg:px-0 pt-6 pb-4 flex-shrink-0 lg:max-w-3xl lg:mx-auto lg:w-full">
           <div className="flex gap-[6px] mb-5">
             {Array.from({ length: totalSlides }).map((_, i) => (
               <button
@@ -365,14 +367,14 @@ export default function TechShiftChallengePage() {
               />
             ))}
           </div>
-          <p className="text-white text-xl sm:text-2xl font-bold tracking-tight">
+          <p className="text-white text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
             (→) Submission Guide.
           </p>
         </div>
 
         {/* Swipeable content — flex-1 so it fills remaining height */}
         <motion.div
-          className="flex-1 flex flex-col"
+          className="flex-1 flex flex-col lg:max-w-3xl lg:mx-auto lg:w-full"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.1}
@@ -395,14 +397,14 @@ export default function TechShiftChallengePage() {
               {/* Grid centered in remaining space */}
               <div className="flex-1 flex flex-col justify-center">
                 {/* Row 1: Stunt — image 60%, text 40% */}
-                <div className="grid grid-cols-[3fr_2fr] h-44 sm:h-52">
+                <div className="grid grid-cols-[3fr_2fr] h-44 sm:h-52 lg:h-72">
                   <div className="relative overflow-hidden">
                     <Image src="/images/stunt.png" alt="Stunt" fill className="object-cover" />
                   </div>
                   {/* Stunt text cell — red dot top-right */}
                   <div className="relative bg-white flex items-center justify-center">
                     <div className="absolute top-2 right-2 w-3 h-3 bg-brand-red" />
-                    <span className="text-brand-red text-2xl sm:text-3xl font-black tracking-tight">
+                    <span className="text-brand-red text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight">
                       Stunt.
                     </span>
                   </div>
@@ -412,11 +414,11 @@ export default function TechShiftChallengePage() {
                 <div className="h-2 bg-brand-red" />
 
                 {/* Row 2: Core — text 40%, image 60% */}
-                <div className="grid grid-cols-[2fr_3fr] h-44 sm:h-52">
+                <div className="grid grid-cols-[2fr_3fr] h-44 sm:h-52 lg:h-72">
                   {/* Core text cell — red dot top-left */}
                   <div className="relative bg-white flex items-center justify-center">
                     <div className="absolute top-2 left-2 w-3 h-3 bg-brand-red" />
-                    <span className="text-brand-red text-2xl sm:text-3xl font-black tracking-tight">
+                    <span className="text-brand-red text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight">
                       Core.
                     </span>
                   </div>
@@ -428,7 +430,7 @@ export default function TechShiftChallengePage() {
 
               {/* Footer — pushed to bottom */}
               <div className="px-5 pt-5 pb-3 flex-shrink-0">
-                <p className="text-white text-base sm:text-lg font-bold leading-snug">
+                <p className="text-white text-base sm:text-lg lg:text-xl font-bold leading-snug">
                   Pilih VIBE-MU: Pilih kategori Stunt atau Core.
                 </p>
               </div>
@@ -448,7 +450,7 @@ export default function TechShiftChallengePage() {
               <div className="flex-1 bg-[#D9D9D9]" />
               {/* Footer */}
               <div className="px-5 pt-5 pb-3 flex-shrink-0">
-                <p className="text-white text-base sm:text-lg font-bold leading-snug">
+                <p className="text-white text-base sm:text-lg lg:text-xl font-bold leading-snug">
                   1. Record: Ambil video sesuai kategori (Stunt/Core).
                 </p>
               </div>
@@ -466,7 +468,7 @@ export default function TechShiftChallengePage() {
             >
               <div className="flex-1 bg-[#D9D9D9]" />
               <div className="px-5 pt-5 pb-3 flex-shrink-0">
-                <p className="text-white text-base sm:text-lg font-bold leading-snug">
+                <p className="text-white text-base sm:text-lg lg:text-xl font-bold leading-snug">
                   2. Upload: Post ke Instagram dengan hashtag #TechShiftChallenge #NeverFearFull.
                 </p>
               </div>
@@ -484,7 +486,7 @@ export default function TechShiftChallengePage() {
             >
               <div className="flex-1 bg-[#D9D9D9]" />
               <div className="px-5 pt-5 pb-3 flex-shrink-0">
-                <p className="text-white text-base sm:text-lg font-bold leading-snug">
+                <p className="text-white text-base sm:text-lg lg:text-xl font-bold leading-snug">
                   3. Tag: Mention @SanDiskID dan 3 temanmu.
                 </p>
               </div>
@@ -502,7 +504,7 @@ export default function TechShiftChallengePage() {
             >
               <div className="flex-1 bg-[#D9D9D9]" />
               <div className="px-5 pt-5 pb-3 flex-shrink-0">
-                <p className="text-white text-base sm:text-lg font-bold leading-snug">
+                <p className="text-white text-base sm:text-lg lg:text-xl font-bold leading-snug">
                   4. Menangkan hadiah!
                 </p>
               </div>
@@ -511,7 +513,7 @@ export default function TechShiftChallengePage() {
         </motion.div>
 
         {/* Swipe nav — always at bottom */}
-        <div className="flex justify-between items-center px-5 py-4 flex-shrink-0">
+        <div className="flex justify-between items-center px-5 py-4 flex-shrink-0 lg:max-w-3xl lg:mx-auto lg:w-full">
           <button
             onClick={() => setActiveSlide(s => Math.max(0, s - 1))}
             className={`text-white/60 text-sm transition-opacity ${activeSlide === 0 ? 'opacity-0 pointer-events-none' : ''}`}
@@ -542,29 +544,29 @@ export default function TechShiftChallengePage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="flex-1 flex flex-col justify-between py-10 px-4"
+              className="flex-1 flex flex-col justify-between py-10 px-4 lg:px-16 lg:py-16"
             >
               {/* Title */}
-              <p className="text-white text-xl sm:text-2xl font-bold tracking-tight mb-8">
+              <p className="text-white text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight mb-8">
                 (→) The Two Worlds.
               </p>
 
-              {/* Cards area — no gap, full width */}
-              <div className="flex flex-col flex-1 justify-center -mx-4">
+              {/* Cards area — stacked mobile, side-by-side desktop */}
+              <div className="flex flex-col lg:flex-row flex-1 justify-center -mx-4 lg:mx-0 lg:gap-4">
                 {/* STUNT card */}
                 <motion.button
-                  className="relative w-full h-[28vh] overflow-hidden block"
+                  className="relative w-full lg:w-1/2 h-[28vh] lg:h-[55vh] overflow-hidden block"
                   whileTap={{ scale: 0.99 }}
                   onClick={() => setActiveCategory('stunt')}
                 >
                   <Image src="/images/stunt-category.jpg" alt="Stunt" fill className="object-cover object-center" />
                   <div className="absolute inset-0 bg-black/35" />
                   <div className="absolute top-4 left-4 text-left">
-                    <p className="text-[9px] font-bold tracking-widest text-white bg-brand-red px-2 py-0.5 inline-block">
+                    <p className="text-[9px] lg:text-[11px] font-bold tracking-widest text-white bg-brand-red px-2 py-0.5 inline-block">
                       CHALLENGE CATEGORIES
                     </p>
                     <br />
-                    <h3 className="text-3xl sm:text-4xl font-black text-white leading-none bg-brand-red px-2 py-0.5 inline-block mt-1">
+                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-none bg-brand-red px-2 py-0.5 inline-block mt-1">
                       STUNT.
                     </h3>
                   </div>
@@ -572,18 +574,18 @@ export default function TechShiftChallengePage() {
 
                 {/* CORE card */}
                 <motion.button
-                  className="relative w-full h-[28vh] overflow-hidden block"
+                  className="relative w-full lg:w-1/2 h-[28vh] lg:h-[55vh] overflow-hidden block"
                   whileTap={{ scale: 0.99 }}
                   onClick={() => setActiveCategory('core')}
                 >
                   <Image src="/images/core-category.jpg" alt="Core" fill className="object-cover object-center" />
                   <div className="absolute inset-0 bg-black/35" />
                   <div className="absolute top-4 left-4 text-left">
-                    <p className="text-[9px] font-bold tracking-widest text-white bg-brand-red px-2 py-0.5 inline-block">
+                    <p className="text-[9px] lg:text-[11px] font-bold tracking-widest text-white bg-brand-red px-2 py-0.5 inline-block">
                       CHALLENGE CATEGORIES
                     </p>
                     <br />
-                    <h3 className="text-3xl sm:text-4xl font-black text-white leading-none bg-brand-red px-2 py-0.5 inline-block mt-1">
+                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-none bg-brand-red px-2 py-0.5 inline-block mt-1">
                       CORE.
                     </h3>
                   </div>
@@ -605,9 +607,9 @@ export default function TechShiftChallengePage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35 }}
-              className="fixed inset-0 z-50 flex flex-col"
+              className="fixed inset-0 z-50 flex lg:items-center lg:justify-center"
             >
-              {/* Background image blurred */}
+              {/* Full-screen blurred bg */}
               <div className="absolute inset-0">
                 <Image
                   src={activeCategory === 'stunt' ? '/images/stunt.png' : '/images/core.png'}
@@ -618,63 +620,67 @@ export default function TechShiftChallengePage() {
                 <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
               </div>
 
-              {/* Red pixel dots — top-right */}
-              <div className="absolute top-4 right-4 w-4 h-4 bg-brand-red z-20" />
+              {/* Constrained card on desktop */}
+              <div className="relative z-10 w-full h-full flex flex-col lg:w-[700px] lg:h-auto lg:min-h-[80vh] lg:rounded-2xl lg:overflow-hidden lg:shadow-2xl">
 
-              {/* Back button */}
-              <button
-                onClick={() => {
-                  setActiveCategory(null);
-                  setTimeout(() => {
-                    twoWorldsRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
-                  }, 50);
-                }}
-                className="absolute top-4 left-4 z-20 text-white text-sm font-bold flex items-center gap-1 bg-black/40 px-3 py-1.5 rounded-full"
-              >
-                ← Back
-              </button>
+                {/* Red pixel dots — top-right */}
+                <div className="absolute top-4 right-4 w-4 h-4 bg-brand-red z-20" />
 
-              {/* Content — bottom half */}
-              <div className="relative z-10 flex-1 flex flex-col justify-end pb-4 px-5">
-                {/* Label + Title */}
-                <div className="mb-4">
-                  <p className="text-[10px] font-bold tracking-widest text-white bg-brand-red px-2 py-0.5 inline-block mb-1">
-                    CHALLENGE CATEGORIES
+                {/* Back button */}
+                <button
+                  onClick={() => {
+                    setActiveCategory(null);
+                    setTimeout(() => {
+                      twoWorldsRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    }, 50);
+                  }}
+                  className="absolute top-4 left-4 z-20 text-white text-sm font-bold flex items-center gap-1 bg-black/40 px-3 py-1.5 rounded-full"
+                >
+                  ← Back
+                </button>
+
+                {/* Content — bottom half */}
+                <div className="flex-1 flex flex-col justify-end pb-4 px-5 lg:px-8 lg:pb-8">
+                  {/* Label + Title */}
+                  <div className="mb-4">
+                    <p className="text-[10px] font-bold tracking-widest text-white bg-brand-red px-2 py-0.5 inline-block mb-1">
+                      CHALLENGE CATEGORIES
+                    </p>
+                    <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white leading-none bg-brand-red px-2 inline-block">
+                      {activeCategory === 'stunt' ? 'STUNT.' : 'CORE.'}
+                    </h2>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-white text-xl sm:text-2xl font-bold leading-snug mb-4">
+                    {activeCategory === 'stunt'
+                      ? 'Buktikan nyalimu. Rekam aksi paling gila tanpa takut memori penuh.'
+                      : "Simpan memori paling berharga. Tangkap momen 'Core' yang tak terlupakan."}
                   </p>
-                  <h2 className="text-6xl sm:text-7xl font-black text-white leading-none bg-brand-red px-2 inline-block">
-                    {activeCategory === 'stunt' ? 'STUNT.' : 'CORE.'}
-                  </h2>
+
+                  {/* Body text */}
+                  <p className="text-white/70 text-sm lg:text-base leading-relaxed mb-6">
+                    {activeCategory === 'stunt'
+                      ? 'Rekam setiap aksi ekstrem, parkour, skateboard, atau tantangan seru lainnya. Simpan momen berani kamu tanpa batas dengan SanDisk Phone Drive.'
+                      : 'Abadikan momen berharga bersama orang tersayang. Setiap foto dan video punya cerita. Jangan biarkan storage penuh menghentikanmu.'}
+                  </p>
+
+                  {/* Red square dots row */}
+                  <div className="flex gap-3 mb-5">
+                    <div className="w-4 h-4 bg-brand-red" />
+                    <div className="w-4 h-4 bg-brand-red" />
+                    <div className="w-4 h-4 bg-brand-red" />
+                  </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-white text-xl sm:text-2xl font-bold leading-snug mb-4">
-                  {activeCategory === 'stunt'
-                    ? 'Buktikan nyalimu. Rekam aksi paling gila tanpa takut memori penuh.'
-                    : "Simpan memori paling berharga. Tangkap momen 'Core' yang tak terlupakan."}
-                </p>
-
-                {/* Body text */}
-                <p className="text-white/70 text-sm leading-relaxed mb-6">
-                  {activeCategory === 'stunt'
-                    ? 'Rekam setiap aksi ekstrem, parkour, skateboard, atau tantangan seru lainnya. Simpan momen berani kamu tanpa batas dengan SanDisk Phone Drive.'
-                    : 'Abadikan momen berharga bersama orang tersayang. Setiap foto dan video punya cerita. Jangan biarkan storage penuh menghentikanmu.'}
-                </p>
-
-                {/* Red square dots row */}
-                <div className="flex gap-3 mb-5">
-                  <div className="w-4 h-4 bg-brand-red" />
-                  <div className="w-4 h-4 bg-brand-red" />
-                  <div className="w-4 h-4 bg-brand-red" />
-                </div>
+                {/* Bottom tab — switch category */}
+                <button
+                  onClick={() => setActiveCategory(activeCategory === 'stunt' ? 'core' : 'stunt')}
+                  className="w-full bg-brand-red py-4 text-white text-xs font-black tracking-widest text-center uppercase"
+                >
+                  CHALLENGE CATEGORIES — {activeCategory === 'stunt' ? 'CORE' : 'STUNT'} →
+                </button>
               </div>
-
-              {/* Bottom tab — switch category */}
-              <button
-                onClick={() => setActiveCategory(activeCategory === 'stunt' ? 'core' : 'stunt')}
-                className="relative z-10 w-full bg-brand-red py-4 text-white text-xs font-black tracking-widest text-center uppercase"
-              >
-                CHALLENGE CATEGORIES — {activeCategory === 'stunt' ? 'CORE' : 'STUNT'} →
-              </button>
             </motion.div>
           )}
         </AnimatePresence>
@@ -683,9 +689,10 @@ export default function TechShiftChallengePage() {
       {/* ========================================
           SECTION 3: SYARAT DAN KETENTUAN
       ======================================== */}
-      <section className="bg-white px-6 py-10">
+      <section className="bg-white px-6 lg:px-0 py-10 lg:py-20">
+        <div className="lg:max-w-4xl lg:mx-auto">
         {/* Header */}
-        <p className="text-black text-base font-bold tracking-tight mb-6">(→) Syarat dan Ketentuan.</p>
+        <p className="text-black text-base lg:text-2xl font-bold tracking-tight mb-6 lg:mb-10">(→) Syarat dan Ketentuan.</p>
 
         {/* Items */}
         {[
@@ -712,15 +719,16 @@ export default function TechShiftChallengePage() {
         ].map((item, i) => (
           <div key={i}>
             <div className="h-px bg-black/15 mb-6" />
-            <div className="grid grid-cols-[3rem_1fr] gap-x-4 mb-6">
-              <span className="text-sm font-bold text-black pt-0.5">{item.num}</span>
+            <div className="grid grid-cols-[3rem_1fr] lg:grid-cols-[5rem_1fr] gap-x-4 lg:gap-x-8 mb-6 lg:mb-10">
+              <span className="text-sm lg:text-base font-bold text-black pt-0.5">{item.num}</span>
               <div>
-                <h3 className="text-2xl font-bold text-black mb-3">{item.title}</h3>
-                <p className="text-sm text-black/70 leading-relaxed">{item.body}</p>
+                <h3 className="text-2xl lg:text-3xl font-bold text-black mb-3">{item.title}</h3>
+                <p className="text-sm lg:text-base text-black/70 leading-relaxed">{item.body}</p>
               </div>
             </div>
           </div>
         ))}
+        </div>
       </section>
 
       {/* ========================================
@@ -751,9 +759,11 @@ export default function TechShiftChallengePage() {
       {/* ========================================
           SECTION 6: RULES & FAQ
       ======================================== */}
-      <section className="bg-black px-6 py-10">
-        <p className="text-white text-base font-bold tracking-tight mb-14">(→) FAQ</p>
-        <FAQAccordion />
+      <section className="bg-black px-6 lg:px-0 py-10 lg:py-20">
+        <div className="lg:max-w-4xl lg:mx-auto">
+          <p className="text-white text-base lg:text-2xl font-bold tracking-tight mb-14 lg:mb-16">(→) FAQ</p>
+          <FAQAccordion />
+        </div>
       </section>
 
       {/* ========================================
