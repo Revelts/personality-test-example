@@ -24,9 +24,11 @@ import { Question, getRandomQuestions } from '@/lib/questions';
 import { calculatePersonality, Scores } from '@/lib/results';
 import { trackTestStart, trackQuestionAnswer, trackTestComplete } from '@/lib/analytics';
 import { saveProgress, loadProgress, clearProgress } from '@/lib/progressStorage';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function TestPage() {
   const router = useRouter();
+  const { finishPlay } = useAnalytics();
   const [userName, setUserName] = useState<string>('');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -132,8 +134,9 @@ export default function TestPage() {
 
   const handleConnectionComplete = useCallback(() => {
     // This will be called after 5 seconds of connection animation
+    finishPlay();
     router.push(`/result/${resultId}`);
-  }, [router, resultId]);
+  }, [finishPlay, router, resultId]);
 
   const handleSelectAnswer = useCallback((answerId: string) => {
     if (isTransitioning) return;

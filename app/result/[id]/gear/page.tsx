@@ -6,10 +6,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import PixelDecoration from '@/components/PixelDecoration';
 import { PersonalityResult, personalityTypes } from '@/lib/results';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function GearPage() {
   const params = useParams();
   const router = useRouter();
+  const { clickMarketplace } = useAnalytics();
   const [result, setResult] = useState<PersonalityResult | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -240,6 +242,7 @@ export default function GearPage() {
               <div className="flex items-center justify-center gap-3 sm:gap-4">
                 <a
                   href={result.gearLinks?.lazada || 'https://www.lazada.co.id/products/sandisk-phone-drive-for-android-usb-type-a-dan-otg-type-c-i8265588670-s14676420564.html'}
+                  onClick={() => clickMarketplace('lazada')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center hover:border-brand-red transition-colors p-2 shadow-sm"
@@ -254,6 +257,7 @@ export default function GearPage() {
                 </a>
                 <a
                   href={result.gearLinks?.shopee || 'https://shopee.co.id/SANDISK-Phone-Drive-for-Android-USB-Type-C-A-32GB-64GB-128GB-256GB-512GB-USB-3.2-Up-To-100MB-s-i.1657263.24536652989'}
+                  onClick={() => clickMarketplace('shopee')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center hover:border-brand-red transition-colors p-2 shadow-sm"
@@ -268,6 +272,7 @@ export default function GearPage() {
                 </a>
                 <a
                   href={result.gearLinks?.tiktokshop || 'https://vt.tokopedia.com/t/ZS91fMe6Xyvhb-TXgeb/'}
+                  onClick={() => clickMarketplace('tiktok_shop')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center hover:border-brand-red transition-colors p-2 shadow-sm"

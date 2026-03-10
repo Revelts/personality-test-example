@@ -28,6 +28,8 @@ export interface DataLayerEvent {
   [key: string]: any; // Allow additional properties
 }
 
+export type MarketplacePlatform = 'lazada' | 'tiktok_shop' | 'shopee';
+
 /**
  * Initialize dataLayer if not exists
  * Called once on app mount
@@ -73,6 +75,65 @@ export const pushToDataLayer = (data: DataLayerEvent): void => {
   if (process.env.NODE_ENV === 'development') {
     console.log('📊 Analytics Event:', enrichedData);
   }
+};
+
+const SESSION_ID_STORAGE_KEY = 'campaign_session_id';
+
+export const getSessionId = (): string | undefined => {
+  if (typeof window === 'undefined') return undefined;
+
+  try {
+    const existing = window.localStorage.getItem(SESSION_ID_STORAGE_KEY);
+    if (existing) return existing;
+
+    const id =
+      typeof crypto !== 'undefined' && 'randomUUID' in crypto
+        ? crypto.randomUUID()
+        : `sid_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+
+    window.localStorage.setItem(SESSION_ID_STORAGE_KEY, id);
+    return id;
+  } catch {
+    // localStorage can be blocked; still track without session_id
+    return undefined;
+  }
+};
+
+const getDefaultEventMeta = (): Record<string, any> => {
+  if (typeof window === 'undefined') return {};
+  return {
+    session_id: getSessionId(),
+    page: window.location?.pathname ?? '',
+  };
+};
+
+/**
+ * Reusable analytics helper requested by campaign tracking.
+ * Uses GTM dataLayer via existing pushToDataLayer().
+ */
+export const trackEvent = (eventName: string, data?: Record<string, any>): void => {
+  pushToDataLayer({
+    event: eventName,
+    ...getDefaultEventMeta(),
+    ...(data ?? {}),
+  });
+};
+
+// Campaign-specific helpers
+export const trackPlayStart = (): void => {
+  trackEvent('play_start');
+};
+
+export const trackPlayFinish = (): void => {
+  trackEvent('play_finish');
+};
+
+export const trackClickMarketplace = (platform: MarketplacePlatform): void => {
+  trackEvent('marketplace_click', { marketplace: platform });
+};
+
+export const trackShareClick = (): void => {
+  trackEvent('share_click');
 };
 
 /**

@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PixelDecoration from '@/components/PixelDecoration';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 // Typewriter Text Component
 function TypewriterText({ 
@@ -57,6 +58,7 @@ function TypewriterText({
 
 export default function ProloguePage() {
   const router = useRouter();
+  const { startPlay } = useAnalytics();
   const [showButton, setShowButton] = useState(false);
   const [userName, setUserName] = useState('');
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -97,6 +99,7 @@ export default function ProloguePage() {
   }, [currentTextIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleStartTest = () => {
+    startPlay();
     router.push('/test');
   };
 
