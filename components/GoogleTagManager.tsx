@@ -7,44 +7,20 @@
 
 import Script from 'next/script';
 import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { initializeDataLayer, trackPageView } from '@/lib/analytics';
+import { initializeDataLayer } from '@/lib/analytics';
+import { usePageTracking } from '@/hooks/usePageTracking';
 
 interface GTMProps {
   gtmId: string;
 }
 
 export default function GoogleTagManager({ gtmId }: GTMProps) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  usePageTracking();
 
   // Initialize dataLayer on mount
   useEffect(() => {
     initializeDataLayer();
   }, []);
-
-  // Track page views on route change (SPA navigation)
-  useEffect(() => {
-    if (pathname) {
-      // Determine page type
-      let pageType = 'default';
-      let pageName = 'Home';
-
-      if (pathname === '/') {
-        pageType = 'landing';
-        pageName = 'Landing Page';
-      } else if (pathname === '/test') {
-        pageType = 'test';
-        pageName = 'Personality Test';
-      } else if (pathname.startsWith('/result/')) {
-        pageType = 'result';
-        pageName = 'Test Result';
-      }
-
-      // Track page view
-      trackPageView(pageName, pageType);
-    }
-  }, [pathname, searchParams]);
 
   // Don't load GTM in development (optional)
   if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_GTM_ENABLED) {

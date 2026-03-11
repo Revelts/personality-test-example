@@ -8,6 +8,7 @@ declare global {
   interface Window {
     dataLayer: any[];
     gtag?: (...args: any[]) => void;
+    clarity?: (...args: any[]) => void;
   }
 }
 
@@ -17,6 +18,7 @@ export interface DataLayerEvent {
   page_name?: string;
   page_path?: string;
   page_type?: string;
+   page_title?: string;
   user_id?: string;
   user_name?: string;
   test_id?: string;
@@ -107,6 +109,25 @@ const getDefaultEventMeta = (): Record<string, any> => {
   };
 };
 
+const trackClarityEvent = (eventName: string, data?: Record<string, any>): void => {
+  if (typeof window === 'undefined') return;
+  const clarity = window.clarity;
+  if (typeof clarity !== 'function') return;
+
+  try {
+    if (data) {
+      clarity('event', eventName, data);
+    } else {
+      clarity('event', eventName);
+    }
+  } catch (error) {
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
+      console.warn('Clarity event error:', error);
+    }
+  }
+};
+
 /**
  * Reusable analytics helper requested by campaign tracking.
  * Uses GTM dataLayer via existing pushToDataLayer().
@@ -122,14 +143,18 @@ export const trackEvent = (eventName: string, data?: Record<string, any>): void 
 // Campaign-specific helpers
 export const trackPlayStart = (): void => {
   trackEvent('play_start');
+  trackClarityEvent('experience_started');
 };
 
 export const trackPlayFinish = (): void => {
   trackEvent('play_finish');
+  trackClarityEvent('experience_completed');
 };
 
 export const trackClickMarketplace = (platform: MarketplacePlatform): void => {
-  trackEvent('marketplace_click', { marketplace: platform });
+  const payload = { marketplace: platform };
+  trackEvent('marketplace_click', payload);
+  trackClarityEvent('marketplace_clicked', payload);
 };
 
 export const trackShareClick = (): void => {
@@ -143,13 +168,19 @@ export const trackShareClick = (): void => {
 
 // 1. Page View (SPA-aware)
 export const trackPageView = (pageName: string, pageType: string = 'default'): void => {
+  const pagePath = typeof window !== 'undefined' ? window.location.pathname : '';
+  const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const pageReferrer = typeof document !== 'undefined' ? document.referrer : '';
+  const pageTitle = typeof document !== 'undefined' ? document.title : undefined;
+
   pushToDataLayer({
     event: 'page_view',
     page_name: pageName,
-    page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    page_path: pagePath,
     page_type: pageType,
-    page_url: typeof window !== 'undefined' ? window.location.href : '',
-    page_referrer: typeof document !== 'undefined' ? document.referrer : '',
+    page_url: pageUrl,
+    page_referrer: pageReferrer,
+    page_title: pageTitle,
   });
 };
 

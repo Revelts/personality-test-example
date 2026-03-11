@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import AnalyticsProvider from '@/components/AnalyticsProvider'
 
 // Pilat Font - SanDisk Branding
 // Using .otf files from public/fonts
@@ -75,10 +76,11 @@ export default function RootLayout({
   return (
     <html lang="id" className="dark">
       <body className={`${pilatExtended.className} antialiased bg-bg-primary text-text-primary`}>
-        {/* Google Analytics */}
-        <GoogleAnalytics gaId={gaId} />
-        
-        {children}
+        <AnalyticsProvider>
+          {/* Google Analytics */}
+          <GoogleAnalytics gaId={gaId} />
+          {children}
+        </AnalyticsProvider>
       </body>
     </html>
   )
