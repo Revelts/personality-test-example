@@ -2,7 +2,6 @@
 
 import Script from 'next/script';
 import { useEffect } from 'react';
-import GoogleTagManager from '@/components/GoogleTagManager';
 import { initializeDataLayer, trackEvent } from '@/lib/analytics';
 import { usePageTracking } from '@/hooks/usePageTracking';
 
@@ -17,8 +16,6 @@ const getElementText = (el: HTMLElement | null): string | undefined => {
 };
 
 export default function AnalyticsProvider({ children }: AnalyticsProviderProps) {
-  // Hard-coded GTM ID (no env dependency).
-  const gtmId = 'GTM-5323NFPL';
   const clarityId = 'vthj8q2h3l';
 
   usePageTracking();
@@ -86,8 +83,6 @@ export default function AnalyticsProvider({ children }: AnalyticsProviderProps) 
 
   return (
     <>
-      <GoogleTagManager gtmId={gtmId} />
-
       {clarityId && (
         <Script id="ms-clarity" strategy="afterInteractive">
           {`
