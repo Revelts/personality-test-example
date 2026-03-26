@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { trackPageView } from '@/lib/analytics';
 
 const getPageMeta = (pathname: string | null): { pageName: string; pageType: string } => {
@@ -34,12 +34,11 @@ const getPageMeta = (pathname: string | null): { pageName: string; pageType: str
 
 export const usePageTracking = (): void => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (!pathname) return;
     const { pageName, pageType } = getPageMeta(pathname);
     trackPageView(pageName, pageType);
-  }, [pathname, searchParams]);
+  }, [pathname]);
 };
 
