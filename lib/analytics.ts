@@ -40,12 +40,14 @@ export const initializeDataLayer = (): void => {
   if (typeof window === 'undefined') return;
   
   window.dataLayer = window.dataLayer || [];
-  
-  // Push initial state for GA4
-  window.dataLayer.push({
-    'js': new Date(),
-    'config': 'G-PH28648C02'
-  });
+
+  // Ensure gtag exists early so events can queue
+  // (GA script will read from the same dataLayer later.)
+  if (typeof window.gtag !== 'function') {
+    window.gtag = (...args: any[]) => {
+      window.dataLayer.push(args);
+    };
+  }
 };
 
 /**

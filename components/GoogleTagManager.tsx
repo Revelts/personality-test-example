@@ -22,11 +22,6 @@ export default function GoogleTagManager({ gtmId }: GTMProps) {
     initializeDataLayer();
   }, []);
 
-  // Don't load GTM in development (optional)
-  if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_GTM_ENABLED) {
-    return null;
-  }
-
   return (
     <>
       {/* Google Tag Manager - Script */}

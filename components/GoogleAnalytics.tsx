@@ -30,7 +30,7 @@ export default function GoogleAnalytics({ gaId }: GAProps) {
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            window.gtag = window.gtag || function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${gaId}');
           `,

@@ -3,7 +3,8 @@
 import Script from 'next/script';
 import { useEffect } from 'react';
 import GoogleTagManager from '@/components/GoogleTagManager';
-import { trackEvent } from '@/lib/analytics';
+import { initializeDataLayer, trackEvent } from '@/lib/analytics';
+import { usePageTracking } from '@/hooks/usePageTracking';
 
 interface AnalyticsProviderProps {
   children: React.ReactNode;
@@ -16,11 +17,15 @@ const getElementText = (el: HTMLElement | null): string | undefined => {
 };
 
 export default function AnalyticsProvider({ children }: AnalyticsProviderProps) {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || '';
+  // Hard-coded GTM ID (no env dependency).
+  const gtmId = 'GTM-5323NFPL';
   const clarityId = 'vthj8q2h3l';
+
+  usePageTracking();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    initializeDataLayer();
 
     const handleClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
@@ -81,7 +86,7 @@ export default function AnalyticsProvider({ children }: AnalyticsProviderProps) 
 
   return (
     <>
-      {gtmId && <GoogleTagManager gtmId={gtmId} />}
+      <GoogleTagManager gtmId={gtmId} />
 
       {clarityId && (
         <Script id="ms-clarity" strategy="afterInteractive">
