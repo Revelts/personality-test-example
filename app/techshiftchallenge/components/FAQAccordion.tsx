@@ -5,51 +5,78 @@ import { useState } from 'react';
 
 interface FAQItem {
   question: string;
-  answer: string;
+  answer: string | React.ReactNode;
 }
 
 const faqData: FAQItem[] = [
   {
-    question: 'Siapa yang bisa ikut challenge ini?',
-    answer: 'Challenge terbuka untuk semua warga Indonesia berusia minimal 17 tahun dengan akun Instagram aktif.',
+    question: 'Apakah harus menggunakan template yang tersedia?',
+    answer: 'Ya. Untuk mengikuti challenge ini, kamu perlu menggunakan template resmi yang sudah disediakan.',
   },
   {
-    question: 'Berapa durasi video yang dibutuhkan?',
-    answer: 'Video harus berdurasi minimal 15 detik dan maksimal 90 detik. Pastikan kontenmu padat dan menarik!',
+    question: 'Apakah template boleh diubah atau dimodifikasi?',
+    answer: 'Tidak. Template tidak boleh diubah atau dimodifikasi, terutama pada elemen visual di dalamnya. Template sudah dirancang agar format video tetap konsisten dan memudahkan proses kurasi serta penilaian. Namun, peserta diperbolehkan untuk menyesuaikan atau mengubah bagian teks sesuai kebutuhan konten.',
   },
   {
-    question: 'Apakah ada persyaratan kualitas video?',
-    answer: 'Video harus beresolusi minimal 720p (HD). Pastikan pencahayaan baik dan audio jelas untuk hasil terbaik.',
+    question: 'Bagaimana cara memilih template?',
+    answer: (
+      <span>
+        Pilih template yang paling sesuai dengan momen yang ingin kamu tampilkan:<br />
+        • Aksi random dengan transisi kreatif, atau<br />
+        • Momen sehari-hari yang spontan tapi lucu.
+      </span>
+    ),
   },
   {
-    question: 'Kapan deadline pengumpulan video?',
-    answer: 'Challenge ditutup pada 31 Maret 2026 pukul 23:59 WIB. Jangan sampai ketinggalan!',
+    question: 'Bagaimana sistem pemenangnya?',
+    answer: (
+      <span>
+        Setiap minggu akan dipilih <strong>6 pemenang</strong> (<strong>3 dari setiap template</strong>) untuk memenangkan <strong>voucher belanja</strong> dan masuk ke <strong>final Grand Prize</strong>.<br /><br />
+        Di babak final, akan dipilih <strong>6 pemenang utama</strong> (<strong>3 dari setiap template</strong>) yang berkesempatan memenangkan <strong>Grand Prize iPhone 17</strong> serta hadiah lainnya.
+      </span>
+    ),
   },
   {
-    question: 'Bagaimana proses penjurian dilakukan?',
-    answer: 'Video akan dinilai berdasarkan kreativitas (40%), kesesuaian tema (30%), engagement (20%), dan kualitas produksi (10%).',
+    question: 'Bagaimana proses penilaian dilakukan?',
+    answer: (
+      <span>
+        Semua video yang masuk akan melalui proses kurasi dan penilaian oleh Penyelenggara berdasarkan beberapa aspek berikut:<br />
+        • Kreativitas isi konten - 60%<br />
+        • Pemakaian template yang benar - 30%<br />
+        • Interaksi pada video (likes &amp; komentar) - 10%
+      </span>
+    ),
+  },
+  {
+    question: 'Kapan pemenang akan diumumkan?',
+    answer: (
+      <span>
+        Pemenang akan diumumkan melalui akun resmi Sandisk Indonesia di Facebook, Instagram, dan TikTok setelah proses penilaian selesai.<br /><br />
+        Untuk weekly winners, pengumuman akan dilakukan pada tanggal 15, 22, 29 April 2026 dan 11 Mei 2026. Sedangkan grand winners akan diumumkan pada 18 Mei 2026.
+      </span>
+    ),
   },
 ];
 
 export default function FAQAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div>
       {faqData.map((faq, index) => (
         <div key={index}>
-          <div className="h-px bg-white/20 mb-6" />
+          <div className="h-px bg-black/15 mb-6" />
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
             className="w-full grid grid-cols-[3rem_1fr_1.5rem] lg:grid-cols-[5rem_1fr_2rem] items-start gap-x-2 lg:gap-x-4 text-left mb-4"
           >
-            <span className="text-sm lg:text-base font-bold text-white pt-1">
+            <span className="text-sm lg:text-base font-bold text-black pt-1">
               {String(index + 1).padStart(2, '0')}.
             </span>
-            <span className="text-xl lg:text-2xl font-bold text-white leading-snug">
+            <span className="text-xl lg:text-2xl font-bold text-black leading-snug">
               {faq.question}
             </span>
-            <span className="text-white text-base lg:text-xl pt-1 text-right">
+            <span className="text-black text-base lg:text-xl pt-1 text-right">
               {openIndex === index ? '∧' : '∨'}
             </span>
           </button>
@@ -63,7 +90,7 @@ export default function FAQAccordion() {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <p className="text-sm lg:text-base text-white/60 leading-relaxed pl-[3.5rem] lg:pl-[6rem] pb-6">
+                <p className="text-sm lg:text-base text-black/70 leading-relaxed pl-[3.5rem] lg:pl-[6rem] pb-6">
                   {faq.answer}
                 </p>
               </motion.div>

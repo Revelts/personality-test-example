@@ -9,7 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-pilat-extended)', 'system-ui', 'sans-serif'],
+        pilat: ['var(--font-pilat-extended)', 'system-ui', 'sans-serif'],
         grotesk: ['Space Grotesk', 'sans-serif'],
       },
       
