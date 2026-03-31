@@ -311,7 +311,7 @@ export default function TechShiftChallengePage() {
 
           {/* Swipeable slides */}
           <motion.div
-            className="flex-1 overflow-y-auto"
+            className="flex-1 overflow-hidden"
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.08}
@@ -367,22 +367,24 @@ export default function TechShiftChallengePage() {
               </motion.div>
             )}
             {activeHowSlide === 1 && (
-              <motion.div key="how-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }} className="px-5 pb-6">
-                <div className="w-full mb-5 rounded-sm overflow-hidden">
-                  <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" width={400} height={500} className="w-full h-auto object-cover" />
+              <motion.div key="how-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
+                className="px-5 pb-6 flex flex-col min-h-[calc(100vh-120px)]">
+                <div className="flex-1 relative rounded-sm overflow-hidden mb-5 min-h-0">
+                  <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
                 </div>
-                <div className="flex items-start gap-3 mb-5">
+                <div className="flex items-start gap-3 flex-shrink-0">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">02.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Gunakan lagu resmi Sandisk Challenge sesuai template yang dipilih, baik untuk aksi seru maupun momen lucu.</p>
                 </div>
               </motion.div>
             )}
             {activeHowSlide === 2 && (
-              <motion.div key="how-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }} className="px-5 pb-6">
-                <div className="w-full mb-5 rounded-sm overflow-hidden">
-                  <Image src="/images/slide-3.png" alt="Post videomu di TikTok" width={400} height={500} className="w-full h-auto object-cover" />
+              <motion.div key="how-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
+                className="px-5 pb-6 flex flex-col min-h-[calc(100vh-120px)]">
+                <div className="flex-1 relative rounded-sm overflow-hidden mb-5 min-h-0">
+                  <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
                 </div>
-                <div className="flex items-start gap-3 mb-4">
+                <div className="flex items-start gap-3 flex-shrink-0">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">03.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Post videomu di TikTok dengan hashtag #sandisktechshiftid , tag @sandiskindonesia pastikan akunmu tidak private.</p>
                 </div>
