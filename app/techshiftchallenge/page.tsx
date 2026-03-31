@@ -278,7 +278,7 @@ export default function TechShiftChallengePage() {
       <section className="relative bg-brand-red select-none overflow-hidden">
 
         {/* ── MOBILE ── */}
-        <div className="lg:hidden min-h-screen flex flex-col">
+        <div className="lg:hidden h-screen flex flex-col overflow-hidden">
           {/* Progress bar */}
           <div className="flex gap-1.5 px-5 pt-5 pb-4">
             {Array.from({ length: HOW_SLIDES }).map((_, i) => (
@@ -311,7 +311,7 @@ export default function TechShiftChallengePage() {
 
           {/* Swipeable slides */}
           <motion.div
-            className="flex-1 overflow-hidden"
+            className="flex-1 overflow-hidden h-full"
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.08}
@@ -368,11 +368,11 @@ export default function TechShiftChallengePage() {
             )}
             {activeHowSlide === 1 && (
               <motion.div key="how-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
-                className="px-5 pb-6 flex flex-col min-h-[calc(100vh-120px)]">
+                className="h-full px-5 pb-44 flex flex-col">
                 <div className="flex-1 relative rounded-sm overflow-hidden mb-5 min-h-0">
                   <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
                 </div>
-                <div className="flex items-start gap-3 flex-shrink-0">
+                <div className="flex items-start gap-3 flex-shrink-0 relative z-10">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">02.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Gunakan lagu resmi Sandisk Challenge sesuai template yang dipilih, baik untuk aksi seru maupun momen lucu.</p>
                 </div>
@@ -380,11 +380,11 @@ export default function TechShiftChallengePage() {
             )}
             {activeHowSlide === 2 && (
               <motion.div key="how-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
-                className="px-5 pb-6 flex flex-col min-h-[calc(100vh-120px)]">
+                className="h-full px-5 pb-44 flex flex-col">
                 <div className="flex-1 relative rounded-sm overflow-hidden mb-5 min-h-0">
                   <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
                 </div>
-                <div className="flex items-start gap-3 flex-shrink-0">
+                <div className="flex items-start gap-3 flex-shrink-0 relative z-10">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">03.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Post videomu di TikTok dengan hashtag #sandisktechshiftid , tag @sandiskindonesia pastikan akunmu tidak private.</p>
                 </div>
