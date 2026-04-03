@@ -135,6 +135,7 @@ export default function TechShiftChallengePage() {
             transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.8 }}
             className="mb-7"
           >
+            <p className="text-white text-sm font-medium mb-3">Kontes berakhir dalam:</p>
             <CountdownTimer endDate="2026-03-31T23:59:59" />
           </motion.div>
 
@@ -201,10 +202,10 @@ export default function TechShiftChallengePage() {
 
         {(() => {
           const prizes = [
-            { label: 'WEEKLY WINNER', desc: 'Voucher Rp 750.000,-', src: '/images/weekly-prize.png', alt: 'Weekly Prize', note: null },
+            { label: 'WEEKLY WINNER', desc: 'Voucher Rp 750.000,-', src: '/images/weekly-prize.png', alt: 'Weekly Prize', note: '*Gambar hadiah hanya ditunjukan sebagai ilustrasi.' },
             { label: 'GRAND PRIZE', desc: 'iPhone 17, SANDISK® Phone Drive 256GB & merchandise eksklusif Sandisk', src: '/images/grand-prize.png', alt: 'Grand Prize', note: '*Gambar hadiah hanya ditunjukan sebagai ilustrasi.' },
-            { label: 'SECOND PRIZE', desc: 'Garmin Smartwatch, SANDISK® Phone Drive 256GB & merchandise eksklusif Sandisk', src: '/images/second-prize.png', alt: 'Second Prize', note: null },
-            { label: 'THIRD PRIZE', desc: 'Bose Ultra Open Earbuds, SANDISK® Phone Drive 256GB & merchandise eksklusif Sandisk', src: '/images/thrid-prize.png', alt: 'Third Prize', note: null },
+            { label: 'SECOND PRIZE', desc: 'Garmin Smartwatch, SANDISK® Phone Drive 256GB & merchandise eksklusif Sandisk', src: '/images/second-prize.png', alt: 'Second Prize', note: '*Gambar hadiah hanya ditunjukan sebagai ilustrasi.' },
+            { label: 'THIRD PRIZE', desc: 'Bose Ultra Open Earbuds, SANDISK® Phone Drive 256GB & merchandise eksklusif Sandisk', src: '/images/thrid-prize.png', alt: 'Third Prize', note: '*Gambar hadiah hanya ditunjukan sebagai ilustrasi.' },
           ];
           const prize = prizes[activePrize];
           return (
@@ -218,7 +219,7 @@ export default function TechShiftChallengePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
                     transition={{ duration: reducedMotion ? 0.1 : 0.65, delay: reducedMotion ? 0 : i * 0.05 }}
-                    className="border-t border-black/10 px-5 sm:px-8 pt-8 pb-10"
+                    className="border-t border-black/10 px-5 sm:px-8 pt-8 pb-16"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-base sm:text-lg font-black text-black uppercase tracking-wide">{p.label}</span>
@@ -235,7 +236,7 @@ export default function TechShiftChallengePage() {
 
               {/* Desktop — fixed height slider, label+desc top-left, large centered image */}
               <div className="hidden lg:block border-t border-black/10">
-                <div className="relative px-16 pt-10 h-[600px] flex flex-col">
+                <div className="relative px-16 pt-10 h-[760px] flex flex-col">
                   <motion.div
                     key={activePrize}
                     initial={{ opacity: 0, x: 40 }}
@@ -246,34 +247,34 @@ export default function TechShiftChallengePage() {
                     {/* Label + desc top-left */}
                     <div className="mb-6 flex-shrink-0">
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-2xl font-black text-black uppercase tracking-wide">{prize.label}</span>
+                        <span className="text-4xl font-black text-black uppercase tracking-wide">{prize.label}</span>
                         <div className="w-4 h-4 bg-brand-red flex-shrink-0" />
                       </div>
-                      <p className="text-lg text-black font-bold max-w-lg">{prize.desc}</p>
+                      <p className="text-2xl text-black font-bold max-w-2xl">{prize.desc}</p>
                     </div>
 
                     {/* Large centered image */}
                     <div className="flex-1 flex items-center justify-center min-h-0">
-                      <div className="w-[560px] h-[420px] relative">
+                      <div className="w-[720px] h-[540px] relative">
                         <Image src={prize.src} alt={prize.alt} fill className="object-contain" />
                       </div>
                     </div>
 
-                    {prize.note && <p className="text-xs text-black font-bold pb-2 flex-shrink-0">{prize.note}</p>}
+                    {prize.note && <p className="text-sm text-black font-bold pb-2 flex-shrink-0">{prize.note}</p>}
                   </motion.div>
                 </div>
 
                 {/* Nav arrows — bottom right */}
-                <div className="flex justify-end gap-1 px-16 pb-10">
+                <div className="flex justify-end gap-2 px-16 pb-10">
                   <button
                     onClick={() => setActivePrize(p => Math.max(0, p - 1))}
                     disabled={activePrize === 0}
-                    className="w-10 h-10 border border-black/20 flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-30"
+                    className="w-16 h-16 border border-black/20 flex items-center justify-center text-black font-bold text-2xl hover:bg-black hover:text-white transition-colors disabled:opacity-30"
                   >←</button>
                   <button
                     onClick={() => setActivePrize(p => Math.min(prizes.length - 1, p + 1))}
                     disabled={activePrize === prizes.length - 1}
-                    className="w-10 h-10 border border-black/20 flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-30"
+                    className="w-16 h-16 border border-black/20 flex items-center justify-center text-black font-bold text-2xl hover:bg-black hover:text-white transition-colors disabled:opacity-30"
                   >→</button>
                 </div>
               </div>
@@ -303,19 +304,19 @@ export default function TechShiftChallengePage() {
 
           {/* Header row */}
           <div className="flex items-center justify-between px-5 mb-5">
-            <span className="bg-black text-white text-sm sm:text-base font-black px-3 py-2 uppercase tracking-wide">
+            <span className="bg-black text-white text-lg sm:text-xl font-black px-3 py-2 uppercase tracking-wide">
               CARA IKUT KESERUANNYA
             </span>
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))}
                 disabled={Number(activeHowSlide) === 0}
-                className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40"
+                className="w-7 h-7 border border-white flex items-center justify-center text-white text-xs hover:bg-white hover:text-black transition-colors disabled:opacity-40"
               >←</button>
               <button
                 onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))}
                 disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
-                className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40"
+                className="w-7 h-7 border border-white flex items-center justify-center text-white text-xs hover:bg-white hover:text-black transition-colors disabled:opacity-40"
               >→</button>
             </div>
           </div>
@@ -337,12 +338,14 @@ export default function TechShiftChallengePage() {
               <motion.div key="how-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
                 className="px-5 pt-4 pb-10 flex flex-col items-center min-h-[calc(100vh-120px)]"
               >
-                <div className="flex items-start gap-3 mb-10 w-full">
-                  <span className="text-black text-2xl font-black leading-none">01.</span>
+                <div className="flex items-start gap-3 mb-6 w-full">
+                  <div className="bg-black px-2 py-1 flex-shrink-0">
+                    <span className="text-white text-base font-black leading-none">01.</span>
+                  </div>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Pilih template favoritmu dan kreasikan momenmu</p>
                 </div>
                 <div className="mb-3 w-full">
-                  <div className="relative w-full h-[280px] overflow-hidden rounded-sm">
+                  <div className="relative w-full h-[260px] overflow-hidden rounded-sm">
                     <div className="absolute top-3 left-3 z-10">
                       <p className="text-white text-sm font-black leading-none uppercase">AKSI STUNT KEREN</p>
                       <p className="text-white/80 text-xs font-medium">dengan transisi heboh</p>
@@ -356,8 +359,8 @@ export default function TechShiftChallengePage() {
                     </div>
                   </div>
                 </div>
-                <div className="mb-8 w-full">
-                  <div className="relative w-full h-[280px] overflow-hidden rounded-sm">
+                <div className="mb-6 w-full">
+                  <div className="relative w-full h-[260px] overflow-hidden rounded-sm">
                     <div className="absolute top-3 left-3 z-10">
                       <p className="text-white text-sm font-black leading-none uppercase">MOMEN RANDOM</p>
                       <p className="text-white/80 text-xs font-medium">spontan tapi lucu</p>
@@ -372,7 +375,7 @@ export default function TechShiftChallengePage() {
                   </div>
                 </div>
                 <a href="https://placeholder-syarat-ketentuan.com" target="_blank" rel="noopener noreferrer"
-                  className="text-white text-lg sm:text-xl font-bold underline underline-offset-4 hover:text-black transition-colors duration-200 mt-auto pt-8 w-full">
+                  className="text-white text-sm font-normal underline underline-offset-4 hover:text-black transition-colors duration-200 mt-auto pt-4 w-full">
                   (→) Baca Syarat &amp; Ketentuan
                 </a>
               </motion.div>
@@ -411,7 +414,8 @@ export default function TechShiftChallengePage() {
         </div>
 
         {/* ── DESKTOP ── */}
-        <div className="hidden lg:flex flex-col h-screen">
+        <div className="hidden lg:flex flex-col h-screen relative">
+
           {/* Progress bars */}
           <div className="flex gap-1.5 px-16 pt-6 pb-4 flex-shrink-0">
             {Array.from({ length: HOW_SLIDES }).map((_, i) => (
@@ -426,117 +430,156 @@ export default function TechShiftChallengePage() {
           {/* Slide content */}
           <div className="flex-1 relative overflow-hidden">
             <AnimatePresence mode="wait">
-              {/* Slide 1 */}
+
+              {/* ── Slide 1 ── */}
               {activeHowSlide === 0 && (
                 <motion.div key="d-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-                  className="absolute inset-0 flex flex-col px-16 pt-4 pb-10">
-                  {/* Two cards side by side — centered */}
-                  <div className="flex-1 flex items-center justify-center gap-6 min-h-0">
-                    <div className="relative w-[340px] h-full max-h-[420px] overflow-hidden rounded-sm flex-shrink-0">
-                      <div className="absolute top-3 left-3 z-10">
-                        <p className="text-white text-sm font-black leading-none uppercase">AKSI STUNT KEREN</p>
-                        <p className="text-white/80 text-xs font-medium">dengan transisi heboh</p>
-                      </div>
-                      <Image src="/images/how-1.png" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
-                      <div className="absolute bottom-3 left-3 right-3 z-10">
-                        <a href="https://placeholder-capcut-template-1.com" target="_blank" rel="noopener noreferrer"
-                          className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
-                          COBA DI CAPCUT
-                        </a>
-                      </div>
+                  className="absolute inset-0 flex">
+
+                  {/* LEFT: text block, bottom-aligned */}
+                  <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10 overflow-visible">
+                    {/* Title block */}
+                    <div className="bg-black px-5 py-4 mb-6 w-full">
+                      <p className="text-white text-5xl font-black uppercase leading-tight tracking-tight">
+                        CARA IKUT<br />KESERUANNYA
+                      </p>
                     </div>
-                    <div className="relative w-[340px] h-full max-h-[420px] overflow-hidden rounded-sm flex-shrink-0">
-                      <div className="absolute top-3 left-3 z-10">
-                        <p className="text-white text-sm font-black leading-none uppercase">MOMEN RANDOM</p>
-                        <p className="text-white/80 text-xs font-medium">spontan tapi lucu</p>
+                    {/* Step row */}
+                    <div className="flex items-start gap-4 mb-5">
+                      <div className="bg-black px-4 py-3 flex-shrink-0">
+                        <span className="text-white text-3xl font-black">01.</span>
                       </div>
-                      <Image src="/images/how-2.png" alt="Momen Random" fill className="object-cover object-center" />
-                      <div className="absolute bottom-3 left-3 right-3 z-10">
-                        <a href="https://placeholder-capcut-template-2.com" target="_blank" rel="noopener noreferrer"
-                          className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
-                          COBA DI CAPCUT
-                        </a>
-                      </div>
+                      <p className="text-white text-4xl font-semibold leading-snug pt-1">
+                        Pilih template favoritmu dan kreasikan momenmu
+                      </p>
                     </div>
+                    {/* Link */}
+                    <a href="https://placeholder-syarat-ketentuan.com" target="_blank" rel="noopener noreferrer"
+                      className="text-white text-base font-bold underline underline-offset-4 hover:text-black transition-colors mb-6">
+                      (→) Baca Syarat &amp; Ketentuan
+                    </a>
+                    {/* Square below link */}
+                    <div className="w-4 h-4 bg-black flex-shrink-0" />
                   </div>
-                  {/* Bottom row */}
-                  <div className="flex-shrink-0 flex items-end justify-between pt-6">
-                    <div>
-                      <span className="bg-black text-white text-base font-black px-3 py-2 uppercase tracking-wide block mb-3">CARA IKUT KESERUANNYA</span>
-                      <div className="flex items-start gap-3 mb-4">
-                        <span className="text-black text-xl font-black leading-none">01.</span>
-                        <p className="text-white text-base font-bold leading-snug max-w-sm">Pilih template favoritmu dan kreasikan momenmu</p>
+
+                  {/* RIGHT: two cards + nav */}
+                  <div className="flex-1 flex flex-col min-h-0 pb-10 pr-16 relative">
+
+                    {/* Cards area — cards align bottom with title block */}
+                    <div className="flex-1 flex items-end justify-center gap-4 pb-[400px]">
+                      {/* Card 1 — larger */}
+                      <div className="relative overflow-hidden flex-shrink-0 w-[480px] h-[680px]">
+                        <div className="absolute top-4 left-4 z-10">
+                          <p className="text-white text-sm font-black uppercase leading-none">AKSI STUNT KEREN</p>
+                          <p className="text-white/80 text-xs font-medium mt-0.5">dengan transisi heboh</p>
+                        </div>
+                        <Image src="/images/how-1.png" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
+                        <div className="absolute bottom-4 left-4 right-4 z-10">
+                          <a href="https://placeholder-capcut-template-1.com" target="_blank" rel="noopener noreferrer"
+                            className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
+                            COBA DI CAPCUT
+                          </a>
+                        </div>
                       </div>
-                      <a href="https://placeholder-syarat-ketentuan.com" target="_blank" rel="noopener noreferrer"
-                        className="text-white text-base font-bold underline underline-offset-4 hover:text-black transition-colors duration-200">
-                        (→) Baca Syarat &amp; Ketentuan
-                      </a>
+                      {/* Card 2 — shorter, lifted up so top aligns with card 1 top */}
+                      <div className="relative overflow-hidden flex-shrink-0 w-[380px] h-[380px] mb-[300px]">
+                        {/* Square above card 2 — absolute top-right of card */}
+                        <div className="absolute -top-6 right-0 w-4 h-4 bg-black z-10" />
+                        <div className="absolute top-4 left-4 z-10">
+                          <p className="text-white text-sm font-black uppercase leading-none">MOMEN RANDOM</p>
+                          <p className="text-white/80 text-xs font-medium mt-0.5">spontan tapi lucu</p>
+                        </div>
+                        <Image src="/images/how-2.png" alt="Momen Random" fill className="object-cover object-center" />
+                        <div className="absolute bottom-4 left-4 right-4 z-10">
+                          <a href="https://placeholder-capcut-template-2.com" target="_blank" rel="noopener noreferrer"
+                            className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
+                            COBA DI CAPCUT
+                          </a>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1">
+
+                    {/* Nav arrows — bottom right */}
+                    <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
                       <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
-                        className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40">←</button>
+                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
                       <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
-                        className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40">→</button>
+                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
                     </div>
                   </div>
+
                 </motion.div>
               )}
 
-              {/* Slide 2 */}
+              {/* ── Slide 2 ── */}
               {activeHowSlide === 1 && (
                 <motion.div key="d-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-                  className="absolute inset-0 flex flex-col px-16 pt-4 pb-10">
-                  <div className="flex-1 flex items-center justify-center min-h-0">
-                    <div className="relative h-full max-h-[460px] w-auto aspect-[4/5] overflow-hidden rounded-sm">
-                      <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
+                  className="absolute inset-0 flex">
+
+                  {/* LEFT: text bottom-aligned */}
+                  <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="bg-black px-4 py-3 flex-shrink-0">
+                        <span className="text-white text-3xl font-black">02.</span>
+                      </div>
+                      <p className="text-white text-4xl font-semibold leading-snug pt-1">
+                        Gunakan lagu resmi Sandisk Challenge sesuai template yang dipilih, baik untuk aksi seru maupun momen lucu.
+                      </p>
                     </div>
                   </div>
-                  <div className="flex-shrink-0 flex items-end justify-between pt-6">
-                    <div className="flex items-start gap-3">
-                      <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">02.</span>
-                      <p className="text-white text-base font-bold leading-snug max-w-lg">Gunakan lagu resmi Sandisk Challenge sesuai template yang dipilih, baik untuk aksi seru maupun momen lucu.</p>
+
+                  {/* RIGHT: image + nav */}
+                  <div className="flex-1 flex flex-col min-h-0 pt-4 pb-10 pr-16">
+                    <div className="flex-1 flex items-stretch justify-center min-h-0">
+                      <div className="relative w-auto aspect-[4/5] overflow-hidden">
+                        <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1 flex-shrink-0 ml-8">
+                    <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
                       <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
-                        className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40">←</button>
+                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
                       <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
-                        className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40">→</button>
+                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
                     </div>
                   </div>
                 </motion.div>
               )}
 
-              {/* Slide 3 */}
+              {/* ── Slide 3 ── */}
               {activeHowSlide === 2 && (
                 <motion.div key="d-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-                  className="absolute inset-0 flex flex-col px-16 pt-4 pb-10">
-                  <div className="flex-1 flex items-center justify-center min-h-0">
-                    <div className="relative h-full max-h-[460px] w-auto aspect-[4/5] overflow-hidden rounded-sm">
-                      <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
+                  className="absolute inset-0 flex">
+
+                  {/* LEFT: text bottom-aligned */}
+                  <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="bg-black px-4 py-3 flex-shrink-0">
+                        <span className="text-white text-3xl font-black">03.</span>
+                      </div>
+                      <p className="text-white text-4xl font-semibold leading-snug pt-1">
+                        Post videomu di TikTok dengan hashtag #sandisktechshiftid, tag @sandiskindonesia, pastikan akunmu tidak private.
+                      </p>
                     </div>
                   </div>
-                  <div className="flex-shrink-0 flex items-end justify-between pt-6">
-                    <div className="flex items-start gap-3">
-                      <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">03.</span>
-                      <p className="text-white text-base font-bold leading-snug max-w-lg">Post videomu di TikTok dengan hashtag #sandisktechshiftid , tag @sandiskindonesia pastikan akunmu tidak private.</p>
+
+                  {/* RIGHT: image + nav */}
+                  <div className="flex-1 flex flex-col min-h-0 pt-4 pb-10 pr-16">
+                    <div className="flex-1 flex items-stretch justify-center min-h-0">
+                      <div className="relative w-auto aspect-[4/5] overflow-hidden">
+                        <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1 flex-shrink-0 ml-8">
+                    <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
                       <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
-                        className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40">←</button>
+                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
                       <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
-                        className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40">→</button>
+                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
                     </div>
                   </div>
                 </motion.div>
               )}
-            </AnimatePresence>
 
-            {/* Eclipse — slide 2 & 3 */}
-            {activeHowSlide > 0 && (
-              <div className="absolute bottom-0 right-[-5%] w-[40%] h-40 pointer-events-none">
-                <Image src="/images/eclipse.png" alt="" fill className="object-contain object-right" />
-              </div>
-            )}
+            </AnimatePresence>
           </div>
         </div>
       </section>

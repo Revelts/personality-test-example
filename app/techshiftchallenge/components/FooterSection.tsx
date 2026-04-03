@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function FooterSection() {
   return (
-    <footer className="bg-black px-6 pt-10 pb-10">
+    <footer className="bg-black px-6 pt-4 pb-10">
 
       <div className="max-w-6xl mx-auto">
 
@@ -13,10 +13,19 @@ export default function FooterSection() {
 
           {/* Left: heading + subtitle + marketplace */}
           <div className="flex flex-col max-w-sm">
-            <h3 className="text-white text-xl font-black mb-1">BEBASIN MEMORI HP</h3>
-            <p className="text-white/60 text-sm mb-8">
-              Pindahin file dari HP dengan SANDISK® Phone Drive.
-            </p>
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-white text-xl font-black mb-1">BEBASIN MEMORI HP</h3>
+                <p className="text-white/60 text-xs mb-8">
+                  Pindahin file dari HP dengan SANDISK® Phone Drive.
+                </p>
+              </div>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="lg:hidden w-14 h-14 border border-white flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors flex-shrink-0 ml-3"
+                aria-label="Back to top"
+              >↑</button>
+            </div>
             <div className="flex items-center gap-5">
               <a href="#" target="_blank" rel="noopener noreferrer">
                 <Image src="/images/lazada-market.png" alt="Lazada" width={80} height={28} className="h-7 w-auto object-contain" />
@@ -30,14 +39,19 @@ export default function FooterSection() {
             </div>
           </div>
 
-          {/* Right: SanDisk logo + socials */}
+          {/* Right: SanDisk logo + socials + back to top */}
           <div className="flex items-center gap-5">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="hidden lg:flex w-12 h-12 border border-white items-center justify-center text-white hover:bg-white hover:text-black transition-colors flex-shrink-0"
+              aria-label="Back to top"
+            >↑</button>
             <Image
               src="/images/sandisk-logo.png"
               alt="SanDisk"
-              width={120}
-              height={32}
-              className="h-6 w-auto object-contain"
+              width={160}
+              height={40}
+              className="h-9 w-auto object-contain"
             />
             <div className="w-px h-7 bg-white/20" />
             <div className="flex items-center gap-4">

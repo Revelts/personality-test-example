@@ -68,16 +68,18 @@ export default function FAQAccordion() {
           <div className="h-px bg-black/15 mb-6" />
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            className="w-full grid grid-cols-[3rem_1fr_1.5rem] lg:grid-cols-[5rem_1fr_2rem] items-start gap-x-2 lg:gap-x-4 text-left mb-4"
+            className="w-full grid grid-cols-[3rem_1fr_1.5rem] lg:grid-cols-[5rem_1fr_2rem] items-start gap-x-6 lg:gap-x-8 text-left mb-4"
           >
-            <span className="text-sm lg:text-base font-bold text-black pt-1">
+            <span className="text-base lg:text-lg font-bold text-black pt-0.5">
               {String(index + 1).padStart(2, '0')}.
             </span>
-            <span className="text-xl lg:text-2xl font-bold text-black leading-snug">
+            <span className="text-base lg:text-lg font-bold text-black leading-snug">
               {faq.question}
             </span>
-            <span className="text-black text-base lg:text-xl pt-1 text-right">
-              {openIndex === index ? '∧' : '∨'}
+            <span className="flex justify-end pt-1">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}>
+                <path d="M2 5L8 11L14 5" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </span>
           </button>
 
@@ -90,7 +92,7 @@ export default function FAQAccordion() {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <p className="text-sm lg:text-base text-black/70 leading-relaxed pl-[3.5rem] lg:pl-[6rem] pb-6">
+                <p className="text-sm lg:text-base text-black/70 leading-relaxed pl-[calc(3rem+1.5rem)] lg:pl-[calc(5rem+2rem)] pb-6">
                   {faq.answer}
                 </p>
               </motion.div>

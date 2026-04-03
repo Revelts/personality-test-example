@@ -43,11 +43,13 @@ function AccordionItem({ group, index }: { group: LeaderboardGroup; index: numbe
         onClick={() => setOpen(o => !o)}
         className="w-full flex items-start justify-between text-left mb-4 gap-4"
       >
-        <span className="text-white text-lg sm:text-xl font-black leading-snug">
+        <span className="text-white text-lg sm:text-xl font-normal leading-snug">
           {group.title}
         </span>
-        <span className="text-white text-base flex-shrink-0 mt-0.5">
-          {open ? '∧' : '∨'}
+        <span className="flex-shrink-0 mt-1">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform duration-300 ${open ? 'rotate-180' : ''}`}>
+            <path d="M2 5L8 11L14 5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </span>
       </button>
 
@@ -93,22 +95,13 @@ export default function LeaderboardSection() {
   return (
     <section className="bg-black px-6 lg:px-16 py-10 lg:py-20">
       <div className="lg:max-w-4xl lg:mx-auto">
-        <p className="text-white text-xl sm:text-2xl lg:text-3xl font-black tracking-tight mb-10">
+        <p className="text-white text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight mb-10">
           (→) LEADERBOARD.
         </p>
         {groups.map((group, i) => (
           <AccordionItem key={i} group={group} index={i} />
         ))}
-        <div className="relative mt-2">
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="absolute right-0 -top-16 w-12 h-12 bg-white flex items-center justify-center hover:bg-brand-red transition-colors z-10"
-            aria-label="Back to top"
-          >
-            <span className="text-black text-xl font-bold leading-none">↑</span>
-          </button>
-          <div className="h-px bg-white/20" />
-        </div>
+        <div className="h-px bg-white/20 mt-2" />
       </div>
     </section>
   );

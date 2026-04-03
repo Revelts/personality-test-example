@@ -57,14 +57,14 @@ export default function HallOfFameCarousel() {
       {/* ── MOBILE layout ── */}
       <div className="lg:hidden min-h-screen flex flex-col px-5 pt-10 pb-12">
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-8">
           <div className="inline-block bg-black px-3 py-2 mb-4">
-            <span className="text-white text-lg sm:text-xl font-black">The Hall of Fame</span>
+            <span className="text-white text-2xl font-normal tracking-wide">The Hall of Fame</span>
           </div>
-          <h2 className="text-white text-3xl sm:text-4xl font-black leading-tight mb-3">
+          <h2 className="text-white text-2xl font-normal leading-none tracking-tight mb-3">
             {current.category}
           </h2>
-          <p className="text-white text-sm sm:text-base font-bold leading-relaxed max-w-sm">
+          <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-sm">
             Pemenang akan diumumkan melalui akun resmi Sandisk Indonesia di Facebook, Instagram, dan TikTok setelah proses penilaian selesai.
           </p>
         </div>
@@ -98,16 +98,21 @@ export default function HallOfFameCarousel() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={current.photo} alt={current.username} className="w-full h-full object-cover" />
                   <button
+                    onClick={() => goTo(activeIndex - 1)}
+                    disabled={activeIndex === 0}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 flex items-center justify-center text-white font-bold text-lg hover:bg-black transition-colors z-10 disabled:opacity-30"
+                  >←</button>
+                  <button
                     onClick={() => goTo(activeIndex < winners.length - 1 ? activeIndex + 1 : 0)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors z-10"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 flex items-center justify-center text-white font-bold text-lg hover:bg-black transition-colors z-10"
                   >→</button>
                 </div>
                 <div className="flex items-stretch bg-white">
-                  <div className="bg-black px-4 py-3 flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-black text-base">(→)</span>
+                  <div className="bg-black px-6 py-5 flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-black text-xl">(→)</span>
                   </div>
-                  <div className="flex-1 px-4 py-3 flex items-center">
-                    <span className="text-black font-black text-base sm:text-lg">{current.username}</span>
+                  <div className="flex-1 px-6 py-5 flex items-center">
+                    <span className="text-black font-black text-xl sm:text-2xl">{current.username}</span>
                   </div>
                 </div>
               </motion.div>
@@ -133,12 +138,12 @@ export default function HallOfFameCarousel() {
         <div className="flex items-start justify-between mb-10">
           <div>
             <div className="inline-block bg-black px-3 py-2 mb-4">
-              <span className="text-white text-xl font-black">The Hall of Fame</span>
+              <span className="text-white text-2xl font-normal tracking-wide">The Hall of Fame</span>
             </div>
-            <h2 className="text-white text-4xl font-black leading-tight mb-3">
+            <h2 className="text-white text-5xl font-black leading-none tracking-tight mb-3">
               {current.category}
             </h2>
-            <p className="text-white text-base font-bold leading-relaxed max-w-md">
+            <p className="text-white text-base font-normal leading-relaxed max-w-md">
               Pemenang akan diumumkan melalui akun resmi Sandisk Indonesia di Facebook, Instagram, dan TikTok setelah proses penilaian selesai.
             </p>
           </div>
@@ -147,26 +152,25 @@ export default function HallOfFameCarousel() {
             <button
               onClick={() => goTo(activeIndex - 1)}
               disabled={activeIndex === 0}
-              className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40"
+              className="w-10 h-10 bg-black/50 flex items-center justify-center text-white font-bold text-lg hover:bg-black transition-colors disabled:opacity-40"
             >←</button>
             <button
               onClick={() => goTo(activeIndex + 1)}
               disabled={activeIndex >= winners.length - 1}
-              className="w-10 h-10 bg-white flex items-center justify-center text-black font-bold text-lg hover:bg-black hover:text-white transition-colors disabled:opacity-40"
+              className="w-10 h-10 bg-black/50 flex items-center justify-center text-white font-bold text-lg hover:bg-black transition-colors disabled:opacity-40"
             >→</button>
           </div>
         </div>
 
-        {/* 3 cards visible */}
-        <div className="grid grid-cols-3 gap-4">
-          {[-1, 0, 1].map(offset => {
-            const idx = activeIndex + offset;
-            const winner = winners[idx];
-            if (!winner) {
-              return <div key={offset} className="bg-white/10 aspect-[4/5]" />;
-            }
-            return (
-              <div key={offset} className={`transition-opacity duration-300 ${offset === 0 ? 'opacity-100' : 'opacity-60'}`}>
+        {/* 3 cards carousel — sliding */}
+        <div className="overflow-hidden">
+          <motion.div
+            className="flex gap-4"
+            animate={{ x: `calc(-${activeIndex} * (33.333% + 0.333rem))` }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+          >
+            {winners.map((winner, idx) => (
+              <div key={idx} className="flex-shrink-0 w-[calc(33.333%-0.667rem)]">
                 <div className="relative w-full aspect-[4/5] bg-black/20 overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={winner.photo} alt={winner.username} className="w-full h-full object-cover" />
@@ -180,8 +184,9 @@ export default function HallOfFameCarousel() {
                   </div>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </motion.div>
+
         </div>
 
         {/* Dots */}
