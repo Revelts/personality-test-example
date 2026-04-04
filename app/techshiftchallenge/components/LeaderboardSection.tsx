@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { WINNERS_ENABLED } from '../config';
+
 interface LeaderboardGroup {
   title: string;
   winners: string[];
@@ -92,6 +94,8 @@ function AccordionItem({ group, index }: { group: LeaderboardGroup; index: numbe
 }
 
 export default function LeaderboardSection() {
+  if (!WINNERS_ENABLED) return null;
+
   return (
     <section className="bg-black px-6 lg:px-16 py-10 lg:py-20">
       <div className="lg:max-w-4xl lg:mx-auto">

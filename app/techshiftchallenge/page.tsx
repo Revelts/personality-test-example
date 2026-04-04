@@ -17,6 +17,7 @@ import HallOfFameCarousel from './components/HallOfFameCarousel';
 import FooterSection from './components/FooterSection';
 import LeaderboardSection from './components/LeaderboardSection';
 import CustomCursor from './components/CustomCursor';
+import { WINNERS_ENABLED } from './config';
 
 export default function TechShiftChallengePage() {
   const reducedMotion = useReducedMotion();
@@ -359,7 +360,7 @@ export default function TechShiftChallengePage() {
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Pilih template favoritmu dan kreasikan momenmu</p>
                 </div>
                 <div className="mb-3 w-full">
-                  <div className="relative w-full h-[260px] overflow-hidden rounded-sm">
+                  <div className="relative w-full h-[190px] sm:h-[260px] overflow-hidden rounded-sm">
                     <div className="absolute top-3 left-3 z-10">
                       <p className="text-white text-sm font-black leading-none uppercase">AKSI STUNT KEREN</p>
                       <p className="text-white/80 text-xs font-medium">dengan transisi heboh</p>
@@ -374,7 +375,7 @@ export default function TechShiftChallengePage() {
                   </div>
                 </div>
                 <div className="mb-6 w-full">
-                  <div className="relative w-full h-[260px] overflow-hidden rounded-sm">
+                  <div className="relative w-full h-[190px] sm:h-[260px] overflow-hidden rounded-sm">
                     <div className="absolute top-3 left-3 z-10">
                       <p className="text-white text-sm font-black leading-none uppercase">MOMEN RANDOM</p>
                       <p className="text-white/80 text-xs font-medium">spontan tapi lucu</p>
@@ -666,7 +667,7 @@ export default function TechShiftChallengePage() {
       {/* ========================================
           SECTION 7: HALL OF FAME
       ======================================== */}
-      <HallOfFameCarousel />
+      {WINNERS_ENABLED && <HallOfFameCarousel />}
 
       {/* ========================================
           SECTION 8: LEADERBOARD
