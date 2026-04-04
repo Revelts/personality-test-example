@@ -1,16 +1,12 @@
 /**
  * Countdown Timer Component
- * Real-time countdown to challenge end date
+ * Weekly countdown: resets every Monday 00:00, counts down to Sunday 23:59:59
  */
 
 'use client';
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-interface CountdownTimerProps {
-  endDate: string;
-}
 
 interface TimeLeft {
   days: number;
@@ -19,35 +15,37 @@ interface TimeLeft {
   seconds: number;
 }
 
-export default function CountdownTimer({ endDate }: CountdownTimerProps) {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+/** Returns the end of the current week: Sunday 23:59:59 (local time) */
+function getWeekEnd(): Date {
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+  const daysUntilSunday = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+  const end = new Date(now);
+  end.setDate(now.getDate() + daysUntilSunday);
+  end.setHours(23, 59, 59, 999);
+  return end;
+}
+
+function calculateTimeLeft(): TimeLeft {
+  const difference = getWeekEnd().getTime() - Date.now();
+
+  if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+  const totalSeconds = Math.floor(difference / 1000);
+  return {
+    days: Math.floor(totalSeconds / 86400),
+    hours: Math.floor((totalSeconds % 86400) / 3600),
+    minutes: Math.floor((totalSeconds % 3600) / 60),
+    seconds: totalSeconds % 60,
+  };
+}
+
+export default function CountdownTimer() {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-
-    const calculateTimeLeft = (): TimeLeft => {
-      const difference = +new Date(endDate) - +new Date();
-
-      if (difference > 0) {
-        const totalSeconds = Math.floor(difference / 1000);
-        const seconds = totalSeconds % 60;
-        const totalMinutes = Math.floor(totalSeconds / 60);
-        const minutes = totalMinutes % 60;
-        const totalHours = Math.floor(totalMinutes / 60);
-        const hours = totalHours % 24;
-        const days = Math.floor(totalHours / 24);
-        return { days, hours, minutes, seconds };
-      }
-
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    };
-
     setTimeLeft(calculateTimeLeft());
 
     const timer = setInterval(() => {
@@ -55,12 +53,19 @@ export default function CountdownTimer({ endDate }: CountdownTimerProps) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [endDate]);
+  }, []);
+
+  const timeUnits = [
+    { value: timeLeft.days, label: 'Hari' },
+    { value: timeLeft.hours, label: 'Jam' },
+    { value: timeLeft.minutes, label: 'Menit' },
+    { value: timeLeft.seconds, label: 'Detik' },
+  ];
 
   if (!mounted) {
     return (
       <div className="flex gap-3 sm:gap-4 justify-start">
-        {['Hari', 'Jam', 'Menit', 'Detik'].map((label) => (
+        {timeUnits.map(({ label }) => (
           <div key={label} className="flex flex-col items-center gap-1">
             <div className="bg-brand-red px-4 py-3 sm:px-6 sm:py-4 min-w-[70px] sm:min-w-[90px] rounded-sm text-center">
               <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">00</div>
@@ -71,13 +76,6 @@ export default function CountdownTimer({ endDate }: CountdownTimerProps) {
       </div>
     );
   }
-
-  const timeUnits = [
-    { value: timeLeft.days, label: 'Hari' },
-    { value: timeLeft.hours, label: 'Jam' },
-    { value: timeLeft.minutes, label: 'Menit' },
-    { value: timeLeft.seconds, label: 'Detik' },
-  ];
 
   return (
     <div className="flex gap-3 sm:gap-4 justify-start flex-wrap">
