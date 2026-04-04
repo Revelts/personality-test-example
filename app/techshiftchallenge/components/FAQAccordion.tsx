@@ -18,6 +18,16 @@ const faqData: FAQItem[] = [
     answer: 'Tidak. Template tid  ak boleh diubah atau dimodifikasi, terutama pada elemen visual di dalamnya. Template sudah dirancang agar format video tetap konsisten dan memudahkan proses kurasi serta penilaian. Namun, peserta diperbolehkan untuk menyesuaikan atau mengubah bagian teks sesuai kebutuhan konten.',
   },
   {
+    question: 'Bagaimana cara memilih template?',
+    answer: (
+      <span>
+        Pilih template yang paling sesuai dengan momen yang ingin kamu tampilkan:<br />
+        • Aksi random dengan transisi kreatif, atau<br />
+        • Momen sehari-hari yang spontan tapi lucu.
+      </span>
+    ),
+  },
+  {
     question: 'Apa yang perlu dilakukan setelah upload video TikTok??',
     answer: (
       <span>
@@ -31,21 +41,11 @@ const faqData: FAQItem[] = [
     ),
   },
   {
-    question: 'Bagaimana cara memilih template?',
-    answer: (
-      <span>
-        Pilih template yang paling sesuai dengan momen yang ingin kamu tampilkan:<br />
-        • Aksi random dengan transisi kreatif, atau<br />
-        • Momen sehari-hari yang spontan tapi lucu.
-      </span>
-    ),
-  },
-  {
     question: 'Bagaimana sistem pemenangnya?',
     answer: (
       <span>
         Setiap minggu akan dipilih <strong>6 pemenang</strong> (<strong>3 dari setiap template</strong>) untuk memenangkan <strong>voucher belanja</strong> dan masuk ke <strong>final Grand Prize</strong>.<br /><br />
-        Di babak final, akan dipilih <strong>6 pemenang utama</strong> (<strong>3 dari setiap template</strong>) yang berkesempatan memenangkan <strong>Grand Prize iPhone 17</strong> serta hadiah lainnya.
+        Di babak final, akan dipilih <strong>6 pemenang utama</strong> (<strong>3 dari setiap template</strong>) yang berkesempatan memenangkan <strong>Grand Prize iPhone 17 Pro</strong> serta hadiah lainnya.
       </span>
     ),
   },

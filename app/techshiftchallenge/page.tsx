@@ -116,19 +116,20 @@ export default function TechShiftChallengePage() {
             initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.4 }}
-            className="text-white text-sm sm:text-base lg:text-lg font-bold tracking-widest uppercase mb-1"
+            className="text-white text-sm sm:text-base lg:text-[3rem] font-bold tracking-widest uppercase mb-1"
           >
             TECH SHIFT CHALLENGE:
           </motion.p>
 
-          {/* Main Headline — stacked */}
+          {/* Main Headline — stacked mobile, single line desktop */}
           <motion.h1
             initial={{ opacity: 0, y: reducedMotion ? 0 : 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reducedMotion ? 0.1 : 0.7, delay: 0.5 }}
-            className="text-[4rem] sm:text-[5.5rem] lg:text-[9rem] font-black text-white leading-none tracking-tight mb-3"
+            className="text-[4rem] sm:text-[5.5rem] lg:text-[6rem] xl:text-[7rem] font-black text-white leading-none tracking-tight mb-3 lg:whitespace-nowrap"
           >
-            NEVER<br />FEAR<br />FULL.
+            <span className="lg:hidden">NEVER<br />FEAR<br />FULL.</span>
+            <span className="hidden lg:inline">NEVER FEAR FULL.</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -136,9 +137,9 @@ export default function TechShiftChallengePage() {
             initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.65 }}
-            className="text-white/90 text-lg sm:text-xl lg:text-4xl font-medium mb-6"
+            className="text-white/90 text-lg sm:text-xl lg:text-[2.5rem] font-medium mb-6"
           >
-            Bagikan momen aksimu, raih <br></br>kesempatan menang iPhone 17!
+            Bagikan momen aksimu, raih <span className="lg:hidden"><br /></span>kesempatan menang iPhone 17!
           </motion.p>
 
           {/* Countdown Timer */}
@@ -216,7 +217,7 @@ export default function TechShiftChallengePage() {
         {(() => {
           const prizes = [
             { label: 'WEEKLY WINNER', desc: 'Voucher Rp 750.000,-', src: '/images/weekly-prize.png', alt: 'Weekly Prize', note: '*Gambar hadiah hanya ditunjukan sebagai ilustrasi.' },
-            { label: 'GRAND PRIZE', desc: 'iPhone 17, SANDISK® Phone Drive 256GB & merchandise eksklusif Sandisk', src: '/images/grand-prize.png', alt: 'Grand Prize', note: '*Gambar hadiah hanya ditunjukan sebagai ilustrasi.' },
+            { label: 'GRAND PRIZE', desc: 'iPhone 17 Pro, SANDISK® Phone Drive 256GB & merchandise eksklusif Sandisk', src: '/images/grand-prize.png', alt: 'Grand Prize', note: '*Gambar hadiah hanya ditunjukan sebagai ilustrasi.' },
             { label: 'SECOND PRIZE', desc: 'Garmin Smartwatch, SANDISK® Phone Drive 256GB & merchandise eksklusif Sandisk', src: '/images/second-prize.png', alt: 'Second Prize', note: '*Gambar hadiah hanya ditunjukan sebagai ilustrasi.' },
             { label: 'THIRD PRIZE', desc: 'Bose Ultra Open Earbuds, SANDISK® Phone Drive 256GB & merchandise eksklusif Sandisk', src: '/images/thrid-prize.png', alt: 'Third Prize', note: '*Gambar hadiah hanya ditunjukan sebagai ilustrasi.' },
           ];
@@ -648,7 +649,7 @@ export default function TechShiftChallengePage() {
       ======================================== */}
       <section className="bg-white px-6 lg:px-0 py-10 lg:py-20">
         <div className="lg:max-w-4xl lg:mx-auto">
-          <p className="text-black text-xl lg:text-3xl font-black tracking-tight mb-10 lg:mb-14">(→) FAQ.</p>
+          <p className="text-black text-xl lg:text-3xl font-black tracking-tight mb-10 lg:mb-14">(→) FAQ</p>
           <FAQAccordion />
           <div className="h-px bg-black/15 mt-6 mb-8" />
           <a

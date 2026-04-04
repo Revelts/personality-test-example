@@ -96,7 +96,7 @@ export default function LeaderboardSection() {
     <section className="bg-black px-6 lg:px-16 py-10 lg:py-20">
       <div className="lg:max-w-4xl lg:mx-auto">
         <p className="text-white text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight mb-10">
-          (→) LEADERBOARD.
+          (→) LEADERBOARD
         </p>
         {groups.map((group, i) => (
           <AccordionItem key={i} group={group} index={i} />
