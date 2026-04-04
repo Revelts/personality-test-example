@@ -28,7 +28,7 @@ export default function TechShiftChallengePage() {
 
   const [activeHowSlide, setActiveHowSlide] = useState(0);
   const howDragStartX = useRef(0);
-  const HOW_SLIDES = 3;
+  const HOW_SLIDES = 4;
 
   const [activePrize, setActivePrize] = useState(0);
 
@@ -41,15 +41,28 @@ export default function TechShiftChallengePage() {
         ref={heroRef}
         className="relative h-screen flex flex-col overflow-hidden"
       >
-        {/* Background Image with Overlay */}
+        {/* Background Video with Overlay */}
         <div className="absolute inset-0">
-          <Image
-            src="/images/header-wallpaper.jpg"
-            alt="TechShift Challenge"
-            fill
-            className="object-cover object-center"
-            priority
-          />
+          {/* Mobile video */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="lg:hidden absolute inset-0 w-full h-full object-cover object-center"
+          >
+            <source src="/video/vertical_vid.mp4" type="video/mp4" />
+          </video>
+          {/* Desktop video */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="hidden lg:block absolute inset-0 w-full h-full object-cover object-center"
+          >
+            <source src="/video/horizontal_vid.mp4" type="video/mp4" />
+          </video>
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/50 z-10" />
         </div>
@@ -340,7 +353,7 @@ export default function TechShiftChallengePage() {
               >
                 <div className="flex items-start gap-3 mb-6 w-full">
                   <div className="bg-black px-2 py-1 flex-shrink-0">
-                    <span className="text-white text-base font-black leading-none">01.</span>
+                    <span className="text-white text-base font-black leading-none">1.</span>
                   </div>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Pilih template favoritmu dan kreasikan momenmu</p>
                 </div>
@@ -352,7 +365,7 @@ export default function TechShiftChallengePage() {
                     </div>
                     <Image src="/images/how-1.png" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
                     <div className="absolute bottom-3 left-3 right-3 z-10">
-                      <a href="https://placeholder-capcut-template-1.com" target="_blank" rel="noopener noreferrer"
+                      <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
                         className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                         COBA DI CAPCUT
                       </a>
@@ -367,14 +380,14 @@ export default function TechShiftChallengePage() {
                     </div>
                     <Image src="/images/how-2.png" alt="Momen Random" fill className="object-cover object-center" />
                     <div className="absolute bottom-3 left-3 right-3 z-10">
-                      <a href="https://placeholder-capcut-template-2.com" target="_blank" rel="noopener noreferrer"
+                      <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
                         className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                         COBA DI CAPCUT
                       </a>
                     </div>
                   </div>
                 </div>
-                <a href="https://placeholder-syarat-ketentuan.com" target="_blank" rel="noopener noreferrer"
+                <a href="https://drive.google.com/file/d/1UrmVWvr5CUkWBy3KpGD9l5lpgzpsHmYl/view?usp=sharing" target="_blank" rel="noopener noreferrer"
                   className="text-white text-sm font-normal underline underline-offset-4 hover:text-black transition-colors duration-200 mt-auto pt-4 w-full">
                   (→) Baca Syarat &amp; Ketentuan
                 </a>
@@ -387,7 +400,7 @@ export default function TechShiftChallengePage() {
                   <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
                 </div>
                 <div className="flex items-start gap-3 flex-shrink-0 relative z-10">
-                  <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">02.</span>
+                  <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">2.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Gunakan lagu resmi Sandisk Challenge sesuai template yang dipilih, baik untuk aksi seru maupun momen lucu.</p>
                 </div>
               </motion.div>
@@ -399,8 +412,20 @@ export default function TechShiftChallengePage() {
                   <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
                 </div>
                 <div className="flex items-start gap-3 flex-shrink-0 relative z-10">
-                  <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">03.</span>
+                  <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">3.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Post videomu di TikTok dengan hashtag #sandisktechshiftid , tag @sandiskindonesia pastikan akunmu tidak private.</p>
+                </div>
+              </motion.div>
+            )}
+            {activeHowSlide === 3 && (
+              <motion.div key="how-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
+                className="h-full px-5 pb-44 flex flex-col">
+                <div className="flex-1 relative rounded-sm overflow-hidden mb-5 min-h-0">
+                  <Image src="/images/form.jpg" alt="Google Form Sandisk Challenge" fill className="object-cover object-top" />
+                </div>
+                <div className="flex items-start gap-3 flex-shrink-0 relative z-10">
+                  <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">04.</span>
+                  <p className="text-white text-base sm:text-lg font-bold leading-snug">Langkah terakhir! Masukkan nama akun, nomor HP aktif, dan link video TikTok kamu melalui tombol "Ikuti Sekarang" di Google Form pada halaman utama.</p>
                 </div>
               </motion.div>
             )}
@@ -447,7 +472,7 @@ export default function TechShiftChallengePage() {
                     {/* Step row */}
                     <div className="flex items-start gap-4 mb-5">
                       <div className="bg-black px-4 py-3 flex-shrink-0">
-                        <span className="text-white text-3xl font-black">01.</span>
+                        <span className="text-white text-3xl font-black">1.</span>
                       </div>
                       <p className="text-white text-4xl font-semibold leading-snug pt-1">
                         Pilih template favoritmu dan kreasikan momenmu
@@ -475,7 +500,7 @@ export default function TechShiftChallengePage() {
                         </div>
                         <Image src="/images/how-1.png" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
                         <div className="absolute bottom-4 left-4 right-4 z-10">
-                          <a href="https://placeholder-capcut-template-1.com" target="_blank" rel="noopener noreferrer"
+                          <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
                             className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                             COBA DI CAPCUT
                           </a>
@@ -491,7 +516,7 @@ export default function TechShiftChallengePage() {
                         </div>
                         <Image src="/images/how-2.png" alt="Momen Random" fill className="object-cover object-center" />
                         <div className="absolute bottom-4 left-4 right-4 z-10">
-                          <a href="https://placeholder-capcut-template-2.com" target="_blank" rel="noopener noreferrer"
+                          <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
                             className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                             COBA DI CAPCUT
                           </a>
@@ -520,7 +545,7 @@ export default function TechShiftChallengePage() {
                   <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="bg-black px-4 py-3 flex-shrink-0">
-                        <span className="text-white text-3xl font-black">02.</span>
+                        <span className="text-white text-3xl font-black">2.</span>
                       </div>
                       <p className="text-white text-4xl font-semibold leading-snug pt-1">
                         Gunakan lagu resmi Sandisk Challenge sesuai template yang dipilih, baik untuk aksi seru maupun momen lucu.
@@ -554,7 +579,7 @@ export default function TechShiftChallengePage() {
                   <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="bg-black px-4 py-3 flex-shrink-0">
-                        <span className="text-white text-3xl font-black">03.</span>
+                        <span className="text-white text-3xl font-black">3.</span>
                       </div>
                       <p className="text-white text-4xl font-semibold leading-snug pt-1">
                         Post videomu di TikTok dengan hashtag #sandisktechshiftid, tag @sandiskindonesia, pastikan akunmu tidak private.
@@ -567,6 +592,40 @@ export default function TechShiftChallengePage() {
                     <div className="flex-1 flex items-stretch justify-center min-h-0">
                       <div className="relative w-auto aspect-[4/5] overflow-hidden">
                         <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
+                      </div>
+                    </div>
+                    <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
+                      <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
+                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
+                      <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
+                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* ── Slide 4 ── */}
+              {activeHowSlide === 3 && (
+                <motion.div key="d-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
+                  className="absolute inset-0 flex">
+
+                  {/* LEFT: text bottom-aligned */}
+                  <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="bg-black px-4 py-3 flex-shrink-0">
+                        <span className="text-white text-3xl font-black">04.</span>
+                      </div>
+                      <p className="text-white text-4xl font-semibold leading-snug pt-1">
+                        Langkah terakhir! Masukkan nama akun, nomor HP aktif, dan link video TikTok kamu melalui tombol "Ikuti Sekarang" di Google Form pada halaman utama.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* RIGHT: image + nav */}
+                  <div className="flex-1 flex flex-col min-h-0 pt-4 pb-10 pr-16">
+                    <div className="flex-1 flex items-stretch justify-center min-h-0">
+                      <div className="relative w-auto aspect-[3/4] overflow-hidden">
+                        <Image src="/images/form.jpg" alt="Google Form Sandisk Challenge" fill className="object-cover object-top" />
                       </div>
                     </div>
                     <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
@@ -593,7 +652,7 @@ export default function TechShiftChallengePage() {
           <FAQAccordion />
           <div className="h-px bg-black/15 mt-6 mb-8" />
           <a
-            href="https://placeholder-syarat-ketentuan.com"
+            href="https://drive.google.com/file/d/1UrmVWvr5CUkWBy3KpGD9l5lpgzpsHmYl/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="text-black text-base lg:text-lg font-bold underline underline-offset-4 hover:text-brand-red transition-colors duration-200"
