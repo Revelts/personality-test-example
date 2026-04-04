@@ -15,7 +15,20 @@ const faqData: FAQItem[] = [
   },
   {
     question: 'Apakah template boleh diubah atau dimodifikasi?',
-    answer: 'Tidak. Template tidak boleh diubah atau dimodifikasi, terutama pada elemen visual di dalamnya. Template sudah dirancang agar format video tetap konsisten dan memudahkan proses kurasi serta penilaian. Namun, peserta diperbolehkan untuk menyesuaikan atau mengubah bagian teks sesuai kebutuhan konten.',
+    answer: 'Tidak. Template tid  ak boleh diubah atau dimodifikasi, terutama pada elemen visual di dalamnya. Template sudah dirancang agar format video tetap konsisten dan memudahkan proses kurasi serta penilaian. Namun, peserta diperbolehkan untuk menyesuaikan atau mengubah bagian teks sesuai kebutuhan konten.',
+  },
+  {
+    question: 'Apa yang perlu dilakukan setelah upload video TikTok??',
+    answer: (
+      <span>
+        Setelah upload video TikTok, isi <strong>nama akun,
+        nomor HP yang aktif,</strong> <strong>dan link video TikTok</strong> kamu melalui tombol <strong>“Ikuti Sekarang”</strong> pada Google Form yang ada di halaman utama website.
+
+        Pilih template yang paling sesuai dengan momen yang ingin kamu tampilkan:<br />
+        • Aksi random dengan transisi kreatif, atau<br />
+        • Momen sehari-hari yang spontan tapi lucu.
+      </span>
+    ),
   },
   {
     question: 'Bagaimana cara memilih template?',

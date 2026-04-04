@@ -149,7 +149,7 @@ export default function TechShiftChallengePage() {
             className="mb-7"
           >
             <p className="text-white text-sm font-medium mb-3">Kontes berakhir dalam:</p>
-            <CountdownTimer endDate="2026-03-31T23:59:59" />
+            <CountdownTimer endDate="2026-05-18T23:59:59+07:00" />
           </motion.div>
 
           {/* CTA Button */}
