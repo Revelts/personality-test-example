@@ -159,7 +159,7 @@ export default function TechShiftChallengePage() {
             transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.95 }}
           >
             <motion.a
-              href="https://forms.gle/your-form-link"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSf3PgL7y-_17-W0LkvlrI8piw42czgvCx3V9JI-KtIklS94CQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={reducedMotion ? {} : { scale: 1.03 }}
