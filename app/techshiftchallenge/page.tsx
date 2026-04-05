@@ -515,8 +515,8 @@ export default function TechShiftChallengePage() {
                     <div className="flex items-start gap-4">
                       {/* Card 1 — portrait, scales with vw capped by vh */}
                       <div
-                        className="relative overflow-hidden flex-shrink-0"
-                        style={{ width: 'clamp(200px, 20vw, 560px)', aspectRatio: '300 / 424', maxHeight: '72vh' }}
+                        className="relative overflow-hidden flex-shrink-0 w-[clamp(200px,20vw,560px)] 2xl:w-[clamp(280px,26vw,680px)]"
+                        style={{ aspectRatio: '300 / 424', maxHeight: '72vh' }}
                       >
                         <div className="absolute top-4 left-4 z-10">
                           <p className="text-white text-sm font-black uppercase leading-none">AKSI STUNT KEREN</p>
@@ -532,8 +532,8 @@ export default function TechShiftChallengePage() {
                       </div>
                       {/* Card 2 — square, scales with vw capped by vh */}
                       <div
-                        className="relative overflow-hidden flex-shrink-0"
-                        style={{ width: 'clamp(140px, 13vw, 360px)', aspectRatio: '1 / 1', maxHeight: '47vh' }}
+                        className="relative overflow-hidden flex-shrink-0 w-[clamp(140px,13vw,360px)] 2xl:w-[clamp(200px,18vw,440px)]"
+                        style={{ aspectRatio: '1 / 1', maxHeight: '47vh' }}
                       >
                         <div className="absolute -top-6 right-0 w-4 h-4 bg-black z-10" />
                         <div className="absolute top-4 left-4 z-10">
@@ -561,12 +561,12 @@ export default function TechShiftChallengePage() {
                   className="absolute inset-0 flex">
 
                   {/* LEFT: text bottom-aligned */}
-                  <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
+                  <div className="w-[520px] 2xl:w-[640px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="bg-black px-4 py-3 flex-shrink-0">
-                        <span className="text-white text-3xl font-black">2.</span>
+                        <span className="text-white text-3xl 2xl:text-4xl font-black">2.</span>
                       </div>
-                      <p className="text-white text-4xl font-semibold leading-snug pt-1">
+                      <p className="text-white text-4xl 2xl:text-5xl font-semibold leading-snug pt-1">
                         Gunakan lagu resmi Sandisk Challenge sesuai template yang dipilih, baik untuk aksi seru maupun momen lucu.
                       </p>
                     </div>
@@ -575,7 +575,7 @@ export default function TechShiftChallengePage() {
                   {/* RIGHT: image + nav */}
                   <div className="flex-1 flex flex-col min-h-0 pt-4 pb-10 pr-16">
                     <div className="flex-1 flex items-stretch justify-center min-h-0">
-                      <div className="relative w-auto aspect-[4/5] overflow-hidden">
+                      <div className="relative h-full aspect-[4/5] overflow-hidden">
                         <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
                       </div>
                     </div>
@@ -589,12 +589,12 @@ export default function TechShiftChallengePage() {
                   className="absolute inset-0 flex">
 
                   {/* LEFT: text bottom-aligned */}
-                  <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
+                  <div className="w-[520px] 2xl:w-[640px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="bg-black px-4 py-3 flex-shrink-0">
-                        <span className="text-white text-3xl font-black">3.</span>
+                        <span className="text-white text-3xl 2xl:text-4xl font-black">3.</span>
                       </div>
-                      <p className="text-white text-4xl font-semibold leading-snug pt-1">
+                      <p className="text-white text-4xl 2xl:text-5xl font-semibold leading-snug pt-1">
                         Post videomu di TikTok dengan hashtag #sandisktechshiftid, tag @sandiskindonesia, pastikan akunmu tidak private.
                       </p>
                     </div>
@@ -603,7 +603,7 @@ export default function TechShiftChallengePage() {
                   {/* RIGHT: image + nav */}
                   <div className="flex-1 flex flex-col min-h-0 pt-4 pb-10 pr-16">
                     <div className="flex-1 flex items-stretch justify-center min-h-0">
-                      <div className="relative w-auto aspect-[4/5] overflow-hidden">
+                      <div className="relative h-full aspect-[4/5] overflow-hidden">
                         <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
                       </div>
                     </div>
@@ -617,12 +617,12 @@ export default function TechShiftChallengePage() {
                   className="absolute inset-0 flex">
 
                   {/* LEFT: text bottom-aligned */}
-                  <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
+                  <div className="w-[520px] 2xl:w-[640px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="bg-black px-4 py-3 flex-shrink-0">
-                        <span className="text-white text-3xl font-black">04.</span>
+                        <span className="text-white text-3xl 2xl:text-4xl font-black">04.</span>
                       </div>
-                      <p className="text-white text-4xl font-semibold leading-snug pt-1">
+                      <p className="text-white text-4xl 2xl:text-5xl font-semibold leading-snug pt-1">
                         Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi
                       </p>
                     </div>
@@ -631,7 +631,7 @@ export default function TechShiftChallengePage() {
                   {/* RIGHT: image + nav */}
                   <div className="flex-1 flex flex-col min-h-0 pt-4 pb-10 pr-16">
                     <div className="flex-1 flex items-stretch justify-center min-h-0">
-                      <div className="relative w-auto aspect-[3/4] overflow-hidden">
+                      <div className="relative h-full aspect-[3/4] overflow-hidden">
                         <Image src="/images/form.jpeg" alt="Google Form Sandisk Challenge" fill className="object-cover object-top" />
                       </div>
                     </div>
