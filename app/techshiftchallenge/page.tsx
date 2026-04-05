@@ -365,7 +365,7 @@ export default function TechShiftChallengePage() {
                       <p className="text-white text-sm font-black leading-none uppercase">AKSI STUNT KEREN</p>
                       <p className="text-white/80 text-xs font-medium">dengan transisi heboh</p>
                     </div>
-                    <Image src="/images/how-1.png" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
+                    <Image src="/images/how-1.jpeg" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
                     <div className="absolute bottom-3 left-3 right-3 z-10">
                       <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
                         className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
@@ -380,7 +380,7 @@ export default function TechShiftChallengePage() {
                       <p className="text-white text-sm font-black leading-none uppercase">MOMEN RANDOM</p>
                       <p className="text-white/80 text-xs font-medium">spontan tapi lucu</p>
                     </div>
-                    <Image src="/images/how-2.png" alt="Momen Random" fill className="object-cover object-center" />
+                    <Image src="/images/how-2.jpeg" alt="Momen Random" fill className="object-cover object-center" />
                     <div className="absolute bottom-3 left-3 right-3 z-10">
                       <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
                         className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
@@ -423,7 +423,7 @@ export default function TechShiftChallengePage() {
               <motion.div key="how-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
                 className="h-full px-5 pb-44 flex flex-col">
                 <div className="flex-1 relative rounded-sm overflow-hidden mb-5 min-h-0">
-                  <Image src="/images/form.jpg" alt="Google Form Sandisk Challenge" fill className="object-cover object-top" />
+                  <Image src="/images/form.jpeg" alt="Google Form Sandisk Challenge" fill className="object-cover object-top" />
                 </div>
                 <div className="flex items-start gap-3 flex-shrink-0 relative z-10">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">04.</span>
@@ -500,7 +500,7 @@ export default function TechShiftChallengePage() {
                           <p className="text-white text-sm font-black uppercase leading-none">AKSI STUNT KEREN</p>
                           <p className="text-white/80 text-xs font-medium mt-0.5">dengan transisi heboh</p>
                         </div>
-                        <Image src="/images/how-1.png" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
+                        <Image src="/images/how-1.jpeg" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
                         <div className="absolute bottom-4 left-4 right-4 z-10">
                           <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
                             className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
@@ -516,7 +516,7 @@ export default function TechShiftChallengePage() {
                           <p className="text-white text-sm font-black uppercase leading-none">MOMEN RANDOM</p>
                           <p className="text-white/80 text-xs font-medium mt-0.5">spontan tapi lucu</p>
                         </div>
-                        <Image src="/images/how-2.png" alt="Momen Random" fill className="object-cover object-center" />
+                        <Image src="/images/how-2.jpeg" alt="Momen Random" fill className="object-cover object-center" />
                         <div className="absolute bottom-4 left-4 right-4 z-10">
                           <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
                             className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
@@ -627,7 +627,7 @@ export default function TechShiftChallengePage() {
                   <div className="flex-1 flex flex-col min-h-0 pt-4 pb-10 pr-16">
                     <div className="flex-1 flex items-stretch justify-center min-h-0">
                       <div className="relative w-auto aspect-[3/4] overflow-hidden">
-                        <Image src="/images/form.jpg" alt="Google Form Sandisk Challenge" fill className="object-cover object-top" />
+                        <Image src="/images/form.jpeg" alt="Google Form Sandisk Challenge" fill className="object-cover object-top" />
                       </div>
                     </div>
                     <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
