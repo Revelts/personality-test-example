@@ -148,7 +148,7 @@ export default function TechShiftChallengePage() {
             transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.65 }}
             className="text-white/90 text-lg sm:text-xl lg:text-[2.5rem] font-medium mb-6"
           >
-            Bagikan momen aksimu, raih <span className="lg:hidden"><br /></span>kesempatan menang iPhone 17!
+            Bagikan momen aksimu, raih <span className="lg:hidden"><br /></span>kesempatan menang iPhone 17 Pro!
           </motion.p>
 
           {/* Countdown Timer */}
