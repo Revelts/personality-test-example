@@ -240,7 +240,7 @@ export default function TechShiftChallengePage() {
                       <span className="text-base sm:text-lg font-black text-black uppercase tracking-wide">{p.label}</span>
                       <div className="w-4 h-4 bg-brand-red flex-shrink-0" />
                     </div>
-                    <p className="text-sm sm:text-base text-black font-bold mb-6 max-w-xs">{p.desc}</p>
+                    <p className="text-sm sm:text-base text-black font-normal mb-6 max-w-xs">{p.desc}</p>
                     <div className="w-full max-w-xs">
                       <Image src={p.src} alt={p.alt} width={400} height={320} className="w-full h-auto object-contain" />
                     </div>
@@ -265,7 +265,7 @@ export default function TechShiftChallengePage() {
                         <span className="text-4xl font-black text-black uppercase tracking-wide">{prize.label}</span>
                         <div className="w-4 h-4 bg-brand-red flex-shrink-0" />
                       </div>
-                      <p className="text-2xl text-black font-bold max-w-2xl">{prize.desc}</p>
+                      <p className="text-2xl text-black font-normal max-w-2xl">{prize.desc}</p>
                     </div>
 
                     {/* Large centered image */}
