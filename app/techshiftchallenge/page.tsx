@@ -437,7 +437,7 @@ export default function TechShiftChallengePage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">04.</span>
-                  <p className="text-white text-base sm:text-lg font-bold leading-snug">Langkah terakhir! Masukkan nama akun, nomor HP aktif, dan link video TikTok kamu melalui tombol "Ikuti Sekarang" di Google Form pada halaman utama.</p>
+                  <p className="text-white text-base sm:text-lg font-bold leading-snug">Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi</p>
                 </div>
               </motion.div>
             )}
@@ -466,6 +466,15 @@ export default function TechShiftChallengePage() {
 
           {/* Slide content */}
           <div className="flex-1 relative overflow-hidden">
+
+            {/* Nav arrows — always visible, overlay all slides */}
+            <div className="absolute bottom-10 right-16 flex gap-1 z-20">
+              <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
+                className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
+              <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
+                className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
+            </div>
+
             <AnimatePresence mode="wait">
 
               {/* ── Slide 1 ── */}
@@ -474,10 +483,10 @@ export default function TechShiftChallengePage() {
                   className="absolute inset-0 flex">
 
                   {/* LEFT: text block, bottom-aligned */}
-                  <div className="w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10 overflow-visible">
+                  <div className="w-[340px] 2xl:w-[520px] flex-shrink-0 flex flex-col justify-end px-16 pb-10 overflow-visible">
                     {/* Title block */}
                     <div className="bg-black px-5 py-4 mb-6 w-full">
-                      <p className="text-white text-5xl font-black uppercase leading-tight tracking-tight">
+                      <p className="text-white text-4xl 2xl:text-5xl font-black uppercase leading-tight tracking-tight">
                         CARA IKUT<br />KESERUANNYA
                       </p>
                     </div>
@@ -486,7 +495,7 @@ export default function TechShiftChallengePage() {
                       <div className="bg-black px-4 py-3 flex-shrink-0">
                         <span className="text-white text-3xl font-black">1.</span>
                       </div>
-                      <p className="text-white text-4xl font-semibold leading-snug pt-1">
+                      <p className="text-white text-3xl 2xl:text-4xl font-semibold leading-snug pt-1">
                         Pilih template favoritmu dan kreasikan momenmu
                       </p>
                     </div>
@@ -499,13 +508,16 @@ export default function TechShiftChallengePage() {
                     <div className="w-4 h-4 bg-black flex-shrink-0" />
                   </div>
 
-                  {/* RIGHT: two cards + nav */}
-                  <div className="flex-1 flex flex-col min-h-0 pb-10 pr-16 relative">
+                  {/* RIGHT: two cards */}
+                  <div className="flex-1 min-h-0 pr-16 flex items-center justify-center">
 
-                    {/* Cards area — cards align bottom with title block */}
-                    <div className="flex-1 flex items-end justify-center gap-4 pb-[400px]">
-                      {/* Card 1 — larger */}
-                      <div className="relative overflow-hidden flex-shrink-0 w-[480px] h-[680px]">
+                    {/* Cards — tops aligned via items-start, group centered */}
+                    <div className="flex items-start gap-4">
+                      {/* Card 1 — portrait, scales with vw capped by vh */}
+                      <div
+                        className="relative overflow-hidden flex-shrink-0"
+                        style={{ width: 'clamp(200px, 20vw, 560px)', aspectRatio: '300 / 424', maxHeight: '72vh' }}
+                      >
                         <div className="absolute top-4 left-4 z-10">
                           <p className="text-white text-sm font-black uppercase leading-none">AKSI STUNT KEREN</p>
                           <p className="text-white/80 text-xs font-medium mt-0.5">dengan transisi heboh</p>
@@ -518,9 +530,11 @@ export default function TechShiftChallengePage() {
                           </a>
                         </div>
                       </div>
-                      {/* Card 2 — shorter, lifted up so top aligns with card 1 top */}
-                      <div className="relative overflow-hidden flex-shrink-0 w-[380px] h-[380px] mb-[300px]">
-                        {/* Square above card 2 — absolute top-right of card */}
+                      {/* Card 2 — square, scales with vw capped by vh */}
+                      <div
+                        className="relative overflow-hidden flex-shrink-0"
+                        style={{ width: 'clamp(140px, 13vw, 360px)', aspectRatio: '1 / 1', maxHeight: '47vh' }}
+                      >
                         <div className="absolute -top-6 right-0 w-4 h-4 bg-black z-10" />
                         <div className="absolute top-4 left-4 z-10">
                           <p className="text-white text-sm font-black uppercase leading-none">MOMEN RANDOM</p>
@@ -536,13 +550,6 @@ export default function TechShiftChallengePage() {
                       </div>
                     </div>
 
-                    {/* Nav arrows — bottom right */}
-                    <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
-                      <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
-                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
-                      <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
-                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
-                    </div>
                   </div>
 
                 </motion.div>
@@ -572,12 +579,6 @@ export default function TechShiftChallengePage() {
                         <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
                       </div>
                     </div>
-                    <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
-                      <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
-                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
-                      <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
-                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
-                    </div>
                   </div>
                 </motion.div>
               )}
@@ -606,12 +607,6 @@ export default function TechShiftChallengePage() {
                         <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
                       </div>
                     </div>
-                    <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
-                      <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
-                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
-                      <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
-                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
-                    </div>
                   </div>
                 </motion.div>
               )}
@@ -628,7 +623,7 @@ export default function TechShiftChallengePage() {
                         <span className="text-white text-3xl font-black">04.</span>
                       </div>
                       <p className="text-white text-4xl font-semibold leading-snug pt-1">
-                        Langkah terakhir! Masukkan nama akun, nomor HP aktif, dan link video TikTok kamu melalui tombol "Ikuti Sekarang" di Google Form pada halaman utama.
+                        Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi
                       </p>
                     </div>
                   </div>
@@ -639,12 +634,6 @@ export default function TechShiftChallengePage() {
                       <div className="relative w-auto aspect-[3/4] overflow-hidden">
                         <Image src="/images/form.jpeg" alt="Google Form Sandisk Challenge" fill className="object-cover object-top" />
                       </div>
-                    </div>
-                    <div className="flex justify-end gap-1 pt-4 flex-shrink-0">
-                      <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
-                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
-                      <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
-                        className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
                     </div>
                   </div>
                 </motion.div>
