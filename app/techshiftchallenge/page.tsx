@@ -9,7 +9,7 @@
 
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import CountdownTimer from './components/CountdownTimer';
 import FAQAccordion from './components/FAQAccordion';
@@ -30,8 +30,16 @@ export default function TechShiftChallengePage() {
   const [activeHowSlide, setActiveHowSlide] = useState(0);
   const howDragStartX = useRef(0);
   const HOW_SLIDES = 4;
+  const slide0Ref = useRef<HTMLDivElement>(null);
+  const [slideContainerHeight, setSlideContainerHeight] = useState<number | undefined>(undefined);
 
   const [activePrize, setActivePrize] = useState(0);
+
+  useEffect(() => {
+    if (slide0Ref.current) {
+      setSlideContainerHeight(slide0Ref.current.offsetHeight);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-bg-primary text-text-primary overflow-x-hidden">
@@ -305,7 +313,7 @@ export default function TechShiftChallengePage() {
       <section className="relative bg-brand-red select-none overflow-hidden">
 
         {/* ── MOBILE ── */}
-        <div className="lg:hidden h-screen flex flex-col overflow-hidden">
+        <div className="lg:hidden flex flex-col min-h-screen">
           {/* Progress bar */}
           <div className="flex gap-1.5 px-5 pt-5 pb-4">
             {Array.from({ length: HOW_SLIDES }).map((_, i) => (
@@ -338,7 +346,8 @@ export default function TechShiftChallengePage() {
 
           {/* Swipeable slides */}
           <motion.div
-            className="flex-1 overflow-hidden h-full"
+            className="flex-1 h-full"
+            style={{ minHeight: slideContainerHeight }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.08}
@@ -351,7 +360,8 @@ export default function TechShiftChallengePage() {
           >
             {activeHowSlide === 0 && (
               <motion.div key="how-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
-                className="px-5 pt-4 pb-10 flex flex-col items-center min-h-[calc(100vh-120px)]"
+                ref={slide0Ref}
+                className="px-5 pt-4 pb-10 flex flex-col items-center"
               >
                 <div className="flex items-start gap-3 mb-6 w-full">
                   <div className="bg-black px-2 py-1 flex-shrink-0">
@@ -360,7 +370,7 @@ export default function TechShiftChallengePage() {
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Pilih template favoritmu dan kreasikan momenmu</p>
                 </div>
                 <div className="mb-3 w-full">
-                  <div className="relative w-full h-[190px] sm:h-[260px] overflow-hidden rounded-sm">
+                  <div className="relative w-full aspect-square overflow-hidden rounded-sm">
                     <div className="absolute top-3 left-3 z-10">
                       <p className="text-white text-sm font-black leading-none uppercase">AKSI STUNT KEREN</p>
                       <p className="text-white/80 text-xs font-medium">dengan transisi heboh</p>
@@ -375,7 +385,7 @@ export default function TechShiftChallengePage() {
                   </div>
                 </div>
                 <div className="mb-6 w-full">
-                  <div className="relative w-full h-[190px] sm:h-[260px] overflow-hidden rounded-sm">
+                  <div className="relative w-full aspect-square overflow-hidden rounded-sm">
                     <div className="absolute top-3 left-3 z-10">
                       <p className="text-white text-sm font-black leading-none uppercase">MOMEN RANDOM</p>
                       <p className="text-white/80 text-xs font-medium">spontan tapi lucu</p>
@@ -397,11 +407,11 @@ export default function TechShiftChallengePage() {
             )}
             {activeHowSlide === 1 && (
               <motion.div key="how-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
-                className="h-full px-5 pb-44 flex flex-col">
-                <div className="flex-1 relative rounded-sm overflow-hidden mb-5 min-h-0">
+                className="px-5 pt-4 pb-10 flex flex-col">
+                <div className="relative w-full aspect-square rounded-sm overflow-hidden mb-5">
                   <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
                 </div>
-                <div className="flex items-start gap-3 flex-shrink-0 relative z-10">
+                <div className="flex items-start gap-3">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">2.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Gunakan lagu resmi Sandisk Challenge sesuai template yang dipilih, baik untuk aksi seru maupun momen lucu.</p>
                 </div>
@@ -409,11 +419,11 @@ export default function TechShiftChallengePage() {
             )}
             {activeHowSlide === 2 && (
               <motion.div key="how-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
-                className="h-full px-5 pb-44 flex flex-col">
-                <div className="flex-1 relative rounded-sm overflow-hidden mb-5 min-h-0">
+                className="px-5 pt-4 pb-10 flex flex-col">
+                <div className="relative w-full aspect-square rounded-sm overflow-hidden mb-5">
                   <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
                 </div>
-                <div className="flex items-start gap-3 flex-shrink-0 relative z-10">
+                <div className="flex items-start gap-3">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">3.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Post videomu di TikTok dengan hashtag #sandisktechshiftid , tag @sandiskindonesia pastikan akunmu tidak private.</p>
                 </div>
@@ -421,11 +431,11 @@ export default function TechShiftChallengePage() {
             )}
             {activeHowSlide === 3 && (
               <motion.div key="how-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
-                className="h-full px-5 pb-44 flex flex-col">
-                <div className="flex-1 relative rounded-sm overflow-hidden mb-5 min-h-0">
-                  <Image src="/images/form.jpeg" alt="Google Form Sandisk Challenge" fill className="object-cover object-top" />
+                className="px-5 pt-4 pb-10 flex flex-col">
+                <div className="relative w-full aspect-square rounded-sm overflow-hidden mb-5">
+                  <Image src="/images/form.jpeg" alt="Google Form Sandisk Challenge" fill className="object-cover object-center" />
                 </div>
-                <div className="flex items-start gap-3 flex-shrink-0 relative z-10">
+                <div className="flex items-start gap-3">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">04.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Langkah terakhir! Masukkan nama akun, nomor HP aktif, dan link video TikTok kamu melalui tombol "Ikuti Sekarang" di Google Form pada halaman utama.</p>
                 </div>
