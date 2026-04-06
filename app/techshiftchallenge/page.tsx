@@ -455,7 +455,7 @@ export default function TechShiftChallengePage() {
                 </div>
                 <div className="relative z-10 flex items-start gap-3">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">4.</span>
-                  <p className="text-white text-base sm:text-lg font-bold leading-snug">Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi</p>
+                  <p className="text-white text-base sm:text-lg font-bold leading-snug">Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi.</p>
                 </div>
               </motion.div>
             )}
@@ -514,7 +514,7 @@ export default function TechShiftChallengePage() {
                         <span className="text-white text-3xl font-black">1.</span>
                       </div>
                       <p className="text-white text-3xl 2xl:text-4xl font-semibold leading-snug pt-1">
-                        Pilih template favoritmu dan kreasikan momenmu
+                        Pilih template favoritmu dan kreasikan momenmu.
                       </p>
                     </div>
                     {/* Link */}
@@ -641,7 +641,7 @@ export default function TechShiftChallengePage() {
                         <span className="text-white text-3xl 2xl:text-4xl font-black">4.</span>
                       </div>
                       <p className="text-white text-4xl 2xl:text-5xl font-semibold leading-snug pt-1">
-                        Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi
+                        Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi.
                       </p>
                     </div>
                   </div>
