@@ -169,7 +169,7 @@ export default function TechShiftChallengePage() {
             transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: 0.8 }}
             className="mb-7"
           >
-            <p className="text-white text-sm font-medium mb-3">Periode kontes minggu ini berakhir dalam::</p>
+            <p className="text-white text-sm font-medium mb-3">Kontes minggu ini berakhir dalam:</p>
             <CountdownTimer />
           </motion.div>
 
