@@ -436,7 +436,7 @@ export default function TechShiftChallengePage() {
                   <Image src="/images/form.jpeg" alt="Google Form Sandisk Challenge" fill className="object-cover object-center" />
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">04.</span>
+                  <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">4.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi</p>
                 </div>
               </motion.div>
@@ -620,7 +620,7 @@ export default function TechShiftChallengePage() {
                   <div className="w-[520px] 2xl:w-[640px] flex-shrink-0 flex flex-col justify-end px-16 pb-10">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="bg-black px-4 py-3 flex-shrink-0">
-                        <span className="text-white text-3xl 2xl:text-4xl font-black">04.</span>
+                        <span className="text-white text-3xl 2xl:text-4xl font-black">4.</span>
                       </div>
                       <p className="text-white text-4xl 2xl:text-5xl font-semibold leading-snug pt-1">
                         Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi
