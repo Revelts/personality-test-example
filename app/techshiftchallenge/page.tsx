@@ -392,7 +392,7 @@ export default function TechShiftChallengePage() {
                     </div>
                     <Image src="/images/how-2.jpeg" alt="Momen Random" fill className="object-cover object-center" />
                     <div className="absolute bottom-3 left-3 right-3 z-10">
-                      <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
+                      <a href="https://www.capcut.com/tv2/ZSHUT1S74/" target="_blank" rel="noopener noreferrer"
                         className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                         COBA DI CAPCUT
                       </a>
@@ -408,8 +408,8 @@ export default function TechShiftChallengePage() {
             {activeHowSlide === 1 && (
               <motion.div key="how-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
                 className="px-5 pt-4 pb-10 flex flex-col">
-                <div className="relative w-full aspect-square rounded-sm overflow-hidden mb-5">
-                  <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
+                <div className="relative w-full aspect-[9/16] rounded-sm overflow-hidden mb-5">
+                  <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover object-top" />
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">2.</span>
@@ -542,7 +542,7 @@ export default function TechShiftChallengePage() {
                         </div>
                         <Image src="/images/how-2.jpeg" alt="Momen Random" fill className="object-cover object-center" />
                         <div className="absolute bottom-4 left-4 right-4 z-10">
-                          <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
+                          <a href="https://www.capcut.com/tv2/ZSHUT1S74/" target="_blank" rel="noopener noreferrer"
                             className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                             COBA DI CAPCUT
                           </a>
@@ -575,8 +575,8 @@ export default function TechShiftChallengePage() {
                   {/* RIGHT: image + nav */}
                   <div className="flex-1 flex flex-col min-h-0 pt-4 pb-10 pr-16">
                     <div className="flex-1 flex items-stretch justify-center min-h-0">
-                      <div className="relative h-full aspect-[4/5] overflow-hidden">
-                        <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover" />
+                      <div className="relative h-full aspect-[9/16] overflow-hidden">
+                        <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover object-top" />
                       </div>
                     </div>
                   </div>
