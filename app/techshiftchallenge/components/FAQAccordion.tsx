@@ -8,6 +8,10 @@ interface FAQItem {
   answer: string | React.ReactNode;
 }
 
+interface FAQAccordionProps {
+  onToggle?: (action: 'open' | 'close', index: number, questionText: string) => void;
+}
+
 const faqData: FAQItem[] = [
   {
     question: 'Apakah harus menggunakan template yang tersedia?',
@@ -71,7 +75,7 @@ const faqData: FAQItem[] = [
   },
 ];
 
-export default function FAQAccordion() {
+export default function FAQAccordion({ onToggle }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -80,7 +84,11 @@ export default function FAQAccordion() {
         <div key={index}>
           <div className="h-px bg-black/15 mb-6" />
           <button
-            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            onClick={() => {
+              const isOpening = openIndex !== index;
+              setOpenIndex(isOpening ? index : null);
+              onToggle?.(isOpening ? 'open' : 'close', index, faq.question);
+            }}
             className="w-full grid grid-cols-[3rem_1fr_1.5rem] lg:grid-cols-[5rem_1fr_2rem] items-start gap-x-6 lg:gap-x-8 text-left mb-4"
           >
             <span className="text-base lg:text-lg font-bold text-black pt-0.5">

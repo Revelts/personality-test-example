@@ -11,6 +11,17 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import {
+  trackTechShiftCtaClick,
+  trackTechShiftHowSlideNav,
+  trackTechShiftPrizeNav,
+  trackTechShiftCapcutClick,
+  trackTechShiftTncClick,
+  trackTechShiftFaqToggle,
+  trackTechShiftMarketplaceClick,
+  trackTechShiftSocialClick,
+  trackTechShiftBackToTop,
+} from '@/lib/techshift-analytics';
 import CountdownTimer from './components/CountdownTimer';
 import FAQAccordion from './components/FAQAccordion';
 import HallOfFameCarousel from './components/HallOfFameCarousel';
@@ -172,6 +183,7 @@ export default function TechShiftChallengePage() {
               href="https://docs.google.com/forms/d/e/1FAIpQLSf3PgL7y-_17-W0LkvlrI8piw42czgvCx3V9JI-KtIklS94CQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackTechShiftCtaClick()}
               whileHover={reducedMotion ? {} : { scale: 1.03 }}
               whileTap={reducedMotion ? {} : { scale: 0.97 }}
               className="relative inline-flex items-center justify-center px-10 lg:px-14 py-3 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold tracking-widest uppercase text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-200 overflow-hidden group"
@@ -290,12 +302,12 @@ export default function TechShiftChallengePage() {
                 {/* Nav arrows — bottom right */}
                 <div className="flex justify-end gap-2 px-16 pb-10">
                   <button
-                    onClick={() => setActivePrize(p => Math.max(0, p - 1))}
+                    onClick={() => { setActivePrize(p => Math.max(0, p - 1)); trackTechShiftPrizeNav('prev', Math.max(0, activePrize - 1)); }}
                     disabled={activePrize === 0}
                     className="w-16 h-16 border border-black/20 flex items-center justify-center text-black font-bold text-2xl hover:bg-black hover:text-white transition-colors disabled:opacity-30"
                   >←</button>
                   <button
-                    onClick={() => setActivePrize(p => Math.min(prizes.length - 1, p + 1))}
+                    onClick={() => { setActivePrize(p => Math.min(prizes.length - 1, p + 1)); trackTechShiftPrizeNav('next', Math.min(prizes.length - 1, activePrize + 1)); }}
                     disabled={activePrize === prizes.length - 1}
                     className="w-16 h-16 border border-black/20 flex items-center justify-center text-black font-bold text-2xl hover:bg-black hover:text-white transition-colors disabled:opacity-30"
                   >→</button>
@@ -332,12 +344,12 @@ export default function TechShiftChallengePage() {
             </span>
             <div className="flex items-center gap-1">
               <button
-                onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))}
+                onClick={() => { setActiveHowSlide(s => Math.max(0, s - 1)); trackTechShiftHowSlideNav('prev', Math.max(0, activeHowSlide - 1)); }}
                 disabled={Number(activeHowSlide) === 0}
                 className="w-7 h-7 border border-white flex items-center justify-center text-white text-xs hover:bg-white hover:text-black transition-colors disabled:opacity-40"
               >←</button>
               <button
-                onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))}
+                onClick={() => { setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1)); trackTechShiftHowSlideNav('next', Math.min(HOW_SLIDES - 1, activeHowSlide + 1)); }}
                 disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
                 className="w-7 h-7 border border-white flex items-center justify-center text-white text-xs hover:bg-white hover:text-black transition-colors disabled:opacity-40"
               >→</button>
@@ -354,8 +366,14 @@ export default function TechShiftChallengePage() {
             onDragStart={(_, info) => { howDragStartX.current = info.point.x; }}
             onDragEnd={(_, info) => {
               const diff = howDragStartX.current - info.point.x;
-              if (diff > 50 && activeHowSlide < HOW_SLIDES - 1) setActiveHowSlide(s => s + 1);
-              if (diff < -50 && activeHowSlide > 0) setActiveHowSlide(s => s - 1);
+              if (diff > 50 && activeHowSlide < HOW_SLIDES - 1) {
+                setActiveHowSlide(s => s + 1);
+                trackTechShiftHowSlideNav('swipe_next', activeHowSlide + 1);
+              }
+              if (diff < -50 && activeHowSlide > 0) {
+                setActiveHowSlide(s => s - 1);
+                trackTechShiftHowSlideNav('swipe_prev', activeHowSlide - 1);
+              }
             }}
           >
             {activeHowSlide === 0 && (
@@ -375,9 +393,9 @@ export default function TechShiftChallengePage() {
                       <p className="text-white text-sm font-black leading-none uppercase">AKSI STUNT KEREN</p>
                       <p className="text-white/80 text-xs font-medium">dengan transisi heboh</p>
                     </div>
-                    <Image src="/images/how-1.jpeg" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
+                    <Image src="/images/how-2.jpeg" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
                     <div className="absolute bottom-3 left-3 right-3 z-10">
-                      <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
+                      <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer" onClick={() => trackTechShiftCapcutClick('aksi_stunt')}
                         className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                         COBA DI CAPCUT
                       </a>
@@ -390,16 +408,16 @@ export default function TechShiftChallengePage() {
                       <p className="text-white text-sm font-black leading-none uppercase">MOMEN RANDOM</p>
                       <p className="text-white/80 text-xs font-medium">spontan tapi lucu</p>
                     </div>
-                    <Image src="/images/how-2.jpeg" alt="Momen Random" fill className="object-cover object-center" />
+                    <Image src="/images/how-1.jpeg" alt="Momen Random" fill className="object-cover object-center" />
                     <div className="absolute bottom-3 left-3 right-3 z-10">
-                      <a href="https://www.capcut.com/tv2/ZSHUT1S74/" target="_blank" rel="noopener noreferrer"
+                      <a href="https://www.capcut.com/tv2/ZSHUT1S74/" target="_blank" rel="noopener noreferrer" onClick={() => trackTechShiftCapcutClick('momen_random')}
                         className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                         COBA DI CAPCUT
                       </a>
                     </div>
                   </div>
                 </div>
-                <a href="https://drive.google.com/file/d/1UrmVWvr5CUkWBy3KpGD9l5lpgzpsHmYl/view?usp=sharing" target="_blank" rel="noopener noreferrer"
+                <a href="https://drive.google.com/file/d/1UrmVWvr5CUkWBy3KpGD9l5lpgzpsHmYl/view?usp=sharing" target="_blank" rel="noopener noreferrer" onClick={() => trackTechShiftTncClick()}
                   className="text-white text-sm font-normal underline underline-offset-4 hover:text-black transition-colors duration-200 mt-auto pt-4 w-full">
                   (→) Baca Syarat &amp; Ketentuan
                 </a>
@@ -407,11 +425,11 @@ export default function TechShiftChallengePage() {
             )}
             {activeHowSlide === 1 && (
               <motion.div key="how-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
-                className="px-5 pt-4 pb-10 flex flex-col">
-                <div className="relative w-full aspect-[9/16] rounded-sm overflow-hidden mb-5">
-                  <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover object-top" />
+                className="px-5 pt-4 pb-44 flex flex-col">
+                <div className="w-full rounded-sm overflow-hidden mb-5">
+                  <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" width={375} height={812} className="w-full h-auto" />
                 </div>
-                <div className="flex items-start gap-3">
+                <div className="relative z-10 flex items-start gap-3">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">2.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Gunakan lagu resmi Sandisk Challenge sesuai template yang dipilih, baik untuk aksi seru maupun momen lucu.</p>
                 </div>
@@ -419,11 +437,11 @@ export default function TechShiftChallengePage() {
             )}
             {activeHowSlide === 2 && (
               <motion.div key="how-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
-                className="px-5 pt-4 pb-10 flex flex-col">
+                className="px-5 pt-4 pb-44 flex flex-col">
                 <div className="relative w-full aspect-square rounded-sm overflow-hidden mb-5">
                   <Image src="/images/slide-3.png" alt="Post videomu di TikTok" fill className="object-cover" />
                 </div>
-                <div className="flex items-start gap-3">
+                <div className="relative z-10 flex items-start gap-3">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">3.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Post videomu di TikTok dengan hashtag #sandisktechshiftid , tag @sandiskindonesia pastikan akunmu tidak private.</p>
                 </div>
@@ -431,11 +449,11 @@ export default function TechShiftChallengePage() {
             )}
             {activeHowSlide === 3 && (
               <motion.div key="how-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}
-                className="px-5 pt-4 pb-10 flex flex-col">
-                <div className="relative w-full aspect-square rounded-sm overflow-hidden mb-5">
-                  <Image src="/images/form.jpeg" alt="Google Form Sandisk Challenge" fill className="object-cover object-center" />
+                className="px-5 pt-4 pb-44 flex flex-col">
+                <div className="w-full rounded-sm overflow-hidden mb-5">
+                  <Image src="/images/form.jpeg" alt="Google Form Sandisk Challenge" width={375} height={812} className="w-full h-auto" />
                 </div>
-                <div className="flex items-start gap-3">
+                <div className="relative z-10 flex items-start gap-3">
                   <span className="bg-black text-white text-base font-black px-2 py-1 leading-none flex-shrink-0">4.</span>
                   <p className="text-white text-base sm:text-lg font-bold leading-snug">Langkah terakhir! Klik tombol "Ikuti Sekarang" di halaman utama untuk melakukan registrasi</p>
                 </div>
@@ -469,9 +487,9 @@ export default function TechShiftChallengePage() {
 
             {/* Nav arrows — always visible, overlay all slides */}
             <div className="absolute bottom-10 right-16 flex gap-1 z-20">
-              <button onClick={() => setActiveHowSlide(s => Math.max(0, s - 1))} disabled={Number(activeHowSlide) === 0}
+              <button onClick={() => { setActiveHowSlide(s => Math.max(0, s - 1)); trackTechShiftHowSlideNav('prev', Math.max(0, activeHowSlide - 1)); }} disabled={Number(activeHowSlide) === 0}
                 className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">←</button>
-              <button onClick={() => setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1))} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
+              <button onClick={() => { setActiveHowSlide(s => Math.min(HOW_SLIDES - 1, s + 1)); trackTechShiftHowSlideNav('next', Math.min(HOW_SLIDES - 1, activeHowSlide + 1)); }} disabled={Number(activeHowSlide) >= HOW_SLIDES - 1}
                 className="w-20 h-20 border border-white/40 flex items-center justify-center text-white text-2xl hover:bg-white hover:text-black transition-colors disabled:opacity-20">→</button>
             </div>
 
@@ -500,7 +518,7 @@ export default function TechShiftChallengePage() {
                       </p>
                     </div>
                     {/* Link */}
-                    <a href="https://placeholder-syarat-ketentuan.com" target="_blank" rel="noopener noreferrer"
+                    <a href="https://placeholder-syarat-ketentuan.com" target="_blank" rel="noopener noreferrer" onClick={() => trackTechShiftTncClick()}
                       className="text-white text-base font-bold underline underline-offset-4 hover:text-black transition-colors mb-6">
                       (→) Baca Syarat &amp; Ketentuan
                     </a>
@@ -522,9 +540,9 @@ export default function TechShiftChallengePage() {
                           <p className="text-white text-sm font-black uppercase leading-none">AKSI STUNT KEREN</p>
                           <p className="text-white/80 text-xs font-medium mt-0.5">dengan transisi heboh</p>
                         </div>
-                        <Image src="/images/how-1.jpeg" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
+                        <Image src="/images/how-2.jpeg" alt="Aksi Stunt Keren" fill className="object-cover object-center" />
                         <div className="absolute bottom-4 left-4 right-4 z-10">
-                          <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer"
+                          <a href="https://www.capcut.com/tv2/ZSHjD7jwR/" target="_blank" rel="noopener noreferrer" onClick={() => trackTechShiftCapcutClick('aksi_stunt')}
                             className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                             COBA DI CAPCUT
                           </a>
@@ -540,9 +558,9 @@ export default function TechShiftChallengePage() {
                           <p className="text-white text-sm font-black uppercase leading-none">MOMEN RANDOM</p>
                           <p className="text-white/80 text-xs font-medium mt-0.5">spontan tapi lucu</p>
                         </div>
-                        <Image src="/images/how-2.jpeg" alt="Momen Random" fill className="object-cover object-center" />
+                        <Image src="/images/how-1.jpeg" alt="Momen Random" fill className="object-cover object-center" />
                         <div className="absolute bottom-4 left-4 right-4 z-10">
-                          <a href="https://www.capcut.com/tv2/ZSHUT1S74/" target="_blank" rel="noopener noreferrer"
+                          <a href="https://www.capcut.com/tv2/ZSHUT1S74/" target="_blank" rel="noopener noreferrer" onClick={() => trackTechShiftCapcutClick('momen_random')}
                             className="w-full bg-white text-black text-sm font-black tracking-widest uppercase py-3 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors duration-200">
                             COBA DI CAPCUT
                           </a>
@@ -576,7 +594,7 @@ export default function TechShiftChallengePage() {
                   <div className="flex-1 flex flex-col min-h-0 pt-4 pb-10 pr-16">
                     <div className="flex-1 flex items-stretch justify-center min-h-0">
                       <div className="relative h-full aspect-[9/16] overflow-hidden">
-                        <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-cover object-top" />
+                        <Image src="/images/slide-2.jpeg" alt="Gunakan lagu resmi Sandisk Challenge" fill className="object-contain" />
                       </div>
                     </div>
                   </div>
@@ -595,7 +613,7 @@ export default function TechShiftChallengePage() {
                         <span className="text-white text-3xl 2xl:text-4xl font-black">3.</span>
                       </div>
                       <p className="text-white text-4xl 2xl:text-5xl font-semibold leading-snug pt-1">
-                        Post videomu di TikTok dengan hashtag #sandisktechshiftid, tag @sandiskindonesia, pastikan akunmu tidak private.
+                        Post videomu di TikTok dengan hashtag #sandisktechshiftid, tag @sandiskindonesia & pastikan akunmu tidak private.
                       </p>
                     </div>
                   </div>
@@ -650,12 +668,17 @@ export default function TechShiftChallengePage() {
       <section className="bg-white px-6 lg:px-0 py-10 lg:py-20">
         <div className="lg:max-w-4xl lg:mx-auto">
           <p className="text-black text-xl lg:text-3xl font-black tracking-tight mb-10 lg:mb-14">(→) FAQ</p>
-          <FAQAccordion />
+          <FAQAccordion
+            onToggle={(action, index, questionText) =>
+              trackTechShiftFaqToggle(action, index, questionText)
+            }
+          />
           <div className="h-px bg-black/15 mt-6 mb-8" />
           <a
             href="https://drive.google.com/file/d/1UrmVWvr5CUkWBy3KpGD9l5lpgzpsHmYl/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackTechShiftTncClick()}
             className="text-black text-base lg:text-lg font-bold underline underline-offset-4 hover:text-brand-red transition-colors duration-200"
           >
             (→) Baca Syarat &amp; Ketentuan
@@ -676,7 +699,11 @@ export default function TechShiftChallengePage() {
       {/* ========================================
           SECTION 9: FOOTER
       ======================================== */}
-      <FooterSection />
+      <FooterSection
+        onMarketplaceClick={trackTechShiftMarketplaceClick}
+        onSocialClick={trackTechShiftSocialClick}
+        onBackToTop={trackTechShiftBackToTop}
+      />
 
       {/* Custom Red Arrow Cursor */}
       <CustomCursor />

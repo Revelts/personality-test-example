@@ -3,8 +3,15 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { trackPageView } from '@/lib/analytics';
+import { trackTechShiftPageView } from '@/lib/techshift-analytics';
 
-const getPageMeta = (pathname: string | null): { pageName: string; pageType: string } => {
+interface PageMeta {
+  pageName: string;
+  pageType: string;
+  trackFn?: () => void;
+}
+
+const getPageMeta = (pathname: string | null): PageMeta => {
   if (!pathname) {
     return { pageName: 'Unknown', pageType: 'default' };
   }
@@ -26,7 +33,11 @@ const getPageMeta = (pathname: string | null): { pageName: string; pageType: str
   }
 
   if (pathname.startsWith('/techshiftchallenge')) {
-    return { pageName: 'TechShift Challenge', pageType: 'campaign' };
+    return {
+      pageName: 'TechShift Challenge',
+      pageType: 'campaign',
+      trackFn: () => trackTechShiftPageView(),
+    };
   }
 
   return { pageName: pathname, pageType: 'page' };
@@ -37,8 +48,12 @@ export const usePageTracking = (): void => {
 
   useEffect(() => {
     if (!pathname) return;
-    const { pageName, pageType } = getPageMeta(pathname);
-    trackPageView(pageName, pageType);
+    const { pageName, pageType, trackFn } = getPageMeta(pathname);
+    if (trackFn) {
+      trackFn();
+    } else {
+      trackPageView(pageName, pageType);
+    }
   }, [pathname]);
 };
 
