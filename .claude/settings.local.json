@@ -5,7 +5,8 @@
       "Bash(find /Users/leynardo/Revelt/interactive-web-test -maxdepth 2 -type d ! -path */node_modules* ! -path */.next* ! -name .DS_Store)",
       "Bash(wc -l /Users/leynardo/Revelt/interactive-web-test/lib/*.ts /Users/leynardo/Revelt/interactive-web-test/components/*.tsx /Users/leynardo/Revelt/interactive-web-test/app/techshiftchallenge/page.tsx)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/leynardo/Revelt/interactive-web-test/public/images/slide-2.jpeg)",
-      "Bash(chmod +x /Users/leynardo/personality-test-example/deploy.sh)"
+      "Bash(chmod +x /Users/leynardo/personality-test-example/deploy.sh)",
+      "Bash(chmod +x:*)"
     ]
   }
 }

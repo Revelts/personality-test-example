@@ -28,6 +28,19 @@ services:
     networks:
       - internal
 
+  juragan_app:
+    build:
+      context: ./juragan-apart
+      dockerfile: Dockerfile
+    container_name: juragan_app
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    expose:
+      - "3000"
+    networks:
+      - internal
+
   certbot:
     image: certbot/certbot:latest
     container_name: sandisk_certbot
