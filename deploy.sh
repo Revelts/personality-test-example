@@ -54,7 +54,7 @@ docker stop nginx_init || true
 
 # ── 3. Build and start full stack ─────────────────────────────────────────────
 echo ">>> Building application image..."
-docker compose build --no-cache
+docker compose build
 
 echo ">>> Starting all services..."
 docker compose up -d
