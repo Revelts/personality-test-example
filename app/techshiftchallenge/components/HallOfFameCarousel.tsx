@@ -14,38 +14,38 @@ const winners: Winner[] = [
   {
     username: '@amelll.ia29',
     category: 'Weekly Winner',
-    photo: '/images/winner/template_aksi_1.png',
+    photo: '/images/winner/templat_lucu_1.png',
     videoUrl: 'https://www.tiktok.com/@amelll.ia29/video/7627401977571331346?is_from_webapp=1&sender_device=pc',
   },
   {
     username: '@gebbymerinda',
     category: 'Weekly Winner',
-    photo: '/images/winner/template_aksi_2.png',
+    photo: '/images/winner/templat_lucu_2.png',
     videoUrl: 'https://www.tiktok.com/@gebbymerinda/video/7627428548046900500?is_from_webapp=1&sender_device=pc',
-  },
-  {
-    username: '@arif.ikhwani',
-    category: 'Weekly Winner',
-    photo: '/images/winner/template_aksi_3.png',
-    videoUrl: 'https://www.tiktok.com/@arif.ikhwani/video/7627631058669866260?is_from_webapp=1&sender_device=pc',
-  },
-  {
-    username: '@pinkku223',
-    category: 'Weekly Winner',
-    photo: '/images/winner/template_lucu_1.png',
-    videoUrl: 'https://www.tiktok.com/@pinkku223/video/7627404271599766804?is_from_webapp=1&sender_device=pc',
-  },
-  {
-    username: '@airyn631',
-    category: 'Weekly Winner',
-    photo: '/images/winner/template_lucu_2.png',
-    videoUrl: 'https://www.tiktok.com/@airyn631/video/7627439343220854037?is_from_webapp=1&sender_device=pc',
   },
   {
     username: '@andriani.53',
     category: 'Weekly Winner',
     photo: '/images/winner/template_lucu_3.png',
-    videoUrl: 'https://www.tiktok.com/@andriani.53/video/7627429261858671893?is_from_webapp=1&sender_device=pc',
+    videoUrl: 'https://www.tiktok.com/@andriani.53/video/7627631058669866260?is_from_webapp=1&sender_device=pc',
+  },
+  {
+    username: '@arif.ikhwani',
+    category: 'Weekly Winner',
+    photo: '/images/winner/template_aksi_1.png',
+    videoUrl: 'https://www.tiktok.com/@arif.ikhwani/video/7627404271599766804?is_from_webapp=1&sender_device=pc',
+  },
+  {
+    username: '@pinkku223',
+    category: 'Weekly Winner',
+    photo: '/images/winner/template_aksi_2.png',
+    videoUrl: 'https://www.tiktok.com/@pinkku223/video/7627439343220854037?is_from_webapp=1&sender_device=pc',
+  },
+  {
+    username: '@airyn631',
+    category: 'Weekly Winner',
+    photo: '/images/winner/template_aksi_3.png',
+    videoUrl: 'https://www.tiktok.com/@airyn631/video/7627429261858671893?is_from_webapp=1&sender_device=pc',
   },
 ];
 
