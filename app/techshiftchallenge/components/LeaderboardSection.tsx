@@ -11,28 +11,23 @@ interface LeaderboardGroup {
   isFinal?: boolean;
 }
 
+//  : https://www.tiktok.com/@amelll.ia29/video/7627401977571331346?is_from_webapp=1&sender_device=pc
+//  : https://www.tiktok.com/@gebbymerinda/video/7627428548046900500?is_from_webapp=1&sender_device=pc
+//  : https://www.tiktok.com/@arif.ikhwani/video/7627631058669866260?is_from_webapp=1&sender_device=pc
+//  : https://www.tiktok.com/@pinkku223/video/7627404271599766804?is_from_webapp=1&sender_device=pc
+//  : https://www.tiktok.com/@airyn631/video/7627439343220854037?is_from_webapp=1&sender_device=pc
+//  : https://www.tiktok.com/@andriani.53/video/7627429261858671893?is_from_webapp=1&sender_device=pc
+
 const groups: LeaderboardGroup[] = [
   {
     title: 'WEEKLY WINNER I (Periode: 06 Apr-12 Apr 2026)',
-    winners: ['Pemenang 1', 'Pemenang 2', 'Pemenang 3', 'Pemenang 4', 'Pemenang 5', 'Pemenang 6'],
+    winners: ['Amel', 'Gabby', 'Arif', 'Pinku', 'Airin', 'Andriani'],
   },
-  {
-    title: 'WEEKLY WINNER II (Periode: 13 Apr-19 Apr 2026)',
-    winners: ['Pemenang 1', 'Pemenang 2', 'Pemenang 3', 'Pemenang 4', 'Pemenang 5', 'Pemenang 6'],
-  },
-  {
-    title: 'WEEKLY WINNER III (Periode: 20 Apr-26 Apr 2026)',
-    winners: ['Pemenang 1', 'Pemenang 2', 'Pemenang 3', 'Pemenang 4', 'Pemenang 5', 'Pemenang 6'],
-  },
-  {
-    title: 'WEEKLY WINNER IV (Periode: 27 Apr-3 Mei 2026)',
-    winners: ['Pemenang 1', 'Pemenang 2', 'Pemenang 3', 'Pemenang 4', 'Pemenang 5', 'Pemenang 6'],
-  },
-  {
-    title: 'FINAL WINNER',
-    isFinal: true,
-    winners: [],
-  },
+  // {
+  //   title: 'FINAL WINNER',
+  //   isFinal: true,
+  //   winners: [],
+  // },
 ];
 
 function AccordionItem({ group, index }: { group: LeaderboardGroup; index: number }) {

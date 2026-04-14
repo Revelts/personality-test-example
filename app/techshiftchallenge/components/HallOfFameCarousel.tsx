@@ -7,28 +7,45 @@ interface Winner {
   username: string;
   category: string;
   photo: string;
+  videoUrl: string;
 }
 
 const winners: Winner[] = [
   {
-    username: '@Jondoe',
+    username: '@amelll.ia29',
     category: 'Weekly Winner',
-    photo: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80',
+    photo: '/images/winner/template_aksi_1.png',
+    videoUrl: 'https://www.tiktok.com/@amelll.ia29/video/7627401977571331346?is_from_webapp=1&sender_device=pc',
   },
   {
-    username: '@creativegirl',
+    username: '@gebbymerinda',
     category: 'Weekly Winner',
-    photo: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',
+    photo: '/images/winner/template_aksi_2.png',
+    videoUrl: 'https://www.tiktok.com/@gebbymerinda/video/7627428548046900500?is_from_webapp=1&sender_device=pc',
   },
   {
-    username: '@stuntkid',
+    username: '@arif.ikhwani',
     category: 'Weekly Winner',
-    photo: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80',
+    photo: '/images/winner/template_aksi_3.png',
+    videoUrl: 'https://www.tiktok.com/@arif.ikhwani/video/7627631058669866260?is_from_webapp=1&sender_device=pc',
   },
   {
-    username: '@memorymaker',
+    username: '@pinkku223',
     category: 'Weekly Winner',
-    photo: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',
+    photo: '/images/winner/template_lucu_1.png',
+    videoUrl: 'https://www.tiktok.com/@pinkku223/video/7627404271599766804?is_from_webapp=1&sender_device=pc',
+  },
+  {
+    username: '@airyn631',
+    category: 'Weekly Winner',
+    photo: '/images/winner/template_lucu_2.png',
+    videoUrl: 'https://www.tiktok.com/@airyn631/video/7627439343220854037?is_from_webapp=1&sender_device=pc',
+  },
+  {
+    username: '@andriani.53',
+    category: 'Weekly Winner',
+    photo: '/images/winner/template_lucu_3.png',
+    videoUrl: 'https://www.tiktok.com/@andriani.53/video/7627429261858671893?is_from_webapp=1&sender_device=pc',
   },
 ];
 
@@ -108,9 +125,14 @@ export default function HallOfFameCarousel() {
                   >→</button>
                 </div>
                 <div className="flex items-stretch bg-white">
-                  <div className="bg-black px-6 py-5 flex items-center justify-center flex-shrink-0">
+                  <a
+                    href={current.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-black px-6 py-5 flex items-center justify-center flex-shrink-0 hover:bg-gray-800 transition-colors"
+                  >
                     <span className="text-white font-black text-xl">(→)</span>
-                  </div>
+                  </a>
                   <div className="flex-1 px-6 py-5 flex items-center">
                     <span className="text-black font-black text-xl sm:text-2xl">{current.username}</span>
                   </div>
@@ -176,9 +198,14 @@ export default function HallOfFameCarousel() {
                   <img src={winner.photo} alt={winner.username} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex items-stretch bg-white">
-                  <div className="bg-black px-4 py-3 flex items-center justify-center flex-shrink-0">
+                  <a
+                    href={winner.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-black px-4 py-3 flex items-center justify-center flex-shrink-0 hover:bg-gray-800 transition-colors"
+                  >
                     <span className="text-white font-black text-base">(→)</span>
-                  </div>
+                  </a>
                   <div className="flex-1 px-4 py-3 flex items-center">
                     <span className="text-black font-black text-lg">{winner.username}</span>
                   </div>
@@ -186,7 +213,6 @@ export default function HallOfFameCarousel() {
               </div>
             ))}
           </motion.div>
-
         </div>
 
         {/* Dots */}
