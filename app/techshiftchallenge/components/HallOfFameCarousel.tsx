@@ -14,13 +14,13 @@ const winners: Winner[] = [
   {
     username: '@amelll.ia29',
     category: 'Weekly Winner',
-    photo: '/images/winner/templat_lucu_1.png',
+    photo: '/images/winner/template_lucu_1.png',
     videoUrl: 'https://www.tiktok.com/@amelll.ia29/video/7627401977571331346?is_from_webapp=1&sender_device=pc',
   },
   {
     username: '@gebbymerinda',
     category: 'Weekly Winner',
-    photo: '/images/winner/templat_lucu_2.png',
+    photo: '/images/winner/template_lucu_2.png',
     videoUrl: 'https://www.tiktok.com/@gebbymerinda/video/7627428548046900500?is_from_webapp=1&sender_device=pc',
   },
   {
