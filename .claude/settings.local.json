@@ -6,7 +6,13 @@
       "Bash(wc -l /Users/leynardo/Revelt/interactive-web-test/lib/*.ts /Users/leynardo/Revelt/interactive-web-test/components/*.tsx /Users/leynardo/Revelt/interactive-web-test/app/techshiftchallenge/page.tsx)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/leynardo/Revelt/interactive-web-test/public/images/slide-2.jpeg)",
       "Bash(chmod +x /Users/leynardo/personality-test-example/deploy.sh)",
-      "Bash(chmod +x:*)"
+      "Bash(chmod +x:*)",
+      "Bash(node -e \"const p = require\\('/Users/leynardo/personality-test-example/package.json'\\); console.log\\(JSON.stringify\\({...p.dependencies, ...p.devDependencies}, null, 2\\)\\)\")",
+      "Bash(node -e \"const p = require\\('/Users/leynardo/personality-test-example/juragan-apart/package.json'\\); console.log\\(JSON.stringify\\({...p.dependencies, ...p.devDependencies}, null, 2\\)\\)\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(list\\(d.get\\('dependencies',{}\\).keys\\(\\)\\)[:10]\\)\")",
+      "Bash(npm install:*)",
+      "Bash(ls /Users/leynardo/personality-test-example/*.sh)",
+      "Bash(ls /Users/leynardo/personality-test-example/juragan-apart/*.sh)"
     ]
   }
 }

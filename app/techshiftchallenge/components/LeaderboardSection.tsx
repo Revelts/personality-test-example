@@ -23,6 +23,18 @@ const groups: LeaderboardGroup[] = [
     title: 'WEEKLY WINNER I (Periode: 06 Apr-12 Apr 2026)',
     winners: ['Amel', 'Gabby', 'Arif', 'Pinku', 'Airin', 'Andriani'],
   },
+  {
+    title: 'WEEKLY WINNER II (Periode: 12 Apr-18 Apr 2026)',
+    winners: ['Ayank', 'Rahman', 'Nanda', 'Scalau', 'Callmeleak'],
+  },
+  {
+    title: 'WEEKLY WINNER III (Periode: 18 Apr-24 Apr 2026)',
+    winners: ['Danu', 'Dede', 'Wida', 'Kharizma', 'Shazfa', 'Anjel'],
+  },
+  {
+    title: 'WEEKLY WINNER IV (Periode: 24 Apr-30 Apr 2026)',
+    winners: ['Selfi', 'Raisin', 'Koko', 'Naysha', 'Sugarbaby', 'Gaskins'],
+  },
   // {
   //   title: 'FINAL WINNER',
   //   isFinal: true,
