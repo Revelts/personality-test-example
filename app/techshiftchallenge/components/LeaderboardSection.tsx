@@ -35,11 +35,11 @@ const groups: LeaderboardGroup[] = [
     title: 'WEEKLY WINNER IV (Periode: 24 Apr-30 Apr 2026)',
     winners: ['Selfi', 'Raisin', 'Koko', 'Naysha', 'Sugarbaby', 'Gaskins'],
   },
-  // {
-  //   title: 'FINAL WINNER',
-  //   isFinal: true,
-  //   winners: [],
-  // },
+  {
+    title: 'FINAL WINNER',
+    isFinal: true,
+    winners: ['@raisin.scone', '@arif.ikhwani', '@kokotorwibawa', '@scclauu0', '@atuluv06', '@gebbymerinda'],
+  },
 ];
 
 function AccordionItem({ group, index }: { group: LeaderboardGroup; index: number }) {
@@ -75,14 +75,14 @@ function AccordionItem({ group, index }: { group: LeaderboardGroup; index: numbe
               <div className="pb-6 space-y-4">
                 <div>
                   <p className="text-white font-black text-sm mb-1">Kategori STUNT Template:</p>
-                  {['Pemenang Pertama', 'Pemenang Kedua', 'Pemenang Favorit 1', 'Pemenang Favorit 2'].map((p, i) => (
-                    <p key={i} className="text-white/70 text-sm">{p}</p>
+                  {['@raisin.scone', '@arif.ikhwani', '@kokotorwibawa'].map((name, i) => (
+                    <p key={i} className="text-white/70 text-sm">{name}</p>
                   ))}
                 </div>
                 <div>
                   <p className="text-white font-black text-sm mb-1">Kategori CORE Template:</p>
-                  {['Pemenang Pertama', 'Pemenang Kedua', 'Pemenang Favorit 1', 'Pemenang Favorit 2'].map((p, i) => (
-                    <p key={i} className="text-white/70 text-sm">{p}</p>
+                  {['@scclauu0', '@atuluv06', '@gebbymerinda'].map((name, i) => (
+                    <p key={i} className="text-white/70 text-sm">{name}</p>
                   ))}
                 </div>
               </div>
