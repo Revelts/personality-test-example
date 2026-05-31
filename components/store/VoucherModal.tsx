@@ -75,7 +75,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center px-6"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center px-6 overflow-y-auto py-4"
       style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
       onClick={onClose}
     >
@@ -87,7 +87,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
         <h1
           ref={h1Ref}
           className="text-white font-black uppercase text-center mb-1"
-          style={{ fontSize: '70px', lineHeight: 1.0, letterSpacing: '-1px' }}
+          style={{ fontSize: 'clamp(46px, 17vw, 70px)', lineHeight: 1.0, letterSpacing: '-1px' }}
         >
           {heading}
         </h1>
@@ -152,7 +152,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
                 <p
                   ref={cobaRef}
                   className="font-black uppercase text-black text-center"
-                  style={{ fontSize: '28px', letterSpacing: '-0.5px' }}
+                  style={{ fontSize: '20px', letterSpacing: '-0.5px' }}
                 >
                   COBA LAGI
                 </p>
@@ -166,9 +166,15 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
               </div>
             )}
 
-            {/* HINGGA */}
+          </div>
+
+          {/* Zone HINGGA — anchored to card image, always below dashed line */}
+          <div
+            className="absolute flex justify-center items-start"
+            style={{ top: '52%', left: '10%', right: '10%' }}
+          >
             <p
-              className={`font-black uppercase text-black tracking-widest ${isWin ? 'mt-9 text-left -ml-4' : 'mt-4 text-center'}`}
+              className={`font-black uppercase text-black tracking-widest ${isWin ? 'text-left' : 'text-center'}`}
               style={{ fontSize: 'clamp(1rem, 4.5vw, 1.3rem)' }}
             >
               HINGGA 30 : 06 : 2026

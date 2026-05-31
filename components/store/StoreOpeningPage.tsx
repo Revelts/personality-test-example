@@ -110,7 +110,7 @@ export default function StoreOpeningPage({ storeId, voucherCode, shopLink }: Sto
         </section>
 
         {/* Footer disclaimer */}
-        <footer className="relative w-full pb-15 px-8">
+        <footer className="relative w-full pt-6 pb-10 px-8">
           <p className="text-white text-center text-xs leading-relaxed opacity-90">
             S&amp;K berlaku. Kuota terbatas.
             <br />
