@@ -132,8 +132,8 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
                     VOUCHER RP 5.000
                   </p>
                   <p
-                    className="font-normal uppercase text-black"
-                    style={{ fontSize: 'clamp(0.82rem, 2.5vw, 0.95rem)', letterSpacing: '0.32em', wordSpacing: '0' }}
+                    className="font-normal uppercase text-black whitespace-nowrap"
+                    style={{ fontSize: 'clamp(0.7rem, 2vw, 0.9rem)', letterSpacing: '0.38em', wordSpacing: '0' }}
                   >
                     PRODUK TERTENTU
                   </p>

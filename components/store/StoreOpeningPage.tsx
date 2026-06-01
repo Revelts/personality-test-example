@@ -40,10 +40,10 @@ export default function StoreOpeningPage({ storeId, voucherCode, shopLink }: Sto
 
   return (
     <main
-      className="w-full min-h-screen flex justify-center"
+      className="w-full h-screen flex justify-center overflow-hidden"
       style={{ backgroundColor: '#CC1C14' }}
     >
-      <div className="relative flex flex-col items-center w-full min-h-screen overflow-hidden md:max-w-md">
+      <div className="relative flex flex-col items-center w-full h-full overflow-hidden md:max-w-md">
         {/* Logo */}
         <header className="w-full flex justify-center pt-12 pb-4 px-8">
           <Image
