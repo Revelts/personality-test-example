@@ -75,7 +75,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center px-6 overflow-y-auto py-4"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-y-auto py-2"
       style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
       onClick={onClose}
     >
@@ -87,13 +87,13 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
         <h1
           ref={h1Ref}
           className="text-white font-black uppercase text-center mb-1"
-          style={{ fontSize: 'clamp(46px, 17vw, 70px)', lineHeight: 1.0, letterSpacing: '-1px' }}
+          style={{ fontSize: 'clamp(30px, 10vw, 70px)', lineHeight: 1.0, letterSpacing: '-1px' }}
         >
           {heading}
         </h1>
         <p
           ref={subtitleRef}
-          className="text-white font-semibold uppercase text-center mb-3"
+          className="text-white font-semibold uppercase text-center mb-2"
           style={{ fontSize: '12px', letterSpacing: subtitleSpacing, wordSpacing: '0px' }}
         >
           {subtitle}
@@ -117,8 +117,8 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
             <Image
               src="/assets/minivoucher.png"
               alt="voucher"
-              width={64}
-              height={53}
+              width={48}
+              height={40}
               className="object-contain mb-1"
             />
 
@@ -127,13 +127,13 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
                 <div>
                   <p
                     className="font-black uppercase text-black"
-                    style={{ fontSize: 'clamp(1rem, 4.5vw, 1.2rem)' }}
+                    style={{ fontSize: 'clamp(0.8rem, 3.8vw, 1.2rem)' }}
                   >
                     VOUCHER RP 5.000
                   </p>
                   <p
                     className="font-normal uppercase text-black whitespace-nowrap"
-                    style={{ fontSize: 'clamp(0.7rem, 2vw, 0.9rem)', letterSpacing: '0.38em', wordSpacing: '0' }}
+                    style={{ fontSize: 'clamp(0.6rem, 1.8vw, 0.9rem)', letterSpacing: '0.38em', wordSpacing: '0' }}
                   >
                     PRODUK TERTENTU
                   </p>
@@ -141,7 +141,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="flex-shrink-0 mr-2 text-white font-black uppercase rounded-full px-4 py-2 text-sm transition-opacity active:opacity-80"
+                  className="flex-shrink-0 mr-2 text-white font-black uppercase rounded-full px-3 py-1.5 text-xs transition-opacity active:opacity-80"
                   style={{ backgroundColor: '#CC1C14' }}
                 >
                   {copied ? 'SALIN' : 'SALIN'}
@@ -175,7 +175,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
           >
             <p
               className={`font-black uppercase text-black tracking-widest ${isWin ? 'text-left' : 'text-center'}`}
-              style={{ fontSize: 'clamp(1rem, 4.5vw, 1.3rem)' }}
+              style={{ fontSize: 'clamp(0.8rem, 3.8vw, 1.3rem)' }}
             >
               HINGGA 30 : 06 : 2026
             </p>
@@ -190,7 +190,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
               <button
                 type="button"
                 onClick={handlePakaiSekarang}
-                className="w-full border-2 border-black text-black font-black uppercase tracking-widest rounded-full py-3 text-sm transition-colors hover:bg-black hover:text-white active:scale-95"
+                className="w-full border-2 border-black text-black font-black uppercase tracking-widest rounded-full py-2 text-sm transition-colors hover:bg-black hover:text-white active:scale-95"
                 style={{ letterSpacing: '0.12em' }}
               >
                 PAKAI SEKARANG
@@ -198,8 +198,8 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
             )}
             <button
               type="button"
-              onClick={onClose}
-              className="w-full border-2 border-black text-black font-black uppercase tracking-widest rounded-full py-3 text-sm transition-colors hover:bg-black hover:text-white active:scale-95"
+              onClick={() => { window.open(shopLink, '_blank', 'noopener,noreferrer'); onClose(); }}
+              className="w-full border-2 border-black text-black font-black uppercase tracking-widest rounded-full py-2 text-sm transition-colors hover:bg-black hover:text-white active:scale-95"
               style={{ letterSpacing: '0.12em' }}
             >
               TUTUP
