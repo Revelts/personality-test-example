@@ -65,7 +65,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
   function handleCopy() {
     navigator.clipboard.writeText(voucherCode).then(() => {
       setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      setTimeout(() => setCopied(false), 3000)
     })
   }
 
@@ -142,7 +142,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
                   type="button"
                   onClick={handleCopy}
                   className="flex-shrink-0 mr-2 text-white font-black uppercase rounded-full px-3 py-1.5 text-xs transition-opacity active:opacity-80"
-                  style={{ backgroundColor: '#CC1C14' }}
+                  style={{ backgroundColor: copied ? '#9CA3AF' : '#CC1C14', transition: 'background-color 0.2s' }}
                 >
                   {copied ? 'SALIN' : 'SALIN'}
                 </button>
@@ -177,7 +177,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
               className={`font-black uppercase text-black tracking-widest ${isWin ? 'text-left' : 'text-center'}`}
               style={{ fontSize: 'clamp(0.8rem, 3.8vw, 1.3rem)' }}
             >
-              HINGGA 30 : 06 : 2026
+              HINGGA 30.06.2026
             </p>
           </div>
 
