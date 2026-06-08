@@ -20,7 +20,19 @@ export default function StoreOpeningPage({ storeId, voucherCode, shopLink }: Sto
   useEffect(() => {
     const stored = localStorage.getItem(`sandisk_played_${storeId}`)
     const today = new Date().toLocaleDateString('en-CA')
-    if (stored === today) setHasPlayedToday(true)
+    if (!stored) return
+    try {
+      const parsed = JSON.parse(stored)
+      if (parsed.date === today) {
+        if (parsed.result === 'win') {
+          setModal({ open: true, result: 'win' })
+        } else {
+          setHasPlayedToday(true)
+        }
+      }
+    } catch {
+      if (stored === today) setHasPlayedToday(true)
+    }
   }, [storeId])
 
   function handleFolderClick() {
@@ -29,7 +41,8 @@ export default function StoreOpeningPage({ storeId, voucherCode, shopLink }: Sto
       return
     }
     const result = Math.random() < 0.6 ? 'win' : 'lose'
-    localStorage.setItem(`sandisk_played_${storeId}`, new Date().toLocaleDateString('en-CA'))
+    const today = new Date().toLocaleDateString('en-CA')
+    localStorage.setItem(`sandisk_played_${storeId}`, JSON.stringify({ date: today, result }))
     setHasPlayedToday(true)
     setModal({ open: true, result })
   }

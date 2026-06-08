@@ -74,6 +74,25 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
   }
 
   return (
+    <>
+    {copied && (
+      <div className="fixed inset-0 z-[60] flex items-center justify-center pointer-events-none">
+        <div
+          className="pointer-events-auto bg-white rounded-2xl shadow-2xl px-6 py-4 flex flex-col items-center gap-2"
+          style={{ minWidth: 160 }}
+        >
+          <p className="font-black uppercase text-black text-base tracking-widest">Tersalin!</p>
+          <p className="text-gray-500 text-xs">Kode voucher berhasil disalin</p>
+          <button
+            type="button"
+            onClick={() => setCopied(false)}
+            className="mt-1 text-xs font-bold text-red-600 uppercase tracking-widest border border-red-600 rounded-full px-4 py-1 hover:bg-red-600 hover:text-white transition-colors"
+          >
+            Tutup
+          </button>
+        </div>
+      </div>
+    )}
     <div
       className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-y-auto py-2"
       style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
@@ -123,17 +142,17 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
             />
 
             {isWin ? (
-              <div className="flex items-center justify-between w-full" style={{ paddingLeft: '5%' }}>
+              <div className="flex items-center justify-between w-full" style={{ paddingLeft: '10%', paddingTop: '8%' }}>
                 <div>
                   <p
                     className="font-black uppercase text-black"
-                    style={{ fontSize: 'clamp(0.8rem, 3.8vw, 1.2rem)' }}
+                    style={{ fontSize: 'clamp(0.9rem, 4.0vw, 1.25rem)' }}
                   >
                     VOUCHER RP 5.000
                   </p>
                   <p
                     className="font-normal uppercase text-black whitespace-nowrap"
-                    style={{ fontSize: 'clamp(0.6rem, 1.8vw, 0.9rem)', letterSpacing: '0.38em', wordSpacing: '0' }}
+                    style={{ fontSize: 'clamp(0.65rem, 2.2vw, 1rem)', letterSpacing: '0.38em', wordSpacing: '0' }}
                   >
                     PRODUK TERTENTU
                   </p>
@@ -141,7 +160,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="flex-shrink-0 mr-2 text-white font-black uppercase rounded-full px-3 py-1.5 text-xs transition-opacity active:opacity-80"
+                  className="flex-shrink-0 mr-5 text-white font-black uppercase rounded-full px-4 py-2 text-sm transition-opacity active:opacity-80"
                   style={{ backgroundColor: copied ? '#9CA3AF' : '#CC1C14', transition: 'background-color 0.2s' }}
                 >
                   {copied ? 'SALIN' : 'SALIN'}
@@ -208,5 +227,6 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
         </div>
       </div>
     </div>
+    </>
   )
 }
