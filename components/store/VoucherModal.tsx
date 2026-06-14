@@ -2,16 +2,23 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import {
+  trackUseVoucherClick,
+  trackVoucherCopy,
+  trackVoucherModalClose,
+  trackVoucherModalView,
+} from '@/lib/analytics'
 
 interface VoucherModalProps {
   isOpen: boolean
   result: 'win' | 'lose' | 'cooldown'
   voucherCode: string
   shopLink: string
+  storeId?: string
   onClose: () => void
 }
 
-export default function VoucherModal({ isOpen, result, voucherCode, shopLink, onClose }: VoucherModalProps) {
+export default function VoucherModal({ isOpen, result, voucherCode, shopLink, storeId = '', onClose }: VoucherModalProps) {
   const [copied, setCopied] = useState(false)
   const [subtitleSpacing, setSubtitleSpacing] = useState('0px')
   const [cobaSubSpacing, setCobaSubSpacing] = useState('0px')
@@ -46,6 +53,11 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
   }, [isOpen, subtitle])
 
   useEffect(() => {
+    if (!isOpen) return
+    trackVoucherModalView(storeId, result)
+  }, [isOpen, result, storeId])
+
+  useEffect(() => {
     if (!isOpen || isWin || !cobaRef.current || !subCobaRef.current) return
     const cobaWidth = cobaRef.current.getBoundingClientRect().width
     const el = subCobaRef.current
@@ -64,13 +76,20 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
 
   function handleCopy() {
     navigator.clipboard.writeText(voucherCode).then(() => {
+      trackVoucherCopy(storeId, voucherCode)
       setCopied(true)
       setTimeout(() => setCopied(false), 3000)
     })
   }
 
   function handlePakaiSekarang() {
+    trackUseVoucherClick(storeId)
     window.open(shopLink, '_blank', 'noopener,noreferrer')
+  }
+
+  function handleClose() {
+    trackVoucherModalClose(storeId, result)
+    onClose()
   }
 
   return (
@@ -96,7 +115,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
     <div
       className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-y-auto py-2"
       style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
-      onClick={onClose}
+      onClick={handleClose}
     >
       <div
         className="w-full max-w-sm md:max-w-md flex flex-col items-center"
@@ -217,7 +236,7 @@ export default function VoucherModal({ isOpen, result, voucherCode, shopLink, on
             )}
             <button
               type="button"
-              onClick={() => { window.open(shopLink, '_blank', 'noopener,noreferrer'); onClose(); }}
+              onClick={() => { window.open(shopLink, '_blank', 'noopener,noreferrer'); handleClose(); }}
               className="w-full border-2 border-black text-black font-black uppercase tracking-widest rounded-full py-2 text-sm transition-colors hover:bg-black hover:text-white active:scale-95"
               style={{ letterSpacing: '0.12em' }}
             >

@@ -2,6 +2,12 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import {
+  trackStoreCooldownTrigger,
+  trackStoreFolderClick,
+  trackStoreGameResult,
+  trackStorePageView,
+} from '@/lib/analytics'
 import VoucherModal from './VoucherModal'
 
 interface StoreOpeningPageProps {
@@ -20,29 +26,45 @@ export default function StoreOpeningPage({ storeId, voucherCode, shopLink }: Sto
   useEffect(() => {
     const stored = localStorage.getItem(`sandisk_played_${storeId}`)
     const today = new Date().toLocaleDateString('en-CA')
-    if (!stored) return
+    if (!stored) {
+      trackStorePageView(storeId, 'new')
+      return
+    }
     try {
       const parsed = JSON.parse(stored)
       if (parsed.date === today) {
         if (parsed.result === 'win') {
+          trackStorePageView(storeId, 'already_won')
           setModal({ open: true, result: 'win' })
         } else {
+          trackStorePageView(storeId, 'already_lost')
           setHasPlayedToday(true)
         }
+      } else {
+        trackStorePageView(storeId, 'new')
       }
     } catch {
-      if (stored === today) setHasPlayedToday(true)
+      if (stored === today) {
+        trackStorePageView(storeId, 'already_lost')
+        setHasPlayedToday(true)
+      } else {
+        trackStorePageView(storeId, 'new')
+      }
     }
   }, [storeId])
 
   function handleFolderClick() {
     if (hasPlayedToday) {
+      trackStoreFolderClick(storeId, 'already_lost')
+      trackStoreCooldownTrigger(storeId)
       setModal({ open: true, result: 'cooldown' })
       return
     }
+    trackStoreFolderClick(storeId, 'new')
     const result = Math.random() < 0.6 ? 'win' : 'lose'
     const today = new Date().toLocaleDateString('en-CA')
     localStorage.setItem(`sandisk_played_${storeId}`, JSON.stringify({ date: today, result }))
+    trackStoreGameResult(storeId, result)
     setHasPlayedToday(true)
     setModal({ open: true, result })
   }
@@ -141,6 +163,7 @@ export default function StoreOpeningPage({ storeId, voucherCode, shopLink }: Sto
         result={modal.result}
         voucherCode={voucherCode}
         shopLink={shopLink}
+        storeId={storeId}
         onClose={handleClose}
       />
     </main>

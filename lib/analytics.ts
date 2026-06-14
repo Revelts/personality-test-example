@@ -363,3 +363,80 @@ export const trackCustomEvent = (
     ...eventData,
   });
 };
+
+// ---------------------------------------------------------------------------
+// Vehicle Ads — Store / Voucher Campaign Events
+// All events use the prefix vehicle:ads:event:{name}
+// ---------------------------------------------------------------------------
+
+type StoreUserStatus = 'new' | 'already_won' | 'already_lost';
+
+export const trackStorePageView = (storeId: string, userStatus: StoreUserStatus): void => {
+  pushToDataLayer({
+    event: 'vehicle:ads:event:store_page_view',
+    store_id: storeId,
+    user_status: userStatus,
+    ...getDefaultEventMeta(),
+  });
+};
+
+export const trackStoreFolderClick = (storeId: string, userStatus: StoreUserStatus): void => {
+  pushToDataLayer({
+    event: 'vehicle:ads:event:folder_click',
+    store_id: storeId,
+    user_status: userStatus,
+    ...getDefaultEventMeta(),
+  });
+};
+
+export const trackStoreGameResult = (storeId: string, result: 'win' | 'lose'): void => {
+  pushToDataLayer({
+    event: 'vehicle:ads:event:game_result',
+    store_id: storeId,
+    result,
+    ...getDefaultEventMeta(),
+  });
+};
+
+export const trackStoreCooldownTrigger = (storeId: string): void => {
+  pushToDataLayer({
+    event: 'vehicle:ads:event:cooldown_trigger',
+    store_id: storeId,
+    ...getDefaultEventMeta(),
+  });
+};
+
+export const trackVoucherModalView = (storeId: string, result: 'win' | 'lose' | 'cooldown'): void => {
+  pushToDataLayer({
+    event: 'vehicle:ads:event:modal_view',
+    store_id: storeId,
+    modal_result: result,
+    ...getDefaultEventMeta(),
+  });
+};
+
+export const trackVoucherCopy = (storeId: string, voucherCode: string): void => {
+  pushToDataLayer({
+    event: 'vehicle:ads:event:voucher_copy',
+    store_id: storeId,
+    voucher_code: voucherCode,
+    ...getDefaultEventMeta(),
+  });
+};
+
+export const trackUseVoucherClick = (storeId: string): void => {
+  pushToDataLayer({
+    event: 'vehicle:ads:event:use_voucher_click',
+    store_id: storeId,
+    ...getDefaultEventMeta(),
+  });
+};
+
+export const trackVoucherModalClose = (storeId: string, result: 'win' | 'lose' | 'cooldown'): void => {
+  pushToDataLayer({
+    event: 'vehicle:ads:event:modal_close',
+    store_id: storeId,
+    modal_result: result,
+    ...getDefaultEventMeta(),
+  });
+};
